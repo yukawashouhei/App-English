@@ -18,6 +18,7 @@ struct QuestionView: View {
     @State private var isRecording = false
     @State private var audioRecorder: AVAudioRecorder?
     @State private var recordingURL: URL?
+    @Environment(\.presentationMode) var presentationMode
     
     private var currentQuestion: Question {
         test.questions[currentQuestionIndex]
@@ -142,7 +143,7 @@ struct QuestionView: View {
                         }
                         .padding(.top, 8)
                     } label: {
-                        Label("答えを見る", systemImage: "eye")
+                        Label("答えを見る", systemImage: "checkmark.bubble")
                             .font(.headline)
                             .foregroundColor(.green)
                     }
@@ -165,7 +166,7 @@ struct QuestionView: View {
                         }
                         .padding(.top, 8)
                     } label: {
-                        Label("日本語訳を見る", systemImage: "globe.asia.australia")
+                        Label("日本語訳を見る", systemImage: "translate")
                             .font(.headline)
                             .foregroundColor(.blue)
                     }
@@ -204,21 +205,20 @@ struct QuestionView: View {
                         Label("前の問題", systemImage: "chevron.left")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(currentQuestionIndex > 0 ? Color.blue : Color.gray)
+                            .background(currentQuestionIndex > 0 ? Color.blue.opacity(0.7) : Color.gray.opacity(0.7))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
                     .disabled(currentQuestionIndex == 0)
                     
                     Button(action: nextQuestion) {
-                        Label("次の問題", systemImage: "chevron.right")
+                        Label(currentQuestionIndex < test.questions.count - 1 ? "次の問題" : "完了", systemImage: currentQuestionIndex < test.questions.count - 1 ? "chevron.right" : "checkmark")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(currentQuestionIndex < test.questions.count - 1 ? Color.blue : Color.gray)
+                            .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                    .disabled(currentQuestionIndex >= test.questions.count - 1)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 30)
@@ -242,6 +242,9 @@ struct QuestionView: View {
         if currentQuestionIndex < test.questions.count - 1 {
             currentQuestionIndex += 1
             resetAnswerStates()
+        } else {
+            // Test completed - could navigate back or show completion screen
+            // For now, we'll just stay on the last question
         }
     }
     
@@ -465,6 +468,6 @@ struct RecordingControlsView: View {
 
 #Preview {
     NavigationView {
-        QuestionView(test: Test.sampleReadingTest)
+        QuestionView(test: ReadingTests.test1)
     }
 } 

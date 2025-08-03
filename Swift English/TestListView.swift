@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TestListView: View {
     let skillType: SkillType
-    @State private var tests: [Test] = []
+    @State private var allQuestionsTest: Test?
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
@@ -23,64 +24,49 @@ struct TestListView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
-                
-                Text("英語テスト for iOS Engineer")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
             }
             .padding(.top, 20)
             .padding(.bottom, 30)
             
-            // Test List
-            ScrollView {
-                LazyVStack(spacing: 15) {
-                    ForEach(tests) { test in
-                        NavigationLink(destination: QuestionView(test: test)) {
-                            TestCard(test: test)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                    }
+            // Test Button
+            if let test = allQuestionsTest {
+                NavigationLink(destination: QuestionView(test: test)) {
+                    TestCard(test: test)
                 }
+                .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, 20)
             }
             
             Spacer()
         }
+        .navigationTitle(skillType.rawValue)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(false)
         .onAppear {
-            loadTests()
+            loadTest()
         }
     }
     
-    private func loadTests() {
-        // Load sample tests based on skill type
+    private func loadTest() {
+        // Load tests from respective files
+        var allQuestions: [Question] = []
+        
         switch skillType {
         case .reading:
-            tests = [
-                Test.sampleReadingTest,
-                Test.sampleReadingTest2,
-                Test.sampleReadingTest3
-            ]
+            allQuestions.append(contentsOf: ReadingTests.allTests.flatMap { $0.questions })
         case .listening:
-            tests = [
-                Test.sampleListeningTest,
-                Test.sampleListeningTest2,
-                Test.sampleListeningTest3
-            ]
+            allQuestions.append(contentsOf: ListeningTests.allTests.flatMap { $0.questions })
         case .speaking:
-            tests = [
-                Test.sampleSpeakingTest,
-                Test.sampleSpeakingTest2,
-                Test.sampleSpeakingTest3
-            ]
+            allQuestions.append(contentsOf: SpeakingTests.allTests.flatMap { $0.questions })
         case .writing:
-            tests = [
-                Test.sampleWritingTest,
-                Test.sampleWritingTest2,
-                Test.sampleWritingTest3
-            ]
+            allQuestions.append(contentsOf: WritingTests.allTests.flatMap { $0.questions })
         }
+        
+        allQuestionsTest = Test(
+            title: "Test 1",
+            skillType: skillType,
+            questions: allQuestions,
+            description: "\(skillType.rawValue)の総合テスト"
+        )
     }
 }
 
@@ -106,18 +92,6 @@ struct TestCard: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.leading)
-            
-            HStack {
-                Label("\(test.questions.count) 問題", systemImage: "questionmark.circle")
-                    .font(.caption)
-                    .foregroundColor(.blue)
-                
-                Spacer()
-                
-                Text("約15分")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
         }
         .padding(16)
         .background(Color(.systemBackground))
