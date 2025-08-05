@@ -42,89 +42,16 @@ struct QuestionView: View {
                 
                 Divider()
                 
-                // Audio controls for listening questions
-                if test.skillType == .listening, let audioFileName = currentQuestion.audioFileName {
-                    AudioControlsView(
-                        audioFileName: audioFileName,
-                        audioPlayer: $audioPlayer
-                    )
-                    .padding(.horizontal)
-                }
-                
-                // Passage (for reading questions)
-                if let passage = currentQuestion.passage {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("本文")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        
-                        Text(passage)
-                            .font(.body)
-                            .lineSpacing(6)
-                            .foregroundColor(.primary)
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(12)
-                    }
-                    .padding(.horizontal)
-                }
-                
-                // Question
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("問題")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    
-                    Text(currentQuestion.questionText)
-                        .font(.body)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .background(Color(.systemBlue).opacity(0.1))
-                        .cornerRadius(12)
-                }
-                .padding(.horizontal)
-                
-                // Options (for multiple choice)
-                if let options = currentQuestion.options {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("選択肢")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        
-                        ForEach(Array(options.enumerated()), id: \.offset) { index, option in
-                            HStack {
-                                Text("\(Character(UnicodeScalar(65 + index)!))")
-                                    .font(.body)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
-                                    .frame(width: 24, height: 24)
-                                    .background(Color.blue)
-                                    .clipShape(Circle())
-                                
-                                Text(option)
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                
-                                Spacer()
-                            }
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 12)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-                
-                // Recording controls for speaking questions
-                if test.skillType == .speaking {
-                    RecordingControlsView(
-                        isRecording: $isRecording,
-                        audioRecorder: $audioRecorder,
-                        recordingURL: $recordingURL
-                    )
-                    .padding(.horizontal)
-                }
+                // Dynamic question content
+                QuestionContentView(
+                    currentQuestion: currentQuestion,
+                    test: test,
+                    audioPlayer: $audioPlayer,
+                    isRecording: $isRecording,
+                    audioRecorder: $audioRecorder,
+                    recordingURL: $recordingURL
+                )
+                .animation(.none)
                 
                 // Answer controls
                 VStack(spacing: 12) {
@@ -205,7 +132,7 @@ struct QuestionView: View {
                         Label("前の問題", systemImage: "chevron.left")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(currentQuestionIndex > 0 ? Color.blue.opacity(0.7) : Color.gray.opacity(0.7))
+                            .background(Color.gray)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
@@ -220,10 +147,14 @@ struct QuestionView: View {
                             .cornerRadius(10)
                     }
                 }
+                .animation(.none, value: currentQuestionIndex)
                 .padding(.horizontal)
                 .padding(.bottom, 30)
             }
+            .animation(.none, value: currentQuestionIndex)
+            .id(currentQuestionIndex)
         }
+        .animation(.none, value: currentQuestionIndex)
         .navigationTitle(test.title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
@@ -232,26 +163,32 @@ struct QuestionView: View {
     }
     
     private func previousQuestion() {
-        if currentQuestionIndex > 0 {
-            currentQuestionIndex -= 1
-            resetAnswerStates()
+        withAnimation(nil) {
+            if currentQuestionIndex > 0 {
+                currentQuestionIndex -= 1
+                resetAnswerStates()
+            }
         }
     }
     
     private func nextQuestion() {
-        if currentQuestionIndex < test.questions.count - 1 {
-            currentQuestionIndex += 1
-            resetAnswerStates()
-        } else {
-            // Test completed - could navigate back or show completion screen
-            // For now, we'll just stay on the last question
+        withAnimation(nil) {
+            if currentQuestionIndex < test.questions.count - 1 {
+                currentQuestionIndex += 1
+                resetAnswerStates()
+            } else {
+                // Test completed - navigate back to previous screen
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
     
     private func resetAnswerStates() {
-        showAnswer = false
-        showTranslation = false
-        showExplanation = false
+        withAnimation(nil) {
+            showAnswer = false
+            showTranslation = false
+            showExplanation = false
+        }
     }
 }
 
@@ -463,6 +400,103 @@ struct RecordingControlsView: View {
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
         return String(format: "%d:%02d", minutes, seconds)
+    }
+}
+
+struct QuestionContentView: View {
+    let currentQuestion: Question
+    let test: Test
+    @Binding var audioPlayer: AVAudioPlayer?
+    @Binding var isRecording: Bool
+    @Binding var audioRecorder: AVAudioRecorder?
+    @Binding var recordingURL: URL?
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            // Audio controls for listening questions
+            if test.skillType == .listening, let audioFileName = currentQuestion.audioFileName {
+                AudioControlsView(
+                    audioFileName: audioFileName,
+                    audioPlayer: $audioPlayer
+                )
+                .padding(.horizontal)
+            }
+            
+            // Passage (for reading questions)
+            if let passage = currentQuestion.passage {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("本文")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    Text(passage)
+                        .font(.body)
+                        .lineSpacing(6)
+                        .foregroundColor(.primary)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                }
+                .padding(.horizontal)
+            }
+            
+            // Question
+            VStack(alignment: .leading, spacing: 12) {
+                Text("問題")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                
+                Text(currentQuestion.questionText)
+                    .font(.body)
+                    .foregroundColor(.primary)
+                    .padding()
+                    .background(Color(.systemBlue).opacity(0.1))
+                    .cornerRadius(12)
+            }
+            .padding(.horizontal)
+            
+            // Options (for multiple choice)
+            if let options = currentQuestion.options {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("選択肢")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    ForEach(Array(options.enumerated()), id: \.offset) { index, option in
+                        HStack {
+                            Text("\(Character(UnicodeScalar(65 + index)!))")
+                                .font(.body)
+                                .fontWeight(.medium)
+                                .foregroundColor(.white)
+                                .frame(width: 24, height: 24)
+                                .background(Color.blue)
+                                .clipShape(Circle())
+                            
+                            Text(option)
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                    }
+                }
+                .padding(.horizontal)
+            }
+            
+            // Recording controls for speaking questions
+            if test.skillType == .speaking {
+                RecordingControlsView(
+                    isRecording: $isRecording,
+                    audioRecorder: $audioRecorder,
+                    recordingURL: $recordingURL
+                )
+                .padding(.horizontal)
+            }
+        }
     }
 }
 
