@@ -349,9 +349,117 @@ struct ListeningTests {
                 
                 Exactly. Great work compiling this feedback, Yuki. It's incredibly valuable.
                 """
+            ),
+            Question(
+                type: .noteCompletion,
+                passage: """
+                Instructions: Complete the notes below. Write ONE WORD ONLY for each answer.
+                
+                Lecture Notes: The Composable Architecture (TCA)
+                
+                Introduction
+                • A framework for building apps in a consistent and understandable way.
+                • Provides clear rules for managing application state.
+                
+                Core Components
+                • State: The data that describes the app's current (1) ______________. It is the single source of truth.
+                • Action: Represents all possible (2) ______________ that can occur (e.g., user taps, network responses).
+                • Reducer: A function that processes actions to evolve the state. It is described as the (3) ______________ of the system.
+                
+                Key Benefits
+                • Benefit 1: Testability
+                    • The framework's structure makes it easy to write tests.
+                    • Each piece of logic can be tested in (4) ______________, separate from others.
+                • Benefit 2: Ergonomics & Scalability
+                    • Especially helpful for (5) ______________ teams, as everyone follows the same pattern.
+                    • Provides a consistent (6) ______________ for building any feature.
+                
+                Conclusion
+                • A powerful, though opinionated, framework.
+                • Requires an initial investment in (7) ______________ to master its concepts.
+                """,
+                questionText: "",
+                options: nil,
+                correctAnswer: "1. condition\n2. events\n3. engine\n4. isolation\n5. large\n6. blueprint\n7. learning",
+                japaneseTranslation: """
+                会話スクリプト（日本語訳）:
+                
+                講師: 「皆さん、おはようございます。今日の講義では、Swiftコミュニティで人気のある強力なフレームワーク、The Composable Architecture、しばしばTCAと略されるものについて、入門的な視点から見ていきたいと思います。その核心において、TCAは一貫性があり理解しやすい方法でアプリケーションを構築するためのライブラリであり、アプリケーションの状態をどのように管理し、その状態が時間とともにどのように変化するかについての明確な一連のルールを提供します。
+                
+                TCAを理解するためには、その3つの基本的な構成要素を把握する必要があります。一つ目は「State」です。Stateとは、本質的に、あなたの機能の現在の状態(condition)を記述するために必要なすべての情報を保持するデータ型です。ユーザーはログインしていますか？検索フィールドにはどんなテキストが入っていますか？これらはすべてStateの一部であり、信頼できる唯一の情報源として機能します。
+                
+                二つ目の構成要素は「Action」です。Actionは別のデータ型で、あなたの機能内で起こりうるすべてのイベント(events)を表現します。これには、ボタンをタップするといったユーザーのアクションや、ネットワークの応答を受け取るといった外部から起こる事柄も含まれます。
+                
+                三つ目の、そして最も重要な構成要素は「Reducer」です。Reducerは、現在のStateとActionを受け取り、それらから次のStateを計算する関数です。Reducerは、あなたの機能のエンジン(engine)と考えることができます。すべてのロジックが存在し、Actionを処理してそれに応じてStateを進化させる場所なのです。
+                
+                では、なぜこのアーキテクチャを使うのでしょうか？主な利点は二つあります。一つ目は「テスト容易性」です。すべてのロジックがReducer関数内に含まれているため、ユニットテストを書くことが信じられないほど簡単になります。各ロジックを、アプリケーション全体を実行することなく、完全に分離(isolation)した状態でテストすることができます。単にReducerにStateとActionを提供し、結果のStateが期待通りであることをアサート（断言）するだけです。
+                
+                二つ目の大きな利点は、私たちが「エルゴノミクス（開発のしやすさ）」と呼ぶもので、特に大規模な(large)チームで作業する際に顕著です。チームの誰もがすべての機能に対して同じアーキテクチャを使用すると、共通の言語と理解が生まれます。TCAは、大小を問わずどんな新機能を構築する際にも従うことができる、一貫した設計図(blueprint)を提供します。これにより、共同作業やコードベースの異なる部分間の移動がはるかに容易になります。
+                
+                結論として、The Composable Architectureは強力なツールです。しかし、それは「opinionated」、つまりソフトウェアをどのように構築すべきかについて強い思想を持っています。これは、乗り越えるべき初期の学習(learning)カーブがあることを意味します。しかし、その学習への投資を厭わないチームにとっては、一貫性、拡張性、そしてテスト容易性において信じられないほどの利益を提供します。ありがとうございました。」
+                
+                質問
+                指示：以下のノートを完成させなさい。各解答は1単語のみで記入すること。
+                
+                レクチャーノート：The Composable Architecture (TCA)
+                
+                はじめに
+                • 一貫性があり、理解しやすい方法でアプリを構築するためのフレームワーク。
+                • アプリケーションの状態を管理するための明確なルールを提供する。
+                
+                中心的な構成要素
+                • State: アプリの現在の (1) ______________ を記述するデータ。信頼できる唯一の情報源である。
+                • Action: 起こりうるすべての (2) ______________ を表現する（例：ユーザーのタップ、ネットワークの応答）。
+                • Reducer: アクションを処理して状態を進化させる関数。システムの (3) ______________ と説明される。
+                
+                主な利点
+                • 利点1: テスト容易性
+                    • フレームワークの構造がテスト作成を容易にする。
+                    • 各ロジックは、他から分離して (4) ______________ の状態でテストできる。
+                • 利点2: 開発しやすさと拡張性
+                    • 誰もが同じパターンに従うため、特に (5) ______ なチームに役立つ。
+                    • あらゆる機能を構築するための、一貫した (6) ______ を提供する。
+                
+                結論
+                • 強力ではあるが、独自の思想が強い（opinionatedな）フレームワーク。
+                • その概念を習得するには、初期の (7) ______________ への投資が必要。
+                """,
+                explanation: """
+                IELTSリスニングの最終セクションであるこの問題は、専門的な講義を聞き、その構造を理解しながらキーワードを正確に書き取る能力を試します。「ONE WORD ONLY」という制約があるため、聞き取った内容を要約したり、別の単語に言い換えたりせず、話された単語そのものを捉える必要があります。
+                
+                1. condition: 講義で "The State is essentially a data type that holds all the information necessary to describe the current condition of your feature." と述べられています。
+                
+                2. events: "Actions are another data type, representing all possible events that can occur within your feature." と明確に説明されています。
+                
+                3. engine: "You can think of the reducer as the engine of your feature..." と、比喩表現として紹介されています。
+                
+                4. isolation: テストの利点について "You can test each piece of logic in complete isolation..." と述べられています。
+                
+                5. large: チームでの利点について "especially when working on large teams." と具体的に言及されています。
+                
+                6. blueprint: "TCA provides a consistent blueprint that you can follow..." と、共通の指針となることを比喩で説明しています。
+                
+                7. learning: 結論部分で "there's an initial learning curve to overcome." と述べられています。「学習への投資(investment in learning)」という表現からも推測可能です。
+                """,
+                audioFileName: "listening_part4_note_completion",
+                conversationScript: """
+                Good morning, everyone. In today's lecture, we're going to take an introductory look at a popular and powerful framework in the Swift community: The Composable Architecture, often abbreviated as TCA. At its core, TCA is a library for building applications in a consistent and understandable way, providing a clear set of rules for how to manage application state, and how that state changes over time.
+                
+                To understand TCA, you need to grasp its three fundamental components. The first is the State. The State is essentially a data type that holds all the information necessary to describe the current condition of your feature. Is the user logged in? What text is in the search field? This is all part of the State, which acts as the single source of truth.
+                
+                The second component is the Action. Actions are another data type, representing all possible events that can occur within your feature. This includes user actions like tapping a button, as well as things that happen from the outside world, like receiving a network response.
+                
+                The third and most crucial component is the Reducer. The reducer is a function that takes the current state and an action, and from them, computes the next state. You can think of the reducer as the engine of your feature; it's the place where all the logic lives, processing actions and evolving the state accordingly.
+                
+                So, why would you use this architecture? There are two main benefits. The first is testability. Because all the logic is contained within the reducer function, it becomes incredibly easy to write unit tests. You can test each piece of logic in complete isolation, without needing to run the full application. You simply provide the reducer with a state and an action, and then you assert that the resulting state is what you expect.
+                
+                The second major benefit is what we call ergonomics, especially when working on large teams. When everyone on the team uses the same architecture for every feature, it creates a shared language and understanding. TCA provides a consistent blueprint that you can follow to build any new feature, big or small. This makes it much easier to collaborate and move between different parts of the codebase.
+                
+                In conclusion, The Composable Architecture is a powerful tool. It is, however, 'opinionated' – it has strong ideas about how you should build your software. This means there's an initial learning curve to overcome. But for teams willing to make that investment in learning, it offers incredible benefits in consistency, scalability, and testability. Thank you.
+                """
             )
         ],
-        description: "Listening Part 1: Form Completion, Matching & Multiple Choice - Complete Test Suite"
+        description: "Listening Part 1: Complete Test Suite - Form Completion, Matching, Multiple Choice & Note Completion"
     )
     
     static let allTests: [Test] = [test1]
