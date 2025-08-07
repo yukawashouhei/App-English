@@ -607,7 +607,7 @@ struct FormCompletionView: View {
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         QuestionView(test: ListeningTests.test1)
     }
 } 

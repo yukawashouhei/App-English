@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationView {
+            NavigationStack {
                 MainMenuView()
             }
             .tabItem {
@@ -21,7 +21,7 @@ struct ContentView: View {
             }
             .tag(0)
             
-            NavigationView {
+            NavigationStack {
                 TestListView(skillType: .reading)
             }
             .tabItem {
@@ -30,7 +30,7 @@ struct ContentView: View {
             }
             .tag(1)
             
-            NavigationView {
+            NavigationStack {
                 TestListView(skillType: .listening)
             }
             .tabItem {
@@ -39,7 +39,7 @@ struct ContentView: View {
             }
             .tag(2)
             
-            NavigationView {
+            NavigationStack {
                 TestListView(skillType: .speaking)
             }
             .tabItem {
@@ -48,7 +48,7 @@ struct ContentView: View {
             }
             .tag(3)
             
-            NavigationView {
+            NavigationStack {
                 TestListView(skillType: .writing)
             }
             .tabItem {

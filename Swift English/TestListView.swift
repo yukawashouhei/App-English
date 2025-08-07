@@ -105,7 +105,7 @@ struct TestCard: View {
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         TestListView(skillType: .reading)
     }
 } 
