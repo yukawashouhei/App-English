@@ -20,7 +20,8 @@ struct SpeakingTests {
                 correctAnswer: "Swift, Objective-C",
                 japaneseTranslation: "iOS開発で使用したプログラミング言語は何ですか？",
                 explanation: "iOS開発では主にSwiftとObjective-Cが使用されます。Swiftは現代的で安全な言語、Objective-Cは従来の言語です。",
-                audioFileName: nil
+                audioFileName: nil,
+                conversationScript: nil
             ),
             Question(
                 type: .essay,
@@ -30,7 +31,8 @@ struct SpeakingTests {
                 correctAnswer: "Declarative syntax, cross-platform, seamless integration, modern features",
                 japaneseTranslation: "SwiftUIの主な利点は何ですか？",
                 explanation: "SwiftUIの主な利点は宣言的構文、クロスプラットフォーム対応、既存フレームワークとのシームレスな統合、モダンな機能です。",
-                audioFileName: nil
+                audioFileName: nil,
+                conversationScript: nil
             )
         ],
         description: "Speaking Test 1"
@@ -48,7 +50,8 @@ struct SpeakingTests {
                 correctAnswer: "Automatic Reference Counting automatically manages memory",
                 japaneseTranslation: "iOS開発でARCはどのように動作しますか？",
                 explanation: "ARC（Automatic Reference Counting）は自動的にメモリ管理を行い、開発者が手動でメモリ管理を行う必要をなくします。",
-                audioFileName: nil
+                audioFileName: nil,
+                conversationScript: nil
             )
         ],
         description: "Speaking Test 2"
@@ -66,7 +69,8 @@ struct SpeakingTests {
                 correctAnswer: "Xcode debugger, Instruments, Console, Breakpoints",
                 japaneseTranslation: "iOS開発で使用するデバッグツールは何ですか？",
                 explanation: "iOS開発ではXcodeのデバッガー、Instruments、Console、ブレークポイントなどのツールを使用してデバッグを行います。",
-                audioFileName: nil
+                audioFileName: nil,
+                conversationScript: nil
             )
         ],
         description: "Speaking Test 3"

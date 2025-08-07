@@ -50,4 +50,5 @@ struct Question: Identifiable, Codable {
     let japaneseTranslation: String
     let explanation: String
     let audioFileName: String?
+    let conversationScript: String?
 } 

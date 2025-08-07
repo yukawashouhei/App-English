@@ -14,6 +14,7 @@ struct QuestionView: View {
     @State private var showAnswer = false
     @State private var showTranslation = false
     @State private var showExplanation = false
+    @State private var showConversationScript = false
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isRecording = false
     @State private var audioRecorder: AVAudioRecorder?
@@ -63,9 +64,23 @@ struct QuestionView: View {
                                 .fontWeight(.semibold)
                                 .foregroundColor(.green)
                             
-                            Text(currentQuestion.correctAnswer)
-                                .font(.body)
-                                .foregroundColor(.primary)
+                            if currentQuestion.type == .formCompletion {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    ForEach(currentQuestion.correctAnswer.components(separatedBy: "\n"), id: \.self) { answer in
+                                        Text(answer)
+                                            .font(.body)
+                                            .foregroundColor(.primary)
+                                    }
+                                }
+                            } else {
+                                Text(currentQuestion.correctAnswer)
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(.clear)
                                 .padding(.bottom, 4)
                         }
                         .padding(.top, 8)
@@ -123,6 +138,31 @@ struct QuestionView: View {
                     .padding()
                     .background(Color.orange.opacity(0.1))
                     .cornerRadius(12)
+                    
+                    // Conversation Script button (for listening questions with script)
+                    if test.skillType == .listening, let script = currentQuestion.conversationScript {
+                        DisclosureGroup(isExpanded: $showConversationScript) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Conversation Script:")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.purple)
+                                
+                                Text(script)
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                                    .padding(.bottom, 4)
+                            }
+                            .padding(.top, 8)
+                        } label: {
+                            Label("会話スクリプトを見る", systemImage: "text.bubble")
+                                .font(.headline)
+                                .foregroundColor(.purple)
+                        }
+                        .padding()
+                        .background(Color.purple.opacity(0.1))
+                        .cornerRadius(12)
+                    }
                 }
                 .padding(.horizontal)
                 
@@ -188,6 +228,7 @@ struct QuestionView: View {
             showAnswer = false
             showTranslation = false
             showExplanation = false
+            showConversationScript = false
         }
     }
 }
@@ -422,38 +463,33 @@ struct QuestionContentView: View {
                 .padding(.horizontal)
             }
             
-            // Passage (for reading questions)
+            // Form or Passage display
             if let passage = currentQuestion.passage {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("本文")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    
-                    Text(passage)
-                        .font(.body)
-                        .lineSpacing(6)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
+                    if currentQuestion.type == .formCompletion {
+                        Text("Questions")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        
+                        FormCompletionView(passage: passage)
+                    } else {
+                        Text("本文")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        
+                        Text(passage)
+                            .font(.body)
+                            .lineSpacing(6)
+                            .foregroundColor(.primary)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                    }
                 }
                 .padding(.horizontal)
             }
             
-            // Question
-            VStack(alignment: .leading, spacing: 12) {
-                Text("問題")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Text(currentQuestion.questionText)
-                    .font(.body)
-                    .foregroundColor(.primary)
-                    .padding()
-                    .background(Color(.systemBlue).opacity(0.1))
-                    .cornerRadius(12)
-            }
-            .padding(.horizontal)
+
             
             // Options (for multiple choice)
             if let options = currentQuestion.options {
@@ -500,8 +536,78 @@ struct QuestionContentView: View {
     }
 }
 
+struct FormCompletionView: View {
+    let passage: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Parse and display the form with proper formatting
+            let lines = passage.components(separatedBy: "\n")
+            
+            ForEach(Array(lines.enumerated()), id: \.offset) { index, line in
+                if line.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    // Empty line
+                    Text("")
+                        .frame(height: 8)
+                } else if line.contains("Instructions:") {
+                    // Instructions
+                    Text(line)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.orange)
+                        .padding(.bottom, 4)
+                } else if line.contains("Mobile Device Lab - Request Form") || line.contains("モバイルデバイスラボ - 貸出依頼書") {
+                    // Form title
+                    Text(line)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .padding(.bottom, 8)
+                } else if line.contains("(") && line.contains(")") && line.contains("_") {
+                    // Form field with blank
+                    HStack {
+                        if let colonIndex = line.firstIndex(of: ":") {
+                            let beforeColon = String(line[..<colonIndex])
+                            let afterColon = String(line[line.index(after: colonIndex)...])
+                            
+                            Text(beforeColon + ":")
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            
+                            Text(afterColon)
+                                .font(.body)
+                                .foregroundColor(.blue)
+                                .fontWeight(.medium)
+                        } else {
+                            Text(line)
+                                .font(.body)
+                                .foregroundColor(.blue)
+                                .fontWeight(.medium)
+                        }
+                        
+                        Spacer()
+                    }
+                } else if line.hasPrefix("•") || line.hasPrefix("*") {
+                    // Bullet points (form fields)
+                    Text(line)
+                        .font(.body)
+                        .foregroundColor(.primary)
+                } else {
+                    // Regular text
+                    Text(line)
+                        .font(.body)
+                        .foregroundColor(.primary)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+}
+
 #Preview {
     NavigationView {
-        QuestionView(test: ReadingTests.test1)
+        QuestionView(test: ListeningTests.test1)
     }
 } 
