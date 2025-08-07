@@ -20,6 +20,8 @@ struct ContentView: View {
                 Text("Top")
             }
             .tag(0)
+            .accessibilityLabel("Home tab")
+            .accessibilityHint("Navigate to main menu")
             
             NavigationStack {
                 TestListView(skillType: .reading)
@@ -29,6 +31,8 @@ struct ContentView: View {
                 Text("Reading")
             }
             .tag(1)
+            .accessibilityLabel("Reading test tab")
+            .accessibilityHint("Practice reading comprehension")
             
             NavigationStack {
                 TestListView(skillType: .listening)
@@ -38,6 +42,8 @@ struct ContentView: View {
                 Text("Listening")
             }
             .tag(2)
+            .accessibilityLabel("Listening test tab")
+            .accessibilityHint("Practice listening comprehension")
             
             NavigationStack {
                 TestListView(skillType: .speaking)
@@ -47,6 +53,8 @@ struct ContentView: View {
                 Text("Speaking")
             }
             .tag(3)
+            .accessibilityLabel("Speaking test tab")
+            .accessibilityHint("Practice speaking skills")
             
             NavigationStack {
                 TestListView(skillType: .writing)
@@ -56,6 +64,8 @@ struct ContentView: View {
                 Text("Writing")
             }
             .tag(4)
+            .accessibilityLabel("Writing test tab")
+            .accessibilityHint("Practice writing skills")
         }
         .accentColor(.blue)
     }
@@ -64,7 +74,7 @@ struct ContentView: View {
 struct MainMenuView: View {
     var body: some View {
         ScrollView {
-            VStack(spacing: 30) {
+            LazyVStack(spacing: 30) {
                 // Header with logo and title
                 VStack(spacing: 15) {
                     Image(systemName: "swift")

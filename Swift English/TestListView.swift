@@ -10,7 +10,7 @@ import SwiftUI
 struct TestListView: View {
     let skillType: SkillType
     @State private var allQuestionsTest: Test?
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {

@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-class DataManager: ObservableObject {
+@Observable
+class DataManager {
     static let shared = DataManager()
     
-    @Published var completedTests: Set<String> = []
-    @Published var favoriteTests: Set<String> = []
-    @Published var userProgress: [String: TestProgress] = [:]
+    var completedTests: Set<String> = []
+    var favoriteTests: Set<String> = []
+    var userProgress: [String: TestProgress] = [:]
     
     private let userDefaults = UserDefaults.standard
     private let completedTestsKey = "completedTests"
@@ -139,11 +140,19 @@ struct TestProgress: Codable {
     
     var completionPercentage: Double {
         guard !completedQuestions.isEmpty else { return 0 }
+        // 注意: 実際の総問題数が必要。現在は完了した問題数のみ。
+        // 将来的にはTestから総問題数を取得するべき
         return Double(completedQuestions.count) / Double(completedQuestions.count) * 100
     }
     
     var accuracyPercentage: Double {
         guard !completedQuestions.isEmpty else { return 0 }
         return Double(correctAnswers.count) / Double(completedQuestions.count) * 100
+    }
+    
+    // より正確な完了率計算のためのメソッド（総問題数が必要）
+    func completionPercentage(totalQuestions: Int) -> Double {
+        guard totalQuestions > 0 else { return 0 }
+        return Double(completedQuestions.count) / Double(totalQuestions) * 100
     }
 } 

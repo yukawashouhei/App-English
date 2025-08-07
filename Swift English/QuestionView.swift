@@ -19,15 +19,29 @@ struct QuestionView: View {
     @State private var isRecording = false
     @State private var audioRecorder: AVAudioRecorder?
     @State private var recordingURL: URL?
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     private var currentQuestion: Question {
-        test.questions[currentQuestionIndex]
+        guard currentQuestionIndex >= 0 && currentQuestionIndex < test.questions.count else {
+            // フォールバック: 最初の問題を返すか、デフォルト問題を作成
+            return test.questions.first ?? Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: "問題が見つかりません",
+                options: nil,
+                correctAnswer: "",
+                japaneseTranslation: "問題が見つかりません",
+                explanation: "エラーが発生しました",
+                audioFileName: nil,
+                conversationScript: nil
+            )
+        }
+        return test.questions[currentQuestionIndex]
     }
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            LazyVStack(spacing: 20) {
                 // Test info header
                 VStack(alignment: .leading, spacing: 8) {
                     Text(test.title)
@@ -38,6 +52,8 @@ struct QuestionView: View {
                     Text("問題 \(currentQuestionIndex + 1) / \(test.questions.count)")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                        .accessibilityLabel("Question \(currentQuestionIndex + 1) of \(test.questions.count)")
+                        .accessibilityHint("Current question number in the test")
                 }
                 .padding(.horizontal)
                 
@@ -52,7 +68,6 @@ struct QuestionView: View {
                     audioRecorder: $audioRecorder,
                     recordingURL: $recordingURL
                 )
-                .animation(.none)
                 
                 // Answer controls
                 VStack(spacing: 12) {
@@ -85,7 +100,7 @@ struct QuestionView: View {
                         }
                         .padding(.top, 8)
                     } label: {
-                        Label("答えを見る", systemImage: "checkmark.bubble")
+                        Label(test.skillType == .speaking ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
                             .font(.headline)
                             .foregroundColor(.green)
                     }
@@ -168,7 +183,12 @@ struct QuestionView: View {
                 
                 // Navigation buttons
                 HStack {
-                    Button(action: previousQuestion) {
+                    Button(action: {
+                        if currentQuestionIndex > 0 {
+                            currentQuestionIndex -= 1
+                            resetAnswerStates()
+                        }
+                    }) {
                         Label("前の問題", systemImage: "chevron.left")
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -177,8 +197,18 @@ struct QuestionView: View {
                             .cornerRadius(10)
                     }
                     .disabled(currentQuestionIndex == 0)
+                    .accessibilityLabel("Previous question")
+                    .accessibilityHint("Go to the previous question")
                     
-                    Button(action: nextQuestion) {
+                    Button(action: {
+                        if currentQuestionIndex < test.questions.count - 1 {
+                            currentQuestionIndex += 1
+                            resetAnswerStates()
+                        } else {
+                            // Test completed - navigate back to previous screen
+                            dismiss()
+                        }
+                    }) {
                         Label(currentQuestionIndex < test.questions.count - 1 ? "次の問題" : "完了", systemImage: currentQuestionIndex < test.questions.count - 1 ? "chevron.right" : "checkmark")
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -186,15 +216,14 @@ struct QuestionView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
+                    .accessibilityLabel(currentQuestionIndex == test.questions.count - 1 ? "Complete test" : "Next question")
+                    .accessibilityHint(currentQuestionIndex == test.questions.count - 1 ? "Finish the test and return to menu" : "Go to the next question")
                 }
-                .animation(.none, value: currentQuestionIndex)
                 .padding(.horizontal)
                 .padding(.bottom, 30)
             }
-            .animation(.none, value: currentQuestionIndex)
             .id(currentQuestionIndex)
         }
-        .animation(.none, value: currentQuestionIndex)
         .navigationTitle(test.title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
@@ -218,7 +247,7 @@ struct QuestionView: View {
                 resetAnswerStates()
             } else {
                 // Test completed - navigate back to previous screen
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
         }
     }
@@ -237,39 +266,38 @@ struct AudioControlsView: View {
     let audioFileName: String
     @Binding var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
-    @State private var progress: Double = 0
-    @State private var duration: Double = 0
     @State private var currentTime: Double = 0
+    @State private var duration: Double = 100
+    @State private var progress: Double = 0
+    @State private var progressTimer: Timer? // Timer参照を保持
     
     var body: some View {
         VStack(spacing: 16) {
-            Text("音声")
+            Text("音声再生")
                 .font(.headline)
                 .foregroundColor(.primary)
             
             VStack(spacing: 12) {
                 // Progress bar
-                if duration > 0 {
-                    VStack(spacing: 4) {
-                        ProgressView(value: progress, total: 1.0)
-                            .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Text(formatTime(currentTime))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                         
-                        HStack {
-                            Text(formatTime(currentTime))
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            
-                            Spacer()
-                            
-                            Text(formatTime(duration))
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
+                        Spacer()
+                        
+                        Text(formatTime(duration))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
+                    
+                    ProgressView(value: progress)
+                        .progressViewStyle(LinearProgressViewStyle(tint: .blue))
                 }
                 
-                // Play controls
-                HStack(spacing: 20) {
+                // Control buttons
+                HStack(spacing: 30) {
                     Button(action: rewind) {
                         Image(systemName: "gobackward.15")
                             .font(.title2)
@@ -296,6 +324,10 @@ struct AudioControlsView: View {
         .onAppear {
             setupAudio()
         }
+        .onDisappear {
+            // メモリリーク防止: Timer を確実にinvalidate
+            stopTimer()
+        }
     }
     
     private func setupAudio() {
@@ -309,6 +341,8 @@ struct AudioControlsView: View {
         // Simulate playback
         if isPlaying {
             startProgressTimer()
+        } else {
+            stopTimer()
         }
     }
     
@@ -323,17 +357,23 @@ struct AudioControlsView: View {
     }
     
     private func startProgressTimer() {
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+        stopTimer() // 既存のTimerを停止
+        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if isPlaying && currentTime < duration {
                 currentTime += 0.1
                 progress = currentTime / duration
             } else if currentTime >= duration {
                 isPlaying = false
-                timer.invalidate()
+                stopTimer()
             } else if !isPlaying {
-                timer.invalidate()
+                stopTimer()
             }
         }
+    }
+    
+    private func stopTimer() {
+        progressTimer?.invalidate()
+        progressTimer = nil
     }
     
     private func formatTime(_ time: Double) -> String {
@@ -365,7 +405,7 @@ struct RecordingControlsView: View {
                             .frame(width: 12, height: 12)
                             .opacity(0.8)
                             .scaleEffect(1.2)
-                            .animation(.easeInOut(duration: 1).repeatForever(), value: isRecording)
+                            .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: isRecording)
                         
                         Text("録音中: \(formatTime(recordingTime))")
                             .font(.subheadline)
@@ -473,7 +513,7 @@ struct QuestionContentView: View {
                         
                         FormCompletionView(passage: passage)
                     } else {
-                        Text("本文")
+                        Text(test.skillType == .speaking ? "質問" : "本文")
                             .font(.headline)
                             .foregroundColor(.primary)
                         
@@ -489,7 +529,23 @@ struct QuestionContentView: View {
                 .padding(.horizontal)
             }
             
-
+            // Question text display (for speaking when no passage)
+            if currentQuestion.passage == nil && !currentQuestion.questionText.isEmpty {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("質問")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    Text(currentQuestion.questionText)
+                        .font(.body)
+                        .lineSpacing(6)
+                        .foregroundColor(.primary)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                }
+                .padding(.horizontal)
+            }
             
             // Options (for multiple choice)
             if let options = currentQuestion.options {
