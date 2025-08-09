@@ -40,189 +40,262 @@ struct QuestionView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 20) {
-                // Test info header
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(test.title)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Test info header
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(test.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                        
+                        Text("問題 \(currentQuestionIndex + 1) / \(test.questions.count)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .accessibilityLabel("Question \(currentQuestionIndex + 1) of \(test.questions.count)")
+                            .accessibilityHint("Current question number in the test")
+                    }
+                    .padding(.horizontal)
+                    .id("top") // スクロール位置のアンカー
                     
-                    Text("問題 \(currentQuestionIndex + 1) / \(test.questions.count)")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .accessibilityLabel("Question \(currentQuestionIndex + 1) of \(test.questions.count)")
-                        .accessibilityHint("Current question number in the test")
-                }
-                .padding(.horizontal)
-                
-                Divider()
-                
-                // Dynamic question content
-                QuestionContentView(
-                    currentQuestion: currentQuestion,
-                    test: test,
-                    audioPlayer: $audioPlayer,
-                    isRecording: $isRecording,
-                    audioRecorder: $audioRecorder,
-                    recordingURL: $recordingURL
-                )
-                
-                // Answer controls
-                VStack(spacing: 12) {
-                    // Answer button
-                    DisclosureGroup(isExpanded: $showAnswer) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("正解:")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.green)
+                    Divider()
+                    
+                    // Dynamic question content
+                    QuestionContentView(
+                        currentQuestion: currentQuestion,
+                        test: test,
+                        audioPlayer: $audioPlayer,
+                        isRecording: $isRecording,
+                        audioRecorder: $audioRecorder,
+                        recordingURL: $recordingURL
+                    )
+                    
+                    // Answer controls
+                    VStack(spacing: 12) {
+                        // Answer button
+                        VStack(spacing: 8) {
+                            Button(action: {
+                                print("DEBUG: Answer button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
+                                print("DEBUG: showAnswer before toggle: \(showAnswer)")
+                                showAnswer.toggle()
+                                print("DEBUG: showAnswer after toggle: \(showAnswer)")
+                            }) {
+                                HStack {
+                                    Label(test.skillType == .speaking ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
+                                        .font(.headline)
+                                        .foregroundColor(.green)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: showAnswer ? "chevron.up" : "chevron.down")
+                                        .foregroundColor(.green)
+                                }
+                            }
+                            .padding()
+                            .background(Color.green.opacity(0.1))
+                            .cornerRadius(12)
                             
-                            if currentQuestion.type == .formCompletion {
+                            if showAnswer {
                                 VStack(alignment: .leading, spacing: 8) {
-                                    ForEach(currentQuestion.correctAnswer.components(separatedBy: "\n"), id: \.self) { answer in
-                                        Text(answer)
+                                    Text("正解:")
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.green)
+                                    
+                                    if currentQuestion.type == .formCompletion {
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            ForEach(currentQuestion.correctAnswer.components(separatedBy: "\n"), id: \.self) { answer in
+                                                Text(answer)
+                                                    .font(.body)
+                                                    .foregroundColor(.primary)
+                                            }
+                                        }
+                                    } else {
+                                        Text(currentQuestion.correctAnswer)
                                             .font(.body)
                                             .foregroundColor(.primary)
                                     }
                                 }
-                            } else {
-                                Text(currentQuestion.correctAnswer)
-                                    .font(.body)
-                                    .foregroundColor(.primary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color.green.opacity(0.05))
+                                .cornerRadius(12)
                             }
-                            
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(.clear)
-                                .padding(.bottom, 4)
                         }
-                        .padding(.top, 8)
-                    } label: {
-                        Label(test.skillType == .speaking ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
-                            .font(.headline)
-                            .foregroundColor(.green)
-                    }
-                    .padding()
-                    .background(Color.green.opacity(0.1))
-                    .cornerRadius(12)
-                    
-                    // Translation button
-                    DisclosureGroup(isExpanded: $showTranslation) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("日本語訳:")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.blue)
+                        
+                        // Translation button
+                        VStack(spacing: 8) {
+                            Button(action: {
+                                print("DEBUG: Translation button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
+                                print("DEBUG: showTranslation before toggle: \(showTranslation)")
+                                showTranslation.toggle()
+                                print("DEBUG: showTranslation after toggle: \(showTranslation)")
+                            }) {
+                                HStack {
+                                    Label("日本語訳を見る", systemImage: "translate")
+                                        .font(.headline)
+                                        .foregroundColor(.blue)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: showTranslation ? "chevron.up" : "chevron.down")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding()
+                            .background(Color.blue.opacity(0.1))
+                            .cornerRadius(12)
                             
-                            Text(currentQuestion.japaneseTranslation)
-                                .font(.body)
-                                .foregroundColor(.primary)
-                                .padding(.bottom, 4)
+                            if showTranslation {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("日本語訳:")
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.blue)
+                                    
+                                    Text(currentQuestion.japaneseTranslation)
+                                        .font(.body)
+                                        .foregroundColor(.primary)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color.blue.opacity(0.05))
+                                .cornerRadius(12)
+                            }
                         }
-                        .padding(.top, 8)
-                    } label: {
-                        Label("日本語訳を見る", systemImage: "translate")
-                            .font(.headline)
-                            .foregroundColor(.blue)
-                    }
-                    .padding()
-                    .background(Color.blue.opacity(0.1))
-                    .cornerRadius(12)
-                    
-                    // Explanation button
-                    DisclosureGroup(isExpanded: $showExplanation) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("解説:")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.orange)
+                        
+                        // Explanation button
+                        VStack(spacing: 8) {
+                            Button(action: {
+                                print("DEBUG: Explanation button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
+                                print("DEBUG: showExplanation before toggle: \(showExplanation)")
+                                showExplanation.toggle()
+                                print("DEBUG: showExplanation after toggle: \(showExplanation)")
+                            }) {
+                                HStack {
+                                    Label("解説を見る", systemImage: "lightbulb")
+                                        .font(.headline)
+                                        .foregroundColor(.orange)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: showExplanation ? "chevron.up" : "chevron.down")
+                                        .foregroundColor(.orange)
+                                }
+                            }
+                            .padding()
+                            .background(Color.orange.opacity(0.1))
+                            .cornerRadius(12)
                             
-                            Text(currentQuestion.explanation)
-                                .font(.body)
-                                .foregroundColor(.primary)
-                                .padding(.bottom, 4)
+                            if showExplanation {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("解説:")
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.orange)
+                                    
+                                    Text(currentQuestion.explanation)
+                                        .font(.body)
+                                        .foregroundColor(.primary)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color.orange.opacity(0.05))
+                                .cornerRadius(12)
+                            }
                         }
-                        .padding(.top, 8)
-                    } label: {
-                        Label("解説を見る", systemImage: "lightbulb")
-                            .font(.headline)
-                            .foregroundColor(.orange)
-                    }
-                    .padding()
-                    .background(Color.orange.opacity(0.1))
-                    .cornerRadius(12)
-                    
-                    // Conversation Script button (for listening questions with script)
-                    if test.skillType == .listening, let script = currentQuestion.conversationScript {
-                        DisclosureGroup(isExpanded: $showConversationScript) {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Conversation Script:")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.purple)
+                        
+                        // Conversation Script button (for listening questions with script)
+                        if test.skillType == .listening, let script = currentQuestion.conversationScript {
+                            VStack(spacing: 8) {
+                                Button(action: {
+                                    print("DEBUG: Conversation Script button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
+                                    print("DEBUG: showConversationScript before toggle: \(showConversationScript)")
+                                    showConversationScript.toggle()
+                                    print("DEBUG: showConversationScript after toggle: \(showConversationScript)")
+                                }) {
+                                    HStack {
+                                        Label("会話スクリプトを見る", systemImage: "text.bubble")
+                                            .font(.headline)
+                                            .foregroundColor(.purple)
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: showConversationScript ? "chevron.up" : "chevron.down")
+                                            .foregroundColor(.purple)
+                                    }
+                                }
+                                .padding()
+                                .background(Color.purple.opacity(0.1))
+                                .cornerRadius(12)
                                 
-                                Text(script)
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                    .padding(.bottom, 4)
+                                if showConversationScript {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text("Conversation Script:")
+                                            .font(.subheadline)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.purple)
+                                        
+                                        Text(script)
+                                            .font(.body)
+                                            .foregroundColor(.primary)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                                    .background(Color.purple.opacity(0.05))
+                                    .cornerRadius(12)
+                                }
                             }
-                            .padding(.top, 8)
-                        } label: {
-                            Label("会話スクリプトを見る", systemImage: "text.bubble")
-                                .font(.headline)
-                                .foregroundColor(.purple)
                         }
-                        .padding()
-                        .background(Color.purple.opacity(0.1))
-                        .cornerRadius(12)
                     }
-                }
-                .padding(.horizontal)
-                
-                // Navigation buttons
-                HStack {
-                    Button(action: {
-                        if currentQuestionIndex > 0 {
-                            currentQuestionIndex -= 1
-                            resetAnswerStates()
-                        }
-                    }) {
-                        Label("前の問題", systemImage: "chevron.left")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.gray)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                    .disabled(currentQuestionIndex == 0)
-                    .accessibilityLabel("Previous question")
-                    .accessibilityHint("Go to the previous question")
+                    .padding(.horizontal)
                     
-                    Button(action: {
-                        if currentQuestionIndex < test.questions.count - 1 {
-                            currentQuestionIndex += 1
-                            resetAnswerStates()
-                        } else {
-                            // Test completed - navigate back to previous screen
-                            dismiss()
+                    // Navigation buttons
+                    HStack {
+                        Button(action: {
+                            if currentQuestionIndex > 0 {
+                                currentQuestionIndex -= 1
+                                resetAnswerStates()
+                                proxy.scrollTo("top", anchor: .top) // 前の問題にスクロール
+                            }
+                        }) {
+                            Label("前の問題", systemImage: "chevron.left")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                         }
-                    }) {
-                        Label(currentQuestionIndex < test.questions.count - 1 ? "次の問題" : "完了", systemImage: currentQuestionIndex < test.questions.count - 1 ? "chevron.right" : "checkmark")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                        .disabled(currentQuestionIndex == 0)
+                        .accessibilityLabel("Previous question")
+                        .accessibilityHint("Go to the previous question")
+                        
+                        Button(action: {
+                            if currentQuestionIndex < test.questions.count - 1 {
+                                currentQuestionIndex += 1
+                                resetAnswerStates()
+                                proxy.scrollTo("top", anchor: .top) // 次の問題にスクロール
+                            } else {
+                                // Test completed - navigate back to previous screen
+                                dismiss()
+                            }
+                        }) {
+                            Label(currentQuestionIndex < test.questions.count - 1 ? "次の問題" : "完了", systemImage: currentQuestionIndex < test.questions.count - 1 ? "chevron.right" : "checkmark")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .accessibilityLabel(currentQuestionIndex == test.questions.count - 1 ? "Complete test" : "Next question")
+                        .accessibilityHint(currentQuestionIndex == test.questions.count - 1 ? "Finish the test and return to menu" : "Go to the next question")
                     }
-                    .accessibilityLabel(currentQuestionIndex == test.questions.count - 1 ? "Complete test" : "Next question")
-                    .accessibilityHint(currentQuestionIndex == test.questions.count - 1 ? "Finish the test and return to menu" : "Go to the next question")
+                    .padding(.horizontal)
+                    .padding(.bottom, 30)
                 }
-                .padding(.horizontal)
-                .padding(.bottom, 30)
+                .id(currentQuestionIndex)
             }
-            .id(currentQuestionIndex)
         }
         .navigationTitle(test.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -254,10 +327,13 @@ struct QuestionView: View {
     
     private func resetAnswerStates() {
         withAnimation(nil) {
+            print("DEBUG: Resetting answer states for test: \(test.title), question: \(currentQuestionIndex + 1)")
+            print("DEBUG: Before reset - showAnswer: \(showAnswer), showTranslation: \(showTranslation), showExplanation: \(showExplanation), showConversationScript: \(showConversationScript)")
             showAnswer = false
             showTranslation = false
             showExplanation = false
             showConversationScript = false
+            print("DEBUG: After reset - all states should be false")
         }
     }
 }
