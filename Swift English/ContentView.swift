@@ -79,17 +79,17 @@ struct MainMenuView: View {
                 VStack(spacing: 15) {
                     Image(systemName: "swift")
                         .font(.system(size: 60))
-                        .foregroundColor(.blue)
+                        .foregroundStyle(.blue)
                     
                     VStack(spacing: 5) {
                         Text("English test for")
                             .font(.title2)
-                            .foregroundColor(.black)
+                            .foregroundStyle(.black)
                         
                         Text("iOS Engineer")
                             .font(.title)
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundStyle(.black)
                     }
                 }
                 .padding(.top, 50)
@@ -151,7 +151,7 @@ struct SkillButton: View {
             Text(title)
                 .font(.title)
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
                 .padding(.leading, 10)
             
             Spacer()

@@ -18,12 +18,12 @@ struct TestListView: View {
             VStack(spacing: 10) {
                 Image(systemName: skillType.icon)
                     .font(.system(size: 50))
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
                 
                 Text(skillType.rawValue)
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
             }
             .padding(.top, 20)
             .padding(.bottom, 30)
@@ -79,18 +79,18 @@ struct TestCard: View {
                 Text(test.title)
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
                     .font(.system(size: 16, weight: .medium))
             }
             
             Text(test.description)
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.leading)
         }
         .padding(16)

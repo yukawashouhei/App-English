@@ -48,11 +48,11 @@ struct QuestionView: View {
                         Text(test.title)
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                         
                         Text("問題 \(currentQuestionIndex + 1) / \(test.questions.count)")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                             .accessibilityLabel("Question \(currentQuestionIndex + 1) of \(test.questions.count)")
                             .accessibilityHint("Current question number in the test")
                     }
@@ -84,12 +84,12 @@ struct QuestionView: View {
                                 HStack {
                                     Label(test.skillType == .speaking ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
                                         .font(.headline)
-                                        .foregroundColor(.green)
+                                        .foregroundStyle(.green)
                                     
                                     Spacer()
                                     
                                     Image(systemName: showAnswer ? "chevron.up" : "chevron.down")
-                                        .foregroundColor(.green)
+                                        .foregroundStyle(.green)
                                 }
                             }
                             .padding()
@@ -101,20 +101,20 @@ struct QuestionView: View {
                                     Text("正解:")
                                         .font(.subheadline)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.green)
+                                        .foregroundStyle(.green)
                                     
                                     if currentQuestion.type == .formCompletion {
                                         VStack(alignment: .leading, spacing: 8) {
                                             ForEach(currentQuestion.correctAnswer.components(separatedBy: "\n"), id: \.self) { answer in
                                                 Text(answer)
                                                     .font(.body)
-                                                    .foregroundColor(.primary)
+                                                    .foregroundStyle(.primary)
                                             }
                                         }
                                     } else {
                                         Text(currentQuestion.correctAnswer)
                                             .font(.body)
-                                            .foregroundColor(.primary)
+                                            .foregroundStyle(.primary)
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -135,12 +135,12 @@ struct QuestionView: View {
                                 HStack {
                                     Label("日本語訳を見る", systemImage: "translate")
                                         .font(.headline)
-                                        .foregroundColor(.blue)
+                                        .foregroundStyle(.blue)
                                     
                                     Spacer()
                                     
                                     Image(systemName: showTranslation ? "chevron.up" : "chevron.down")
-                                        .foregroundColor(.blue)
+                                        .foregroundStyle(.blue)
                                 }
                             }
                             .padding()
@@ -152,11 +152,11 @@ struct QuestionView: View {
                                     Text("日本語訳:")
                                         .font(.subheadline)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.blue)
+                                        .foregroundStyle(.blue)
                                     
                                     Text(currentQuestion.japaneseTranslation)
                                         .font(.body)
-                                        .foregroundColor(.primary)
+                                        .foregroundStyle(.primary)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding()
@@ -176,12 +176,12 @@ struct QuestionView: View {
                                 HStack {
                                     Label("解説を見る", systemImage: "lightbulb")
                                         .font(.headline)
-                                        .foregroundColor(.orange)
+                                        .foregroundStyle(.orange)
                                     
                                     Spacer()
                                     
                                     Image(systemName: showExplanation ? "chevron.up" : "chevron.down")
-                                        .foregroundColor(.orange)
+                                        .foregroundStyle(.orange)
                                 }
                             }
                             .padding()
@@ -193,11 +193,11 @@ struct QuestionView: View {
                                     Text("解説:")
                                         .font(.subheadline)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.orange)
+                                        .foregroundStyle(.orange)
                                     
                                     Text(currentQuestion.explanation)
                                         .font(.body)
-                                        .foregroundColor(.primary)
+                                        .foregroundStyle(.primary)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding()
@@ -218,12 +218,12 @@ struct QuestionView: View {
                                     HStack {
                                         Label("会話スクリプトを見る", systemImage: "text.bubble")
                                             .font(.headline)
-                                            .foregroundColor(.purple)
+                                            .foregroundStyle(.purple)
                                         
                                         Spacer()
                                         
                                         Image(systemName: showConversationScript ? "chevron.up" : "chevron.down")
-                                            .foregroundColor(.purple)
+                                            .foregroundStyle(.purple)
                                     }
                                 }
                                 .padding()
@@ -235,11 +235,11 @@ struct QuestionView: View {
                                         Text("Conversation Script:")
                                             .font(.subheadline)
                                             .fontWeight(.semibold)
-                                            .foregroundColor(.purple)
+                                            .foregroundStyle(.purple)
                                         
                                         Text(script)
                                             .font(.body)
-                                            .foregroundColor(.primary)
+                                            .foregroundStyle(.primary)
                                     }
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding()
@@ -264,7 +264,7 @@ struct QuestionView: View {
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(Color.gray)
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .cornerRadius(10)
                         }
                         .disabled(currentQuestionIndex == 0)
@@ -285,7 +285,7 @@ struct QuestionView: View {
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(Color.blue)
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .cornerRadius(10)
                         }
                         .accessibilityLabel(currentQuestionIndex == test.questions.count - 1 ? "Complete test" : "Next question")
@@ -351,7 +351,7 @@ struct AudioControlsView: View {
         VStack(spacing: 16) {
             Text("音声再生")
                 .font(.headline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             VStack(spacing: 12) {
                 // Progress bar
@@ -359,13 +359,13 @@ struct AudioControlsView: View {
                     HStack {
                         Text(formatTime(currentTime))
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                         
                         Spacer()
                         
                         Text(formatTime(duration))
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
                     
                     ProgressView(value: progress)
@@ -377,19 +377,19 @@ struct AudioControlsView: View {
                     Button(action: rewind) {
                         Image(systemName: "gobackward.15")
                             .font(.title2)
-                            .foregroundColor(.blue)
+                            .foregroundStyle(.blue)
                     }
                     
                     Button(action: togglePlayback) {
                         Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                             .font(.largeTitle)
-                            .foregroundColor(.blue)
+                            .foregroundStyle(.blue)
                     }
                     
                     Button(action: fastForward) {
                         Image(systemName: "goforward.15")
                             .font(.title2)
-                            .foregroundColor(.blue)
+                            .foregroundStyle(.blue)
                     }
                 }
             }
@@ -470,7 +470,7 @@ struct RecordingControlsView: View {
         VStack(spacing: 16) {
             Text("音声録音")
                 .font(.headline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             VStack(spacing: 12) {
                 // Recording indicator and time
@@ -485,19 +485,19 @@ struct RecordingControlsView: View {
                         
                         Text("録音中: \(formatTime(recordingTime))")
                             .font(.subheadline)
-                            .foregroundColor(.red)
+                            .foregroundStyle(.red)
                     }
                 } else {
                     Text("録音の準備ができました")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 // Record button
                 Button(action: toggleRecording) {
                     Image(systemName: isRecording ? "stop.circle.fill" : "mic.circle.fill")
                         .font(.system(size: 60))
-                        .foregroundColor(isRecording ? .red : .blue)
+                        .foregroundStyle(isRecording ? .red : .blue)
                 }
                 
                 // Playback button (if recording exists)
@@ -505,7 +505,7 @@ struct RecordingControlsView: View {
                     Button(action: playRecording) {
                         Label("録音を再生", systemImage: "play.circle")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundStyle(.green)
                             .padding(.horizontal, 20)
                             .padding(.vertical, 8)
                             .background(Color.green.opacity(0.1))
@@ -585,18 +585,18 @@ struct QuestionContentView: View {
                     if currentQuestion.type == .formCompletion {
                         Text("Questions")
                             .font(.headline)
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                         
                         FormCompletionView(passage: passage)
                     } else {
                         Text(test.skillType == .speaking ? "質問" : "本文")
                             .font(.headline)
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                         
                         Text(passage)
                             .font(.body)
                             .lineSpacing(6)
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                             .padding()
                             .background(Color(.systemGray6))
                             .cornerRadius(12)
@@ -610,12 +610,12 @@ struct QuestionContentView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("質問")
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                     
                     Text(currentQuestion.questionText)
                         .font(.body)
                         .lineSpacing(6)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                         .padding()
                         .background(Color(.systemGray6))
                         .cornerRadius(12)
@@ -628,21 +628,21 @@ struct QuestionContentView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("選択肢")
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                     
                     ForEach(Array(options.enumerated()), id: \.offset) { index, option in
                         HStack {
                             Text("\(Character(UnicodeScalar(65 + index)!))")
                                 .font(.body)
                                 .fontWeight(.medium)
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(width: 24, height: 24)
                                 .background(Color.blue)
                                 .clipShape(Circle())
                             
                             Text(option)
                                 .font(.body)
-                                .foregroundColor(.primary)
+                                .foregroundStyle(.primary)
                             
                             Spacer()
                         }
@@ -686,14 +686,14 @@ struct FormCompletionView: View {
                     Text(line)
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundColor(.orange)
+                        .foregroundStyle(.orange)
                         .padding(.bottom, 4)
                 } else if line.contains("Mobile Device Lab - Request Form") || line.contains("モバイルデバイスラボ - 貸出依頼書") {
                     // Form title
                     Text(line)
                         .font(.headline)
                         .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                         .padding(.bottom, 8)
                 } else if line.contains("(") && line.contains(")") && line.contains("_") {
                     // Form field with blank
@@ -704,16 +704,16 @@ struct FormCompletionView: View {
                             
                             Text(beforeColon + ":")
                                 .font(.body)
-                                .foregroundColor(.primary)
+                                .foregroundStyle(.primary)
                             
                             Text(afterColon)
                                 .font(.body)
-                                .foregroundColor(.blue)
+                                .foregroundStyle(.blue)
                                 .fontWeight(.medium)
                         } else {
                             Text(line)
                                 .font(.body)
-                                .foregroundColor(.blue)
+                                .foregroundStyle(.blue)
                                 .fontWeight(.medium)
                         }
                         
@@ -723,12 +723,12 @@ struct FormCompletionView: View {
                     // Bullet points (form fields)
                     Text(line)
                         .font(.body)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                 } else {
                     // Regular text
                     Text(line)
                         .font(.body)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                 }
             }
         }
