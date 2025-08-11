@@ -210,7 +210,7 @@ struct ListeningTests {
                     
                 注意: (C)と(G)は本文中に全く言及のない、典型的なダミー選択肢です。
                 """,
-                audioFileName: "listening_part2_matching",
+                audioFileName: "test1_q2",
                 conversationScript: """
                 Hi everyone, and welcome to the iOS development team. My name is Emily, and I'm the lead engineer here. I'm really excited to have you all on board. In this short orientation, I want to quickly go over the key tools and weekly events we use to keep our team organized and efficient.
 
@@ -329,7 +329,7 @@ struct ListeningTests {
                 5. 正解: B (それをメインの設定画面に移動させること)
                     * 理由: デイビッドが「We should probably move it to the top level of the main settings screen (メインの設定画面のトップレベルに移動させるべきだろう)」と提案し、ユキが「I agree. Putting it on the main settings screen makes sense (同感です。メインの設定画面に置くのは理にかなっています)」と同意しています。これが二人の合意点です。
                 """,
-                audioFileName: "listening_part3_multiple_choice",
+                audioFileName: "test1_q3",
                 conversationScript: """
                 Hi Yuki, come in. You wanted to discuss the results from the User Acceptance Test for the new in-app purchase feature, right?
                 
@@ -441,7 +441,7 @@ struct ListeningTests {
                 
                 7. learning: 結論部分で "there's an initial learning curve to overcome." と述べられています。「学習への投資(investment in learning)」という表現からも推測可能です。
                 """,
-                audioFileName: "listening_part4_note_completion",
+                audioFileName: "test1_q4",
                 conversationScript: """
                 Good morning, everyone. In today's lecture, we're going to take an introductory look at a popular and powerful framework in the Swift community: The Composable Architecture, often abbreviated as TCA. At its core, TCA is a library for building applications in a consistent and understandable way, providing a clear set of rules for how to manage application state, and how that state changes over time.
                 
