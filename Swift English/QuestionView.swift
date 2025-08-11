@@ -2,359 +2,123 @@
 //  QuestionView.swift
 //  Swift English
 //
-//  Created by 湯川昇平 on 2025/08/02.
+//  音声再生機能付きの問題表示画面
 //
 
 import SwiftUI
-import AVFoundation
+import AVFoundation  // 🎵 音声再生に必要
 
 struct QuestionView: View {
     let test: Test
+    
+    // 📊 状態管理
     @State private var currentQuestionIndex = 0
-    @State private var showAnswer = false
-    @State private var showTranslation = false
-    @State private var showExplanation = false
-    @State private var showConversationScript = false
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isRecording = false
     @State private var audioRecorder: AVAudioRecorder?
     @State private var recordingURL: URL?
+    
+    // 📱 環境変数
     @Environment(\.dismiss) private var dismiss
     
-    private var currentQuestion: Question {
-        guard currentQuestionIndex >= 0 && currentQuestionIndex < test.questions.count else {
-            // フォールバック: 最初の問題を返すか、デフォルト問題を作成
-            return test.questions.first ?? Question(
-                type: .shortAnswer,
-                passage: nil,
-                questionText: "問題が見つかりません",
-                options: nil,
-                correctAnswer: "",
-                japaneseTranslation: "問題が見つかりません",
-                explanation: "エラーが発生しました",
-                audioFileName: nil,
-                conversationScript: nil
-            )
-        }
-        return test.questions[currentQuestionIndex]
-    }
-    
     var body: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Test info header
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(test.title)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.primary)
-                        
-                        Text("問題 \(currentQuestionIndex + 1) / \(test.questions.count)")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .accessibilityLabel("Question \(currentQuestionIndex + 1) of \(test.questions.count)")
-                            .accessibilityHint("Current question number in the test")
-                    }
-                    .padding(.horizontal)
-                    .id("top") // スクロール位置のアンカー
+        ScrollView {
+            VStack(spacing: 20) {
+                // 📋 ヘッダー情報
+                VStack(spacing: 10) {
+                    Text(test.title)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.primary)
                     
-                    Divider()
-                    
-                    // Dynamic question content
+                    Text("問題 \(currentQuestionIndex + 1) / \(test.questions.count)")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.horizontal)
+                
+                // 🎵 問題コンテンツ（音声制御含む）
+                if currentQuestionIndex < test.questions.count {
                     QuestionContentView(
-                        currentQuestion: currentQuestion,
+                        currentQuestion: test.questions[currentQuestionIndex],
                         test: test,
                         audioPlayer: $audioPlayer,
                         isRecording: $isRecording,
                         audioRecorder: $audioRecorder,
                         recordingURL: $recordingURL
                     )
-                    
-                    // Answer controls
-                    VStack(spacing: 12) {
-                        // Answer button
-                        VStack(spacing: 8) {
-                            Button(action: {
-                                print("DEBUG: Answer button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
-                                print("DEBUG: showAnswer before toggle: \(showAnswer)")
-                                showAnswer.toggle()
-                                print("DEBUG: showAnswer after toggle: \(showAnswer)")
-                            }) {
-                                HStack {
-                                    Label(test.skillType == .speaking ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
-                                        .font(.headline)
-                                        .foregroundStyle(.green)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: showAnswer ? "chevron.up" : "chevron.down")
-                                        .foregroundStyle(.green)
-                                }
-                            }
-                            .padding()
-                            .background(Color.green.opacity(0.1))
-                            .cornerRadius(12)
-                            
-                            if showAnswer {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("正解:")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                        .foregroundStyle(.green)
-                                    
-                                    if currentQuestion.type == .formCompletion {
-                                        VStack(alignment: .leading, spacing: 8) {
-                                            ForEach(currentQuestion.correctAnswer.components(separatedBy: "\n"), id: \.self) { answer in
-                                                Text(answer)
-                                                    .font(.body)
-                                                    .foregroundStyle(.primary)
-                                            }
-                                        }
-                                    } else {
-                                        Text(currentQuestion.correctAnswer)
-                                            .font(.body)
-                                            .foregroundStyle(.primary)
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .background(Color.green.opacity(0.05))
-                                .cornerRadius(12)
-                            }
-                        }
-                        
-                        // Translation button
-                        VStack(spacing: 8) {
-                            Button(action: {
-                                print("DEBUG: Translation button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
-                                print("DEBUG: showTranslation before toggle: \(showTranslation)")
-                                showTranslation.toggle()
-                                print("DEBUG: showTranslation after toggle: \(showTranslation)")
-                            }) {
-                                HStack {
-                                    Label("日本語訳を見る", systemImage: "translate")
-                                        .font(.headline)
-                                        .foregroundStyle(.blue)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: showTranslation ? "chevron.up" : "chevron.down")
-                                        .foregroundStyle(.blue)
-                                }
-                            }
-                            .padding()
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(12)
-                            
-                            if showTranslation {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("日本語訳:")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                        .foregroundStyle(.blue)
-                                    
-                                    Text(currentQuestion.japaneseTranslation)
-                                        .font(.body)
-                                        .foregroundStyle(.primary)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .background(Color.blue.opacity(0.05))
-                                .cornerRadius(12)
-                            }
-                        }
-                        
-                        // Explanation button
-                        VStack(spacing: 8) {
-                            Button(action: {
-                                print("DEBUG: Explanation button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
-                                print("DEBUG: showExplanation before toggle: \(showExplanation)")
-                                showExplanation.toggle()
-                                print("DEBUG: showExplanation after toggle: \(showExplanation)")
-                            }) {
-                                HStack {
-                                    Label("解説を見る", systemImage: "lightbulb")
-                                        .font(.headline)
-                                        .foregroundStyle(.orange)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: showExplanation ? "chevron.up" : "chevron.down")
-                                        .foregroundStyle(.orange)
-                                }
-                            }
-                            .padding()
-                            .background(Color.orange.opacity(0.1))
-                            .cornerRadius(12)
-                            
-                            if showExplanation {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("解説:")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                        .foregroundStyle(.orange)
-                                    
-                                    Text(currentQuestion.explanation)
-                                        .font(.body)
-                                        .foregroundStyle(.primary)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .background(Color.orange.opacity(0.05))
-                                .cornerRadius(12)
-                            }
-                        }
-                        
-                        // Conversation Script button (for listening questions with script)
-                        if test.skillType == .listening, let script = currentQuestion.conversationScript {
-                            VStack(spacing: 8) {
-                                Button(action: {
-                                    print("DEBUG: Conversation Script button tapped for test: \(test.title), question: \(currentQuestionIndex + 1)")
-                                    print("DEBUG: showConversationScript before toggle: \(showConversationScript)")
-                                    showConversationScript.toggle()
-                                    print("DEBUG: showConversationScript after toggle: \(showConversationScript)")
-                                }) {
-                                    HStack {
-                                        Label("会話スクリプトを見る", systemImage: "text.bubble")
-                                            .font(.headline)
-                                            .foregroundStyle(.purple)
-                                        
-                                        Spacer()
-                                        
-                                        Image(systemName: showConversationScript ? "chevron.up" : "chevron.down")
-                                            .foregroundStyle(.purple)
-                                    }
-                                }
-                                .padding()
-                                .background(Color.purple.opacity(0.1))
-                                .cornerRadius(12)
-                                
-                                if showConversationScript {
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        Text("Conversation Script:")
-                                            .font(.subheadline)
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(.purple)
-                                        
-                                        Text(script)
-                                            .font(.body)
-                                            .foregroundStyle(.primary)
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding()
-                                    .background(Color.purple.opacity(0.05))
-                                    .cornerRadius(12)
-                                }
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
-                    
-                    // Navigation buttons
-                    HStack {
-                        Button(action: {
-                            if currentQuestionIndex > 0 {
-                                currentQuestionIndex -= 1
-                                resetAnswerStates()
-                                proxy.scrollTo("top", anchor: .top) // 前の問題にスクロール
-                            }
-                        }) {
-                            Label("前の問題", systemImage: "chevron.left")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.gray)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
-                        }
-                        .disabled(currentQuestionIndex == 0)
-                        .accessibilityLabel("Previous question")
-                        .accessibilityHint("Go to the previous question")
-                        
-                        Button(action: {
-                            if currentQuestionIndex < test.questions.count - 1 {
-                                currentQuestionIndex += 1
-                                resetAnswerStates()
-                                proxy.scrollTo("top", anchor: .top) // 次の問題にスクロール
-                            } else {
-                                // Test completed - navigate back to previous screen
-                                dismiss()
-                            }
-                        }) {
-                            Label(currentQuestionIndex < test.questions.count - 1 ? "次の問題" : "完了", systemImage: currentQuestionIndex < test.questions.count - 1 ? "chevron.right" : "checkmark")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
-                        }
-                        .accessibilityLabel(currentQuestionIndex == test.questions.count - 1 ? "Complete test" : "Next question")
-                        .accessibilityHint(currentQuestionIndex == test.questions.count - 1 ? "Finish the test and return to menu" : "Go to the next question")
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 30)
                 }
-                .id(currentQuestionIndex)
+                
+                // 🎛️ ナビゲーションボタン
+                HStack(spacing: 20) {
+                    // ⏮️ 前の問題ボタン
+                    Button(action: previousQuestion) {
+                        Label("前の問題", systemImage: "chevron.left")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.gray)
+                            .foregroundStyle(.white)
+                            .cornerRadius(10)
+                    }
+                    .disabled(currentQuestionIndex == 0)
+                    
+                    // ⏭️ 次の問題 / 完了ボタン
+                    Button(action: nextQuestion) {
+                        Label(
+                            currentQuestionIndex < test.questions.count - 1 ? "次の問題" : "完了",
+                            systemImage: currentQuestionIndex < test.questions.count - 1 ? "chevron.right" : "checkmark"
+                        )
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(10)
+                    }
+                }
+                .padding(.horizontal)
             }
         }
-        .navigationTitle(test.title)
+        .navigationTitle("問題")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            resetAnswerStates()
-        }
     }
     
+    // ⏮️ 前の問題に移動
     private func previousQuestion() {
-        withAnimation(nil) {
-            if currentQuestionIndex > 0 {
-                currentQuestionIndex -= 1
-                resetAnswerStates()
-            }
+        if currentQuestionIndex > 0 {
+            currentQuestionIndex -= 1
         }
     }
     
+    // ⏭️ 次の問題に移動 / テスト完了
     private func nextQuestion() {
-        withAnimation(nil) {
-            if currentQuestionIndex < test.questions.count - 1 {
-                currentQuestionIndex += 1
-                resetAnswerStates()
-            } else {
-                // Test completed - navigate back to previous screen
-                dismiss()
-            }
-        }
-    }
-    
-    private func resetAnswerStates() {
-        withAnimation(nil) {
-            print("DEBUG: Resetting answer states for test: \(test.title), question: \(currentQuestionIndex + 1)")
-            print("DEBUG: Before reset - showAnswer: \(showAnswer), showTranslation: \(showTranslation), showExplanation: \(showExplanation), showConversationScript: \(showConversationScript)")
-            showAnswer = false
-            showTranslation = false
-            showExplanation = false
-            showConversationScript = false
-            print("DEBUG: After reset - all states should be false")
+        if currentQuestionIndex < test.questions.count - 1 {
+            currentQuestionIndex += 1
+        } else {
+            dismiss()  // テスト完了
         }
     }
 }
 
+// 🎵 音声コントロール専用ビュー
 struct AudioControlsView: View {
     let audioFileName: String
     @Binding var audioPlayer: AVAudioPlayer?
+    
+    // 🎛️ 音声制御の状態
     @State private var isPlaying = false
     @State private var currentTime: Double = 0
     @State private var duration: Double = 100
     @State private var progress: Double = 0
-    @State private var progressTimer: Timer? // Timer参照を保持
+    @State private var progressTimer: Timer?
     
     var body: some View {
         VStack(spacing: 16) {
-            Text("音声再生")
+            Text("🎧 音声コントロール")
                 .font(.headline)
                 .foregroundStyle(.primary)
             
             VStack(spacing: 12) {
-                // Progress bar
+                // 📊 進行状況表示
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
                         Text(formatTime(currentTime))
@@ -372,7 +136,7 @@ struct AudioControlsView: View {
                         .progressViewStyle(LinearProgressViewStyle(tint: .blue))
                 }
                 
-                // Control buttons
+                // 🎛️ 制御ボタン
                 HStack(spacing: 30) {
                     Button(action: rewind) {
                         Image(systemName: "gobackward.15")
@@ -398,44 +162,158 @@ struct AudioControlsView: View {
             .cornerRadius(12)
         }
         .onAppear {
-            setupAudio()
+            setupAudio()  // 🎵 音声準備
         }
         .onDisappear {
-            // メモリリーク防止: Timer を確実にinvalidate
-            stopTimer()
+            stopTimer()   // 🧹 メモリ掃除
         }
     }
     
+    // 🎵 音声ファイルを準備する
     private func setupAudio() {
-        // Note: In a real app, you would load the audio file from bundle or network
-        // For now, we'll just simulate the setup
-        duration = 60.0 // Simulated duration
-    }
-    
-    private func togglePlayback() {
-        isPlaying.toggle()
-        // Simulate playback
-        if isPlaying {
-            startProgressTimer()
-        } else {
-            stopTimer()
+        guard !audioFileName.isEmpty else {
+            duration = 60.0
+            return
+        }
+        
+        print("🔍 音声ファイルを探しています: \(audioFileName)")
+        
+        // ファイル名処理（拡張子削除）
+        let fileName = audioFileName
+            .replacingOccurrences(of: ".mp3", with: "")
+            .replacingOccurrences(of: ".wav", with: "")
+        
+        // 🗂️ 複数パターンで音声ファイル検索
+        var audioPath: String?
+        
+        // パターン1: Audio/Listening ディレクトリ
+        if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3", inDirectory: "Audio/Listening") {
+            audioPath = mp3Path
+            print("✅ 音声ファイル発見 (Audio/Listening): \(mp3Path)")
+        } else if let wavPath = Bundle.main.path(forResource: fileName, ofType: "wav", inDirectory: "Audio/Listening") {
+            audioPath = wavPath
+            print("✅ 音声ファイル発見 (Audio/Listening): \(wavPath)")
+        }
+        // パターン2: Listening ディレクトリ
+        else if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3", inDirectory: "Listening") {
+            audioPath = mp3Path
+            print("✅ 音声ファイル発見 (Listening): \(mp3Path)")
+        } else if let wavPath = Bundle.main.path(forResource: fileName, ofType: "wav", inDirectory: "Listening") {
+            audioPath = wavPath
+            print("✅ 音声ファイル発見 (Listening): \(wavPath)")
+        }
+        // パターン3: メインバンドル直下
+        else if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3") {
+            audioPath = mp3Path
+            print("✅ 音声ファイル発見 (メインバンドル): \(mp3Path)")
+        } else if let wavPath = Bundle.main.path(forResource: fileName, ofType: "wav") {
+            audioPath = wavPath
+            print("✅ 音声ファイル発見 (メインバンドル): \(wavPath)")
+        }
+        
+        guard let validPath = audioPath else {
+            print("❌ 音声ファイルが見つかりません: \(audioFileName)")
+            print("🔍 検索したパターン:")
+            print("  - Audio/Listening/\(fileName).mp3")
+            print("  - Audio/Listening/\(fileName).wav")
+            print("  - Listening/\(fileName).mp3")
+            print("  - Listening/\(fileName).wav")
+            print("  - \(fileName).mp3")
+            print("  - \(fileName).wav")
+            duration = 60.0
+            return
+        }
+        
+        let audioURL = URL(fileURLWithPath: validPath)
+        
+        do {
+            // 📱 iOSの音声システム設定
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            // 🎵 音声プレイヤー作成
+            audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+            audioPlayer?.prepareToPlay()
+            duration = audioPlayer?.duration ?? 60.0
+            
+            print("✅ 音声ファイル読み込み成功: \(validPath)")
+            print("🎵 再生時間: \(duration)秒")
+        } catch {
+            print("❌ 音声ファイルの読み込みに失敗しました: \(error.localizedDescription)")
+            duration = 60.0
         }
     }
     
+    // ▶️⏸️ 再生/停止の切り替え
+    private func togglePlayback() {
+        guard let player = audioPlayer else {
+            // 🎭 フォールバック: シミュレーション再生
+            print("⚠️ 音声プレイヤーが準備できていません（シミュレーション再生）")
+            isPlaying.toggle()
+            if isPlaying {
+                startProgressTimer()
+            } else {
+                stopTimer()
+            }
+            return
+        }
+        
+        // 🎵 実際の音声制御
+        if isPlaying {
+            player.pause()
+            stopTimer()
+            print("⏸️ 音声を停止しました")
+        } else {
+            player.play()
+            startProgressTimer()
+            print("▶️ 音声を再生開始しました")
+        }
+        isPlaying.toggle()
+    }
+    
+    // ⏪ 15秒巻き戻し
     private func rewind() {
-        currentTime = max(0, currentTime - 15)
+        if let player = audioPlayer {
+            let newTime = max(0, player.currentTime - 15)
+            player.currentTime = newTime
+            currentTime = newTime
+            print("⏪ 15秒巻き戻しました")
+        } else {
+            currentTime = max(0, currentTime - 15)
+        }
         progress = currentTime / duration
     }
     
+    // ⏩ 15秒早送り
     private func fastForward() {
-        currentTime = min(duration, currentTime + 15)
+        if let player = audioPlayer {
+            let newTime = min(duration, player.currentTime + 15)
+            player.currentTime = newTime
+            currentTime = newTime
+            print("⏩ 15秒早送りしました")
+        } else {
+            currentTime = min(duration, currentTime + 15)
+        }
         progress = currentTime / duration
     }
     
+    // ⏰ 進行監視タイマー開始
     private func startProgressTimer() {
-        stopTimer() // 既存のTimerを停止
+        stopTimer()  // 既存タイマー停止
         progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            if isPlaying && currentTime < duration {
+            if let player = audioPlayer, isPlaying {
+                // 🎵 実際の音声プレイヤーから時間取得
+                currentTime = player.currentTime
+                progress = currentTime / duration
+                
+                // 🔚 再生終了チェック
+                if !player.isPlaying && currentTime >= duration {
+                    isPlaying = false
+                    stopTimer()
+                    print("🔚 音声再生が終了しました")
+                }
+            } else if isPlaying && currentTime < duration {
+                // 🎭 フォールバック: シミュレーション
                 currentTime += 0.1
                 progress = currentTime / duration
             } else if currentTime >= duration {
@@ -447,11 +325,13 @@ struct AudioControlsView: View {
         }
     }
     
+    // ⏰ タイマー停止とメモリ解放
     private func stopTimer() {
         progressTimer?.invalidate()
         progressTimer = nil
     }
     
+    // 🕐 時間フォーマット（秒 → 分:秒）
     private func formatTime(_ time: Double) -> String {
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
@@ -459,107 +339,7 @@ struct AudioControlsView: View {
     }
 }
 
-struct RecordingControlsView: View {
-    @Binding var isRecording: Bool
-    @Binding var audioRecorder: AVAudioRecorder?
-    @Binding var recordingURL: URL?
-    @State private var recordingTime: Double = 0
-    @State private var timer: Timer?
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            Text("音声録音")
-                .font(.headline)
-                .foregroundStyle(.primary)
-            
-            VStack(spacing: 12) {
-                // Recording indicator and time
-                if isRecording {
-                    HStack {
-                        Circle()
-                            .fill(Color.red)
-                            .frame(width: 12, height: 12)
-                            .opacity(0.8)
-                            .scaleEffect(1.2)
-                            .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: isRecording)
-                        
-                        Text("録音中: \(formatTime(recordingTime))")
-                            .font(.subheadline)
-                            .foregroundStyle(.red)
-                    }
-                } else {
-                    Text("録音の準備ができました")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-                
-                // Record button
-                Button(action: toggleRecording) {
-                    Image(systemName: isRecording ? "stop.circle.fill" : "mic.circle.fill")
-                        .font(.system(size: 60))
-                        .foregroundStyle(isRecording ? .red : .blue)
-                }
-                
-                // Playback button (if recording exists)
-                if recordingURL != nil && !isRecording {
-                    Button(action: playRecording) {
-                        Label("録音を再生", systemImage: "play.circle")
-                            .font(.headline)
-                            .foregroundStyle(.green)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 8)
-                            .background(Color.green.opacity(0.1))
-                            .cornerRadius(8)
-                    }
-                }
-            }
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(12)
-        }
-    }
-    
-    private func toggleRecording() {
-        if isRecording {
-            stopRecording()
-        } else {
-            startRecording()
-        }
-    }
-    
-    private func startRecording() {
-        // Note: In a real app, you would request microphone permission
-        // and implement actual recording functionality
-        isRecording = true
-        recordingTime = 0
-        
-        // Simulate recording
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            recordingTime += 1
-        }
-        
-        // Create a dummy recording URL
-        recordingURL = FileManager.default.temporaryDirectory.appendingPathComponent("recording.m4a")
-    }
-    
-    private func stopRecording() {
-        isRecording = false
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    private func playRecording() {
-        // Note: In a real app, you would implement audio playback
-        print("Playing recording...")
-    }
-    
-    private func formatTime(_ time: Double) -> String {
-        let minutes = Int(time) / 60
-        let seconds = Int(time) % 60
-        return String(format: "%d:%02d", minutes, seconds)
-    }
-}
-
+// 🎵 問題コンテンツ表示ビュー
 struct QuestionContentView: View {
     let currentQuestion: Question
     let test: Test
@@ -570,7 +350,7 @@ struct QuestionContentView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            // Audio controls for listening questions
+            // 🎵 音声コントロール（リスニング問題のみ）
             if test.skillType == .listening, let audioFileName = currentQuestion.audioFileName {
                 AudioControlsView(
                     audioFileName: audioFileName,
@@ -579,33 +359,25 @@ struct QuestionContentView: View {
                 .padding(.horizontal)
             }
             
-            // Form or Passage display
+            // 📝 問題文表示
             if let passage = currentQuestion.passage {
                 VStack(alignment: .leading, spacing: 12) {
-                    if currentQuestion.type == .formCompletion {
-                        Text("Questions")
-                            .font(.headline)
-                            .foregroundStyle(.primary)
-                        
-                        FormCompletionView(passage: passage)
-                    } else {
-                        Text(test.skillType == .speaking ? "質問" : "本文")
-                            .font(.headline)
-                            .foregroundStyle(.primary)
-                        
-                        Text(passage)
-                            .font(.body)
-                            .lineSpacing(6)
-                            .foregroundStyle(.primary)
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(12)
-                    }
+                    Text("本文")
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                    
+                    Text(passage)
+                        .font(.body)
+                        .lineSpacing(6)
+                        .foregroundStyle(.primary)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
                 }
                 .padding(.horizontal)
             }
             
-            // Question text display (for speaking when no passage)
+            // ❓ 質問文表示（passageがない場合）
             if currentQuestion.passage == nil && !currentQuestion.questionText.isEmpty {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("質問")
@@ -622,124 +394,30 @@ struct QuestionContentView: View {
                 }
                 .padding(.horizontal)
             }
-            
-            // Options (for multiple choice)
-            if let options = currentQuestion.options {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("選択肢")
-                        .font(.headline)
-                        .foregroundStyle(.primary)
-                    
-                    ForEach(Array(options.enumerated()), id: \.offset) { index, option in
-                        HStack {
-                            Text("\(Character(UnicodeScalar(65 + index)!))")
-                                .font(.body)
-                                .fontWeight(.medium)
-                                .foregroundStyle(.white)
-                                .frame(width: 24, height: 24)
-                                .background(Color.blue)
-                                .clipShape(Circle())
-                            
-                            Text(option)
-                                .font(.body)
-                                .foregroundStyle(.primary)
-                            
-                            Spacer()
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                    }
-                }
-                .padding(.horizontal)
-            }
-            
-            // Recording controls for speaking questions
-            if test.skillType == .speaking {
-                RecordingControlsView(
-                    isRecording: $isRecording,
-                    audioRecorder: $audioRecorder,
-                    recordingURL: $recordingURL
-                )
-                .padding(.horizontal)
-            }
         }
     }
 }
 
-struct FormCompletionView: View {
-    let passage: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Parse and display the form with proper formatting
-            let lines = passage.components(separatedBy: "\n")
-            
-            ForEach(Array(lines.enumerated()), id: \.offset) { index, line in
-                if line.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    // Empty line
-                    Text("")
-                        .frame(height: 8)
-                } else if line.contains("Instructions:") {
-                    // Instructions
-                    Text(line)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.orange)
-                        .padding(.bottom, 4)
-                } else if line.contains("Mobile Device Lab - Request Form") || line.contains("モバイルデバイスラボ - 貸出依頼書") {
-                    // Form title
-                    Text(line)
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.primary)
-                        .padding(.bottom, 8)
-                } else if line.contains("(") && line.contains(")") && line.contains("_") {
-                    // Form field with blank
-                    HStack {
-                        if let colonIndex = line.firstIndex(of: ":") {
-                            let beforeColon = String(line[..<colonIndex])
-                            let afterColon = String(line[line.index(after: colonIndex)...])
-                            
-                            Text(beforeColon + ":")
-                                .font(.body)
-                                .foregroundStyle(.primary)
-                            
-                            Text(afterColon)
-                                .font(.body)
-                                .foregroundStyle(.blue)
-                                .fontWeight(.medium)
-                        } else {
-                            Text(line)
-                                .font(.body)
-                                .foregroundStyle(.blue)
-                                .fontWeight(.medium)
-                        }
-                        
-                        Spacer()
-                    }
-                } else if line.hasPrefix("•") || line.hasPrefix("*") {
-                    // Bullet points (form fields)
-                    Text(line)
-                        .font(.body)
-                        .foregroundStyle(.primary)
-                } else {
-                    // Regular text
-                    Text(line)
-                        .font(.body)
-                        .foregroundStyle(.primary)
-                }
-            }
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-    }
-}
-
+// 🎬 プレビュー
 #Preview {
     NavigationStack {
-        QuestionView(test: ListeningTests.test1)
+        QuestionView(test: Test(
+            title: "サンプルテスト",
+            skillType: .listening,
+            questions: [
+                Question(
+                    type: .formCompletion,
+                    passage: "これはサンプル問題です。",
+                    questionText: "質問文のサンプルです。",
+                    options: nil,
+                    correctAnswer: "サンプル答え",
+                    japaneseTranslation: "日本語訳のサンプル",
+                    explanation: "解説のサンプル",
+                    audioFileName: "test1_q1",
+                    conversationScript: nil
+                )
+            ],
+            description: "サンプル説明"
+        ))
     }
 } 
