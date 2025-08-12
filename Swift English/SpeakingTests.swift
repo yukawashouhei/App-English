@@ -18,8 +18,20 @@ struct SpeakingTests {
                 questionText: """
                 形式: 身近なトピックに関する短い質疑応答。1つの質問に対し、2～3文で簡潔に答えるのが目安です。
                 
-                Questions & Sample Answers
+                Questions
                 
+                Let's talk about your work. What is your job?
+                
+                Why did you choose to become an iOS engineer?
+                
+                What do you enjoy most about your work?
+                
+                Let's move on to talk about technology. Do you use a lot of apps in your daily life?
+                
+                Is there an app you find particularly well-designed?
+                """,
+                options: nil,
+                correctAnswer: """
                 Examiner: Let's talk about your work. What is your job?
                 Candidate: I work as an iOS engineer. My main responsibility is to develop and maintain applications for Apple's iPhone and iPad devices, primarily using the Swift programming language.
                 
@@ -35,19 +47,7 @@ struct SpeakingTests {
                 Examiner: Is there an app you find particularly well-designed?
                 Candidate: I think the note-taking app 'Things 3' is exceptionally well-designed. Its user interface is incredibly clean and intuitive, and the animations are very smooth. It makes a mundane task like managing to-do lists feel seamless and satisfying.
                 """,
-                options: nil,
-                correctAnswer: """
-                Sample responses provided above demonstrate natural, conversational answers with:
-                • Clear, concise responses (2-3 sentences each)
-                • Personal experiences and opinions
-                • Relevant technical vocabulary
-                • Natural flow and appropriate detail level
-                """,
                 japaneseTranslation: """
-                形式: 身近なトピックに関する短い質疑応答。1つの質問に対し、2～3文で簡潔に答えるのが目安です。
-                
-                質問と模範解答
-                
                 試験官: あなたの仕事について話しましょう。あなたの仕事は何ですか？
                 解答例: 私はiOSエンジニアとして働いています。主な職務は、主にSwiftというプログラミング言語を使い、AppleのiPhoneやiPad向けのアプリケーションを開発・保守することです。
                 
@@ -64,17 +64,55 @@ struct SpeakingTests {
                 解答例: 私はノートアプリの「Things 3」が卓越したデザインだと感じます。ユーザーインターフェースが信じられないほどクリーンで直感的ですし、アニメーションも非常にスムーズです。ToDoリストの管理のような退屈な作業を、シームレスで満足のいくものに感じさせてくれます。
                 """,
                 explanation: """
-                IELTS Speaking Part 1では、以下のポイントが重要です：
+                スピーキング パート1の目標
                 
-                1. **簡潔性**: 各質問に2-3文で答える
-                2. **自然な表現**: 会話調で自然な英語を使用
-                3. **個人的な経験**: 具体的な体験や意見を含める
-                4. **適切な語彙**: トピックに関連する専門用語を適度に使用
-                5. **流暢性**: 詰まらずにスムーズに話す
+                スピーキングのパート1は、試験官とのウォーミングアップセッションです。ここでは、あなたの「身近なトピックについて、基本的なコミュニケーションが取れるか」が見られています。難しい単語や複雑な文法を使うことよりも、以下の3点が重要です。
+                1. 流暢さ(Fluency): 途中で長く黙り込まず、スムーズに話し続けられるか。
+                2. 明瞭さ(Clarity): 質問に直接的に答え、分かりやすい言葉で話せているか。
+                3. 自然さ(Naturalness): 丸暗記した文章ではなく、自然な会話のやり取りができているか。
                 
-                この例では、仕事とテクノロジーという身近なトピックを通じて、iOS開発者としての経験を自然に表現しています。
+                効果的な学習法
+                
+                この練習画面は、スピーキング力を効果的に向上させるために設計されています。
+                1. まず自分で話してみる: 最初は模範解答を見ずに、質問に対して自分の答えを「録音＆再生ボタン」を使って録音してみましょう。
+                2. 自分のスピーキングを確認: 録音した自分の音声を聞き返し、「スムーズに話せているか」「文法や単語の使い方は自然か」を客観的にチェックします。
+                3. 模範解答と比較する: 次に「模範解答を見る」を押し、テキストと音声の両方で解答例を確認します。自分の答えと比べて、語彙の使い方、文の組み立て方、アイデアの広げ方などを比較・分析しましょう。このプロセスを繰り返すことで、自然で的確な受け答えが身についていきます。
+                
+                模範解答の分析：なぜこの答え方が良いのか？
+                
+                各解答例は、高得点を狙うための「Answer + Extend (答える+α)」という基本戦略に沿って作られています。
+                
+                質問1: あなたの仕事は何ですか？
+                • Answer (答え): I work as an iOS engineer.
+                    → 質問に直接的に答えています。
+                • Extend (α): My main responsibility is to develop and maintain applications...
+                    → 「主な職務は～です」と付け加えることで、単なる単語の返答ではなく、自分が何をしているかを具体的に説明し、会話を広げています。develop, maintainといった語彙も効果的です。
+                
+                質問2: なぜiOSエンジニアになろうと決めたのですか？
+                • Answer (答え): I've always been fascinated by Apple's products...
+                    → 「なぜなら～」と理由を明確に述べています。
+                • Extend (α): I chose this career because I enjoy the challenge of problem-solving...
+                    → 「問題解決という挑戦が好きだから」と、より個人的で具体的な理由を加えています。fascinated by (～に魅了される)、intuitive (直感的な) といった感情や評価を表す語彙は、表現を豊かにします。
+                
+                質問3: あなたの仕事で最も楽しいことは何ですか？
+                • Answer (答え): The most enjoyable part for me is seeing an idea turn into a real, functional product.
+                    → 最も楽しいことを具体的に示しています。
+                • Extend (α): I especially love the moment when we release a new feature and receive positive feedback from users.
+                    → 「特に～の瞬間が好きです」と例を挙げることで、答えに深みと真実味を与えています。rewarding (やりがいのある) は、仕事の満足感を表現するのに最適な単語です。
+                
+                質問4: あなたは日常生活でたくさんアプリを使いますか？
+                • Answer (答え): Yes, absolutely.
+                    → はっきりと肯定しています。
+                • Extend (α): I rely on various apps for almost everything, from... to... and even for...
+                    → from A to B の構文を使って、「スケジュール管理からコミュニケーション、さらには学習まで」と具体例を3つ挙げることで、説得力を持たせています。
+                
+                質問5: 特にデザインが優れていると感じるアプリはありますか？
+                • Answer (答え): I think the note-taking app 'Things 3' is exceptionally well-designed.
+                    → 具体的なアプリ名を挙げて、質問に答えています。
+                • Extend (α): Its user interface is incredibly clean and intuitive, and the animations are very smooth.
+                    → なぜデザインが良いと思うのか、その理由を user interface (UI) や animations といった専門的な視点から説明しています。これにより、あなたがiOSエンジニアであることが自然にアピールでき、一貫性のある自己紹介となります。seamless (シームレスな、滑らかな) も高得点を狙える語彙です。
                 """,
-                audioFileName: nil,
+                audioFileName: "speaking_part1_sample",
                 conversationScript: nil
             )
         ],

@@ -570,17 +570,20 @@ struct RecordingControlsView: View {
     @Binding var recordingURL: URL?
     @State private var recordingTime: Double = 0
     @State private var timer: Timer?
+    @State private var playbackPlayer: AVAudioPlayer?
+    @StateObject private var recordingManager = RecordingManager()
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(alignment: .leading, spacing: 12) {
             Text("音声録音")
                 .font(.headline)
                 .foregroundStyle(.primary)
             
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 // Recording indicator and time
                 if isRecording {
                     HStack {
+                        Spacer()
                         Circle()
                             .fill(Color.red)
                             .frame(width: 12, height: 12)
@@ -591,30 +594,43 @@ struct RecordingControlsView: View {
                         Text("録音中: \(formatTime(recordingTime))")
                             .font(.subheadline)
                             .foregroundStyle(.red)
+                        Spacer()
                     }
                 } else {
-                    Text("録音の準備ができました")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                    HStack {
+                        Spacer()
+                        Text("録音の準備ができました")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
                 }
                 
                 // Record button
-                Button(action: toggleRecording) {
-                    Image(systemName: isRecording ? "stop.circle.fill" : "mic.circle.fill")
-                        .font(.system(size: 60))
-                        .foregroundStyle(isRecording ? .red : .blue)
+                HStack {
+                    Spacer()
+                    Button(action: toggleRecording) {
+                        Image(systemName: isRecording ? "stop.circle.fill" : "mic.circle.fill")
+                            .font(.system(size: 60))
+                            .foregroundStyle(isRecording ? .red : .blue)
+                    }
+                    Spacer()
                 }
                 
                 // Playback button (if recording exists)
                 if recordingURL != nil && !isRecording {
-                    Button(action: playRecording) {
-                        Label("録音を再生", systemImage: "play.circle")
-                            .font(.headline)
-                            .foregroundStyle(.green)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 8)
-                            .background(Color.green.opacity(0.1))
-                            .cornerRadius(8)
+                    HStack {
+                        Spacer()
+                        Button(action: playRecording) {
+                            Label("録音を再生", systemImage: "play.circle")
+                                .font(.headline)
+                                .foregroundStyle(.green)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 8)
+                                .background(Color.green.opacity(0.1))
+                                .cornerRadius(8)
+                        }
+                        Spacer()
                     }
                 }
             }
@@ -633,35 +649,148 @@ struct RecordingControlsView: View {
     }
     
     private func startRecording() {
-        // Note: In a real app, you would request microphone permission
-        // and implement actual recording functionality
-        isRecording = true
-        recordingTime = 0
-        
-        // Simulate recording
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            recordingTime += 1
+        // Request microphone permission
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            DispatchQueue.main.async {
+                if granted {
+                    self.setupAndStartRecording()
+                } else {
+                    print("マイクロフォンの使用許可が必要です")
+                }
+            }
         }
-        
-        // Create a dummy recording URL
-        recordingURL = FileManager.default.temporaryDirectory.appendingPathComponent("recording.m4a")
+    }
+    
+    private func setupAndStartRecording() {
+        do {
+            // Configure audio session
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
+            try audioSession.setActive(true)
+            
+            // Create recording URL
+            let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let audioFilename = documentsPath.appendingPathComponent("recording_\(Date().timeIntervalSince1970).m4a")
+            recordingURL = audioFilename
+            
+            // Configure recording settings
+            let settings: [String: Any] = [
+                AVFormatIDKey: kAudioFormatMPEG4AAC,
+                AVSampleRateKey: 44100.0,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            ]
+            
+            // Create and start recorder
+            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+            audioRecorder?.delegate = recordingManager
+            audioRecorder?.isMeteringEnabled = true
+            audioRecorder?.record()
+            
+            isRecording = true
+            recordingTime = 0
+            
+            // Start timer for recording time
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                recordingTime += 1
+            }
+            
+            print("録音を開始しました: \(audioFilename)")
+        } catch {
+            print("録音の開始に失敗しました: \(error.localizedDescription)")
+        }
     }
     
     private func stopRecording() {
         isRecording = false
         timer?.invalidate()
         timer = nil
+        
+        audioRecorder?.stop()
+        audioRecorder = nil
+        
+        // 録音ファイルの確認
+        if let recordingURL = recordingURL {
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: recordingURL.path) {
+                do {
+                    let attributes = try fileManager.attributesOfItem(atPath: recordingURL.path)
+                    let fileSize = attributes[.size] as? Int64 ?? 0
+                    print("録音ファイルが作成されました: \(recordingURL)")
+                    print("ファイルサイズ: \(fileSize) bytes")
+                    
+                    if fileSize == 0 {
+                        print("⚠️ 録音ファイルのサイズが0です - 録音が正常に行われていない可能性があります")
+                    }
+                } catch {
+                    print("録音ファイルの情報取得に失敗: \(error.localizedDescription)")
+                }
+            } else {
+                print("❌ 録音ファイルが見つかりません: \(recordingURL.path)")
+            }
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+            print("録音を停止しました")
+        } catch {
+            print("オーディオセッションの停止に失敗しました: \(error.localizedDescription)")
+        }
     }
     
     private func playRecording() {
-        // Note: In a real app, you would implement audio playback
-        print("Playing recording...")
+        guard let recordingURL = recordingURL else {
+            print("再生する録音ファイルがありません")
+            return
+        }
+        
+        // 既存の再生を停止
+        playbackPlayer?.stop()
+        playbackPlayer = nil
+        
+        do {
+            // Configure audio session for playback
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback, mode: .default)
+            try audioSession.setActive(true)
+            
+            // Create and play audio player
+            playbackPlayer = try AVAudioPlayer(contentsOf: recordingURL)
+            playbackPlayer?.prepareToPlay()
+            playbackPlayer?.play()
+            
+            print("録音を再生中: \(recordingURL)")
+            print("ファイルサイズ: \(try? FileManager.default.attributesOfItem(atPath: recordingURL.path)[.size] ?? 0) bytes")
+        } catch {
+            print("録音の再生に失敗しました: \(error.localizedDescription)")
+        }
     }
     
     private func formatTime(_ time: Double) -> String {
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
         return String(format: "%d:%02d", minutes, seconds)
+    }
+    
+}
+
+class RecordingManager: NSObject, ObservableObject, AVAudioRecorderDelegate {
+    
+    // MARK: - AVAudioRecorderDelegate
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        DispatchQueue.main.async {
+            if flag {
+                print("録音が正常に完了しました")
+            } else {
+                print("録音に失敗しました")
+            }
+        }
+    }
+    
+    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+        DispatchQueue.main.async {
+            print("録音エラーが発生しました: \(error?.localizedDescription ?? "不明なエラー")")
+        }
     }
 }
 
