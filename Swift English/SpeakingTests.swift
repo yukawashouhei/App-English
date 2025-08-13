@@ -112,7 +112,7 @@ struct SpeakingTests {
                 • Extend (α): Its user interface is incredibly clean and intuitive, and the animations are very smooth.
                     → なぜデザインが良いと思うのか、その理由を user interface (UI) や animations といった専門的な視点から説明しています。これにより、あなたがiOSエンジニアであることが自然にアピールでき、一貫性のある自己紹介となります。seamless (シームレスな、滑らかな) も高得点を狙える語彙です。
                 """,
-                audioFileName: "speaking_part1_sample",
+                audioFileName: "speaking_test1_q1",
                 conversationScript: nil
             )
         ],
