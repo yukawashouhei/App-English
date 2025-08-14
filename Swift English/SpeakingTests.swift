@@ -207,48 +207,91 @@ struct SpeakingTests {
                 """,
                 audioFileName: "speaking_test1_q2",
                 conversationScript: nil
-            )
-        ],
-        description: "Speaking Part 1 & 2: Personal Questions & Long Turn - iOS Engineer Interview Style"
-    )
-    
-    static let test2 = Test(
-        title: "Test 2",
-        skillType: .speaking,
-        questions: [
+            ),
             Question(
                 type: .shortAnswer,
-                passage: "Discuss the importance of memory management in iOS development. Explain ARC and its benefits.",
-                questionText: "How does ARC work in iOS development?",
+                passage: nil,
+                questionText: """
+                形式: Part 2のトピックに関連した、より抽象的で深い議論。自分の意見を理由や例と共に、より長く展開することが求められます。
+
+                Questions
+
+                What qualities do you think are most important for a software engineer today?
+
+                How has remote work changed the way software development teams collaborate?
+
+                In your opinion, what is more important for a new application: having many features, or being extremely reliable?
+                """,
                 options: nil,
-                correctAnswer: "Automatic Reference Counting automatically manages memory",
-                japaneseTranslation: "iOS開発でARCはどのように動作しますか？",
-                explanation: "ARC（Automatic Reference Counting）は自動的にメモリ管理を行い、開発者が手動でメモリ管理を行う必要をなくします。",
-                audioFileName: nil,
+                correctAnswer: """
+                Examiner: What qualities do you think are most important for a software engineer today?
+                Candidate: Well, in my opinion, beyond technical skills like coding, I believe the most crucial qualities are problem-solving and communication. Technology is always changing, so the ability to analyze a complex problem and learn how to solve it is fundamental. Equally important is communication, because modern software is built by teams, and you need to be able to clearly explain technical ideas to colleagues, and also understand requirements from non-technical people like designers or product managers.
+
+                Examiner: How has remote work changed the way software development teams collaborate?
+                Candidate: Remote work has significantly shifted collaboration towards asynchronous communication. Instead of quick conversations in the office, we now rely heavily on well-written documentation, detailed comments on pull requests, and clear task descriptions in tools like Jira. While this requires more discipline in writing, I think it has a positive side effect: it forces us to document our thought processes more clearly, which can actually help new team members get up to speed faster.
+
+                Examiner: In your opinion, what is more important for a new application: having many features, or being extremely reliable?
+                Candidate: I believe for a new application, being extremely reliable is far more important. You only get one chance to make a first impression. If an app is full of features but crashes frequently or is very slow, users will quickly lose trust and uninstall it. It's better to start with a small set of core features that work perfectly, build a foundation of trust and reliability, and then gradually add more features based on user feedback. A reliable app retains users, while a feature-rich but buggy app drives them away.
+                """,
+                japaneseTranslation: """
+                試験官: 今日のソフトウェアエンジニアにとって、最も重要な資質は何だと思いますか？
+                解答例: 私の意見ではコーディングのような技術的なスキルは別として、最も重要だと考える資質は問題解決能力とコミュニケーション能力です。テクノロジーは常に変化しているので、複雑な問題を分析し、その解決方法を学ぶ能力は根本的に重要です。同様に重要なのがコミュニケーションです。なぜなら、現代のソフトウェアはチームによって作られており、技術的なアイデアを同僚に明確に説明し、またデザイナーやプロダクトマネージャーのような非技術的な人々からの要求を理解する必要があるからです。
+
+                試験官: リモートワークは、ソフトウェア開発チームの協力の仕方について、どのように変化をもたらしましたか？
+                解答例: リモートワークは、協力を非同期コミュニケーションへと大きくシフトさせました。オフィスでの気軽な会話の代わりに、私たちは今、質の高いドキュメント、プルリクエストへの詳細なコメント、そしてJiraのようなツールでの明確なタスク記述に大きく依存しています。これには書く上での規律がより求められますが、良い副作用もあると思います。それは、思考プロセスをより明確に文書化せざるを得なくなることであり、これは実際、新しいチームメンバーが早く戦力になるのを助けることができます。
+
+                試験官: あなたの意見では、新しいアプリケーションにとってより重要なのは、多くの機能を持つことですか、それとも極めて信頼性が高いことですか？
+                解答例: 新しいアプリケーションにとっては、極めて信頼性が高いことの方がはるかに重要だと信じています。第一印象を与えるチャンスは一度しかありません。もしアプリが機能満載でも、頻繁にクラッシュしたり非常に遅かったりすれば、ユーザーはすぐに信頼を失い、アンインストールしてしまうでしょう。完璧に動作する少数のコア機能から始め、信頼という基盤を築き、それからユーザーのフィードバックに基づいて徐々に機能を追加していく方が良いです。信頼性の高いアプリはユーザーを維持しますが、機能豊富でもバグの多いアプリはユーザーを遠ざけてしまいます。
+                """,
+                explanation: """
+                スピーキング パート3の目標
+
+                パート3は、パート2のトピックから派生した、より抽象的で社会的なテーマについて試験官と議論するセクションです。ここでは、あなたの「意見を論理的に述べ、それを理由や例でサポートする能力」が試されます。
+                パート1や2よりも、以下のような点が求められます。
+                • より複雑な文法や幅広い語彙を使いこなす能力。
+                • 一般的な事柄や未来について、推測したり意見を述べたりする能力。
+                • 一貫性のある、よく構成された主張を展開する能力。
+
+                効果的な解答戦略：PREP法
+
+                パート3の質問に答える際、PREP法という構成を意識すると、論理的で分かりやすい回答になります。
+                • P (Point): まず、自分の意見・要点を明確に述べる。
+                • R (Reason): なぜそう思うのか、理由を説明する。
+                • E (Example): 主張を裏付けるための、具体的な例を挙げる。
+                • P (Point): 最後に、もう一度自分の意見・要点を繰り返して話を締めくくる。
+                すべての回答がこの形に当てはまるわけではありませんが、この「結論 → 理由 → 具体例 → 結論」という流れを意識することで、話が脱線せず、説得力のある回答ができます。
+
+                模範解答の分析：なぜこの答え方が良いのか？
+
+                この模範解答は、パート3で求められる能力を示しています。
+
+                質問1: 今日のソフトウェアエンジニアにとって、最も重要な資質は何だと思いますか？
+                • 解答の構成:
+                    1. Point (要点): problem-solving and communication (問題解決能力とコミュニケーション能力) が最も重要だと明確に述べています。
+                    2. Reason (理由): 「なぜなら技術は常に変化するから(problem-solving)」「なぜなら現代のソフトウェアはチームで作られるから(communication)」と、2つの資質それぞれに対して、説得力のある理由を付け加えています。
+                • 語彙: crucial (極めて重要な), fundamental (根本的な), equally important (同様に重要な) といった、議論を構成するための高度な語彙が効果的に使われています。
+
+                質問2: リモートワークは、ソフトウェア開発チームの協力の仕方について、どのように変化をもたらしましたか？
+                • 解答の構成:
+                    1. Point (要点): significantly shifted collaboration towards asynchronous communication (協力を非同期コミュニケーションへと大きくシフトさせた) と、変化の核心を述べています。
+                    2. Example (具体例): 「オフィスでの気軽な会話の代わりに(Instead of...)、質の高いドキュメントやJiraに依存するようになった(we now rely heavily on...)」と、対比を用いることで変化を具体的に示しています。
+                    3. Further Point (さらなる視点): it has a positive side effect (良い副作用もある) と、単なる変化の説明に終わらず、一歩踏み込んだ独自の視点を加えることで、思考の深さを示しています。
+
+                質問3: 新しいアプリケーションにとってより重要なのは、多くの機能を持つことですか、それとも極めて信頼性が高いことですか？
+                • 解答の構成 (PREP法の見本):
+                    1. Point (要点): being extremely reliable is far more important (極めて信頼性が高いことの方がはるかに重要だ) と、自分の立場を断言しています。
+                    2. Reason (理由): You only get one chance to make a first impression. (第一印象を与えるチャンスは一度しかない) と、核心的な理由を述べています。
+                    3. Example (具体例): 「もしアプリが機能満載でも頻繁にクラッシュしたら、ユーザーは信頼を失いアンインストールするだろう」と、仮説の状況を具体例として挙げています。
+                    4. Point/Conclusion (結論): 最後に「信頼性の高いアプリはユーザーを維持し、バグの多いアプリはユーザーを遠ざける」と、自分の主張を力強く締めくくっています。
+
+                この解答のように、明確な意見を述べ、それを支えるしっかりとした理由と分かりやすい例を挙げることで、説得力のある議論を展開することができます。
+                """,
+                audioFileName: "speaking_test1_q3",
                 conversationScript: nil
             )
         ],
-        description: "Speaking Test 2"
+        description: "Speaking Part 1, 2 & 3: Personal Questions, Long Turn & Discussion - iOS Engineer Interview Style"
     )
     
-    static let test3 = Test(
-        title: "Test 3",
-        skillType: .speaking,
-        questions: [
-            Question(
-                type: .essay,
-                passage: "Describe your approach to debugging iOS applications. What tools and techniques do you use?",
-                questionText: "What debugging tools do you use for iOS development?",
-                options: nil,
-                correctAnswer: "Xcode debugger, Instruments, Console, Breakpoints",
-                japaneseTranslation: "iOS開発で使用するデバッグツールは何ですか？",
-                explanation: "iOS開発ではXcodeのデバッガー、Instruments、Console、ブレークポイントなどのツールを使用してデバッグを行います。",
-                audioFileName: nil,
-                conversationScript: nil
-            )
-        ],
-        description: "Speaking Test 3"
-    )
-    
-    static let allTests: [Test] = [test1, test2, test3]
+    static let allTests: [Test] = [test1]
 } 
