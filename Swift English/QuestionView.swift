@@ -82,7 +82,7 @@ struct QuestionView: View {
                                 print("DEBUG: showAnswer after toggle: \(showAnswer)")
                             }) {
                                 HStack {
-                                    Label(test.skillType == .speaking ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
+                                    Label(test.skillType == .speaking || test.skillType == .writing ? "模範解答を見る" : "答えを見る", systemImage: "checkmark.bubble")
                                         .font(.headline)
                                         .foregroundStyle(.green)
                                     
