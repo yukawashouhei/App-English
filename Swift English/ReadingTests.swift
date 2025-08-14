@@ -73,7 +73,7 @@ struct ReadingTests {
 
                 学習のポイント: Pull Request, refactor, constant, magic number, MVVM, Unit tests といった単語は、英語圏での開発業務に必須の語彙です。これらの単語を知っていると、文章の意図を素早く正確に理解できます。
                 """,
-                audioFileName: nil,
+                audioFileName: "reading_test1_q1",
                 conversationScript: nil
             )
         ],
@@ -153,7 +153,7 @@ struct ReadingTests {
 
                 学習のポイント: submission, guidelines, functionality, user interface (UI), rejection, copycat, metadata といった単語は、アプリをリリースする上で避けては通れない重要語彙です。これらの意味を理解することで、Appleの公式ドキュメントを読む際にも役立ちます。
                 """,
-                audioFileName: nil,
+                audioFileName: "reading_test1_q2",
                 conversationScript: nil
             )
         ],
@@ -242,7 +242,7 @@ struct ReadingTests {
 
                 学習のポイント: imperative, declarative, ecosystem, hybrid approach, UIViewRepresentable, UIHostingController といった用語は、現代のiOS開発において重要な概念です。これらの理解により、技術的な変遷と実用的な開発戦略を把握できます。
                 """,
-                audioFileName: nil,
+                audioFileName: "reading_test1_q3",
                 conversationScript: nil
             )
         ],

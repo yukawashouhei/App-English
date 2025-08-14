@@ -448,7 +448,15 @@ struct AudioControlsView: View {
             audioPath = wavPath
             print("音声ファイル発見 (Audio/Speaking): \(wavPath)")
         }
-        // パターン2: Audio/Listening ディレクトリ内
+        // パターン2: Audio/Reading ディレクトリ内
+        else if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3", inDirectory: "Audio/Reading") {
+            audioPath = mp3Path
+            print("音声ファイル発見 (Audio/Reading): \(mp3Path)")
+        } else if let wavPath = Bundle.main.path(forResource: fileName, ofType: "wav", inDirectory: "Audio/Reading") {
+            audioPath = wavPath
+            print("音声ファイル発見 (Audio/Reading): \(wavPath)")
+        }
+        // パターン3: Audio/Listening ディレクトリ内
         else if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3", inDirectory: "Audio/Listening") {
             audioPath = mp3Path
             print("音声ファイル発見 (Audio/Listening): \(mp3Path)")
@@ -456,7 +464,7 @@ struct AudioControlsView: View {
             audioPath = wavPath
             print("音声ファイル発見 (Audio/Listening): \(wavPath)")
         }
-        // パターン3: Listening ディレクトリ内
+        // パターン4: Listening ディレクトリ内
         else if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3", inDirectory: "Listening") {
             audioPath = mp3Path
             print("音声ファイル発見 (Listening): \(mp3Path)")
@@ -464,7 +472,7 @@ struct AudioControlsView: View {
             audioPath = wavPath
             print("音声ファイル発見 (Listening): \(wavPath)")
         }
-        // パターン4: メインバンドル直下
+        // パターン5: メインバンドル直下
         else if let mp3Path = Bundle.main.path(forResource: fileName, ofType: "mp3") {
             audioPath = mp3Path
             print("音声ファイル発見 (メインバンドル): \(mp3Path)")
@@ -472,7 +480,7 @@ struct AudioControlsView: View {
             audioPath = wavPath
             print("音声ファイル発見 (メインバンドル): \(wavPath)")
         }
-        // パターン5: 拡張子込みファイル名
+        // パターン6: 拡張子込みファイル名
         else if let genericPath = Bundle.main.path(forResource: audioFileName, ofType: nil) {
             audioPath = genericPath
             print("音声ファイル発見 (拡張子込み): \(genericPath)")
@@ -483,6 +491,8 @@ struct AudioControlsView: View {
             print("🔍 検索したパターン:")
             print("  - Audio/Speaking/\(fileName).mp3")
             print("  - Audio/Speaking/\(fileName).wav")
+            print("  - Audio/Reading/\(fileName).mp3")
+            print("  - Audio/Reading/\(fileName).wav")
             print("  - Audio/Listening/\(fileName).mp3")
             print("  - Audio/Listening/\(fileName).wav")
             print("  - Listening/\(fileName).mp3") 
@@ -890,6 +900,20 @@ struct QuestionContentView: View {
                     }
                 }
                 .padding(.horizontal)
+            }
+            
+            // Audio controls for reading questions (between passage and answers)
+            if test.skillType == .reading, let audioFileName = currentQuestion.audioFileName {
+                AudioControlsView(
+                    audioFileName: audioFileName,
+                    audioPlayer: $audioPlayer
+                )
+                .padding(.horizontal)
+                .id(audioFileName) // 音声ファイル名が変わったら強制的に再作成
+                .onAppear {
+                    print("🎵 QuestionContentView - Reading audio controls appeared for: \(audioFileName)")
+                    print("🎵 Current question type: \(currentQuestion.type)")
+                }
             }
             
             // Question text display (for speaking when no passage)
