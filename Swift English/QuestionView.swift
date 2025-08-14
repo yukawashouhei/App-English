@@ -126,6 +126,7 @@ struct QuestionView: View {
                                             audioFileName: audioFileName,
                                             audioPlayer: $audioPlayer
                                         )
+                                        .id(audioFileName) // 音声ファイル名が変わったら強制的に再作成
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -343,7 +344,12 @@ struct QuestionView: View {
             showTranslation = false
             showExplanation = false
             showConversationScript = false
-            print("DEBUG: After reset - all states should be false")
+            
+            // 音声プレーヤーもリセット
+            audioPlayer?.stop()
+            audioPlayer = nil
+            
+            print("DEBUG: After reset - all states should be false, audio player cleared")
         }
     }
 }
@@ -421,6 +427,12 @@ struct AudioControlsView: View {
             duration = 60.0 // デフォルト時間
             return
         }
+        
+        // 既存のプレーヤーを確実にクリア
+        audioPlayer?.stop()
+        audioPlayer = nil
+        
+        print("🔍 音声ファイル検索開始: \(audioFileName)")
         
         // Bundle内の音声ファイルを読み込み（拡張子なしのファイル名に対応）
         let fileName = audioFileName.replacingOccurrences(of: ".mp3", with: "").replacingOccurrences(of: ".wav", with: "")
@@ -831,6 +843,11 @@ struct QuestionContentView: View {
                     audioPlayer: $audioPlayer
                 )
                 .padding(.horizontal)
+                .id(audioFileName) // 音声ファイル名が変わったら強制的に再作成
+                .onAppear {
+                    print("🎵 QuestionContentView - Audio controls appeared for: \(audioFileName)")
+                    print("🎵 Current question type: \(currentQuestion.type)")
+                }
             }
             
             // Form or Passage display
