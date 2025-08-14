@@ -305,7 +305,6 @@ struct QuestionView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 30)
                 }
-                .id(currentQuestionIndex)
             }
         }
         .navigationTitle(test.title)
