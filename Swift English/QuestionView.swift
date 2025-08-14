@@ -681,8 +681,19 @@ struct RecordingControlsView: View {
     }
     
     private func startRecording() {
-        // Request microphone permission
-        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+        // Request microphone permission (iOS 17+ compatible)
+        if #available(iOS 17.0, *) {
+            AVAudioApplication.requestRecordPermission { granted in
+                DispatchQueue.main.async {
+                    if granted {
+                        self.setupAndStartRecording()
+                    } else {
+                        print("マイクロフォンの使用許可が必要です")
+                    }
+                }
+            }
+        } else {
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
             DispatchQueue.main.async {
                 if granted {
                     self.setupAndStartRecording()
@@ -691,6 +702,7 @@ struct RecordingControlsView: View {
                 }
             }
         }
+    }
     }
     
     private func setupAndStartRecording() {
@@ -821,7 +833,11 @@ class RecordingManager: NSObject, ObservableObject, AVAudioRecorderDelegate {
     
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         DispatchQueue.main.async {
-            print("録音エラーが発生しました: \(error?.localizedDescription ?? "不明なエラー")")
+            if let error = error {
+                print("録音エラーが発生しました: \(error.localizedDescription)")
+            } else {
+                print("録音エラーが発生しました: 不明なエラー")
+            }
         }
     }
 }

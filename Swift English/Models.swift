@@ -33,7 +33,7 @@ enum QuestionType: Codable {
 }
 
 struct Test: Identifiable, Codable {
-    let id = UUID()
+    var id = UUID()
     let title: String
     let skillType: SkillType
     let questions: [Question]
@@ -41,7 +41,7 @@ struct Test: Identifiable, Codable {
 }
 
 struct Question: Identifiable, Codable {
-    let id = UUID()
+    var id = UUID()
     let type: QuestionType
     let passage: String?
     let questionText: String
