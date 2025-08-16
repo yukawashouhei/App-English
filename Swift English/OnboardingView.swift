@@ -13,7 +13,7 @@ struct OnboardingView: View {
     
     private let onboardingPages = [
         OnboardingPage(
-            title: "iOS開発に特化した英語学習を効率的に！",
+            title: "iOSアプリ開発に特化した英語学習を効率的に！",
             description: "リスニング、リーディング、スピーキング、ライティングの4技能を体系的に学習できます！",
             imageName: nil
         ),
@@ -103,7 +103,7 @@ struct OnboardingPageView: View {
             Spacer()
             
             // SwiftUIロゴ（1ページ目の場合のみ表示）
-            if page.title.contains("iOS開発に特化") {
+            if page.title.contains("iOSアプリ開発に特化") {
                 Image(systemName: "swift")
                     .font(.system(size: 80))
                     .foregroundStyle(.blue)
@@ -122,10 +122,12 @@ struct OnboardingPageView: View {
             // テキストコンテンツ
             VStack(spacing: 16) {
                 Text(page.title)
-                    .font(.largeTitle)
+                    .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.primary)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 
                 Text(page.description)
                     .font(.body)
