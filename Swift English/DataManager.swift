@@ -15,11 +15,13 @@ class DataManager {
     var completedTests: Set<String> = []
     var favoriteTests: Set<String> = []
     var userProgress: [String: TestProgress] = [:]
+    var hasSeenOnboarding: Bool = false
     
     private let userDefaults = UserDefaults.standard
     private let completedTestsKey = "completedTests"
     private let favoriteTestsKey = "favoriteTests"
     private let userProgressKey = "userProgress"
+    private let hasSeenOnboardingKey = "hasSeenOnboarding"
     
     private init() {
         loadData()
@@ -46,6 +48,9 @@ class DataManager {
                 print("Failed to decode user progress: \(error)")
             }
         }
+        
+        // Load onboarding status
+        hasSeenOnboarding = userDefaults.bool(forKey: hasSeenOnboardingKey)
     }
     
     // MARK: - Data Saving
@@ -64,6 +69,9 @@ class DataManager {
         } catch {
             print("Failed to encode user progress: \(error)")
         }
+        
+        // Save onboarding status
+        userDefaults.set(hasSeenOnboarding, forKey: hasSeenOnboardingKey)
     }
     
     // MARK: - Public Methods
@@ -109,6 +117,11 @@ class DataManager {
         completedTests.removeAll()
         favoriteTests.removeAll()
         userProgress.removeAll()
+        saveData()
+    }
+    
+    func markOnboardingComplete() {
+        hasSeenOnboarding = true
         saveData()
     }
 }
