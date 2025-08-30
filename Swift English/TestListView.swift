@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TestListView: View {
     let skillType: SkillType
-    @State private var allQuestionsTest: Test?
+    @State private var tests: [Test] = []
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -28,12 +28,16 @@ struct TestListView: View {
             .padding(.top, 20)
             .padding(.bottom, 30)
             
-            // Test Button
-            if let test = allQuestionsTest {
-                NavigationLink(destination: QuestionView(test: test)) {
-                    TestCard(test: test)
+            // Test List
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    ForEach(tests) { test in
+                        NavigationLink(destination: QuestionView(test: test)) {
+                            TestCard(test: test)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
                 }
-                .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, 20)
             }
             
@@ -42,31 +46,21 @@ struct TestListView: View {
         .navigationTitle(skillType.rawValue)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            loadTest()
+            loadTests()
         }
     }
     
-    private func loadTest() {
-        // Load tests from respective files
-        var allQuestions: [Question] = []
-        
+    private func loadTests() {
         switch skillType {
         case .reading:
-            allQuestions.append(contentsOf: ReadingTests.allTests.flatMap { $0.questions })
+            tests = ReadingTests.allTests
         case .listening:
-            allQuestions.append(contentsOf: ListeningTests.allTests.flatMap { $0.questions })
+            tests = ListeningTests.allTests
         case .speaking:
-            allQuestions.append(contentsOf: SpeakingTests.allTests.flatMap { $0.questions })
+            tests = SpeakingTests.allTests
         case .writing:
-            allQuestions.append(contentsOf: WritingTests.allTests.flatMap { $0.questions })
+            tests = WritingTests.allTests
         }
-        
-        allQuestionsTest = Test(
-            title: "Test 1",
-            skillType: skillType,
-            questions: allQuestions,
-            description: "\(skillType.rawValue)の総合テスト"
-        )
     }
 }
 

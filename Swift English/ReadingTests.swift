@@ -75,15 +75,7 @@ struct ReadingTests {
                 """,
                 audioFileName: "reading_test1_q1",
                 conversationScript: nil
-            )
-        ],
-        description: "Reading Test 1"
-    )
-    
-    static let test2 = Test(
-        title: "Test 2",
-        skillType: .reading,
-        questions: [
+            ),
             Question(
                 type: .matching,
                 passage: """
@@ -155,15 +147,7 @@ struct ReadingTests {
                 """,
                 audioFileName: "reading_test1_q2",
                 conversationScript: nil
-            )
-        ],
-        description: "Reading Test 2"
-    )
-    
-    static let test3 = Test(
-        title: "Test 3",
-        skillType: .reading,
-        questions: [
+            ),
             Question(
                 type: .multipleChoice,
                 passage: """
@@ -246,8 +230,38 @@ struct ReadingTests {
                 conversationScript: nil
             )
         ],
-        description: "Reading Test 3"
+        description: "Reading Test 1"
     )
     
-    static let allTests: [Test] = [test1, test2, test3]
+    static let test2 = Test(
+        title: "Test 2",
+        skillType: .reading,
+        questions: [
+            Question(
+                type: .shortAnswer,
+                passage: """
+                [文章は後で更新されます]
+                
+                このセクションには技術文書や実際のビジネス文書が含まれる予定です。
+                """,
+                questionText: """
+                Instructions: Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.
+                
+                1. [質問1は後で更新されます]
+                2. [質問2は後で更新されます] 
+                3. [質問3は後で更新されます]
+                4. [質問4は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "1. [答え1]\n2. [答え2]\n3. [答え3]\n4. [答え4]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "reading_test2_q1",
+                conversationScript: nil
+            )
+        ],
+        description: "Reading Test 2: 問題内容は後で更新されます"
+    )
+    
+    static let allTests: [Test] = [test1, test2]
 } 
