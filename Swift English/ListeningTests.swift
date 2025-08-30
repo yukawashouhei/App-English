@@ -459,7 +459,7 @@ struct ListeningTests {
                 """
             )
         ],
-        description: "Listening Part 1: Complete Test Suite - Form Completion, Matching, Multiple Choice & Note Completion"
+        description: "Listening Test 1"
     )
     
     static let test2 = Test(

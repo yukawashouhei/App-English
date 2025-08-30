@@ -290,7 +290,7 @@ struct SpeakingTests {
                 conversationScript: nil
             )
         ],
-        description: "Speaking Part 1, 2 & 3: Personal Questions, Long Turn & Discussion - iOS Engineer Interview Style"
+        description: "Speaking Test 1"
     )
     
     static let test2 = Test(

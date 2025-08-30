@@ -214,7 +214,7 @@ struct WritingTests {
                 conversationScript: nil
             )
         ],
-        description: "Writing Task 1 & 2: Formal Letter and Essay - iOS Professional Context"
+        description: "Writing Test 1"
     )
     
     static let test2 = Test(

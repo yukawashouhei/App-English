@@ -15,6 +15,9 @@ struct ReadingTests {
             Question(
                 type: .shortAnswer,
                 passage: """
+                テーマ: コードレビュー (Code Review)
+                形式: 短文回答問題 (Short Answer Questions)
+                
                 To: Kenji Tanaka
                 From: Sarah Miller
                 Subject: Pull Request #128: Add User Profile View
@@ -35,6 +38,14 @@ struct ReadingTests {
                 
                 Best,
                 Sarah
+                
+                Questions
+                
+                Instructions: Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.
+                1. What specific UI element is not correctly aligned?
+                2. What should the developer extract into a shared constant?
+                3. What needs to be moved to the ViewModel?
+                4. What kind of tests are required for the new logic?
                 """,
                 questionText: "Instructions: Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.\n\n1. What specific UI element is not correctly aligned?\n2. What should the developer extract into a shared constant?\n3. What needs to be moved to the ViewModel?\n4. What kind of tests are required for the new logic?",
                 options: nil,
@@ -59,6 +70,14 @@ struct ReadingTests {
                 何か質問があれば教えてください。
                 
                 サラより
+                
+                質問
+                
+                指示：以下の質問に答えなさい。各解答は文章から3単語以内で選びなさい。
+                1. どの特定のUI要素が正しく配置されていませんか？
+                2. 開発者は何を共有の定数として抽出すべきですか？
+                3. 何をViewModelに移動する必要がありますか？
+                4. 新しいロジックにはどのようなテストが必要ですか？
                 """,
                 explanation: """
                 この問題は、iOSエンジニアが日常的に受け取る「コードレビュー」のフィードバックを題材にしています。IELTSリーディングでは、文章の中から特定の情報を正確に抜き出す力が問われます。
