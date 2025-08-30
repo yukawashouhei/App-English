@@ -9,7 +9,7 @@ import Foundation
 
 struct SpeakingTests {
     static let test1 = Test(
-        title: "Speaking Part 1",
+        title: "Test 1",
         skillType: .speaking,
         questions: [
             Question(
@@ -293,5 +293,72 @@ struct SpeakingTests {
         description: "Speaking Part 1, 2 & 3: Personal Questions, Long Turn & Discussion - iOS Engineer Interview Style"
     )
     
-    static let allTests: [Test] = [test1]
+    static let test2 = Test(
+        title: "Test 2",
+        skillType: .speaking,
+        questions: [
+            Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: """
+                形式: 面接官と1対1の会話形式で、個人的な質問に答えます。
+                
+                Question 1
+                [質問1は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[模範解答1は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "speaking_test2_q1",
+                conversationScript: nil
+            ),
+            Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: """
+                形式: トピックが書かれたカードを渡され、1分間の準備時間でスピーチを考え、その後1～2分間話します。
+                
+                Cue Card (トピックカード)
+                
+                [トピックは後で更新されます]
+                You should say:
+                • [項目1は後で更新されます]
+                • [項目2は後で更新されます]
+                • [項目3は後で更新されます]
+                • [項目4は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[模範解答2は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "speaking_test2_q2",
+                conversationScript: nil
+            ),
+            Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: """
+                形式: Part 2のトピックに関連する、より抽象的で複雑な質問について議論します。
+                
+                Discussion Questions
+                
+                Question 1: [質問1は後で更新されます]
+                
+                Question 2: [質問2は後で更新されます]
+                
+                Question 3: [質問3は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[模範解答3は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "speaking_test2_q3",
+                conversationScript: nil
+            )
+        ],
+        description: "Speaking Test 2: 問題内容は後で更新されます"
+    )
+    
+    static let allTests: [Test] = [test1, test2]
 } 

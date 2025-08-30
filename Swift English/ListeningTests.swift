@@ -9,7 +9,7 @@ import Foundation
 
 struct ListeningTests {
     static let test1 = Test(
-        title: "Listening Part 1",
+        title: "Test 1",
         skillType: .listening,
         questions: [
             Question(
@@ -462,5 +462,107 @@ struct ListeningTests {
         description: "Listening Part 1: Complete Test Suite - Form Completion, Matching, Multiple Choice & Note Completion"
     )
     
-    static let allTests: [Test] = [test1]
+    static let test2 = Test(
+        title: "Test 2",
+        skillType: .listening,
+        questions: [
+            Question(
+                type: .formCompletion,
+                passage: """
+                Instructions: Complete the form below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.
+                
+                Questions
+                [問題文は後で更新されます]
+                • Item 1: (1) ______________
+                • Item 2: (2) ______________
+                • Item 3: (3) ______________
+                • Item 4: (4) ______________
+                • Item 5: (5) ______________
+                """,
+                questionText: "",
+                options: nil,
+                correctAnswer: "1. [答え1]\n2. [答え2]\n3. [答え3]\n4. [答え4]\n5. [答え5]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test2_q1",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            ),
+            Question(
+                type: .matching,
+                passage: """
+                Instructions: Match each item with the correct option from the list below.
+                
+                [問題文は後で更新されます]
+                """,
+                questionText: """
+                Match the following:
+                1. Item A ___
+                2. Item B ___
+                3. Item C ___
+                4. Item D ___
+                5. Item E ___
+                
+                Options:
+                A. Option 1
+                B. Option 2
+                C. Option 3
+                D. Option 4
+                E. Option 5
+                """,
+                options: nil,
+                correctAnswer: "1. [答え1]\n2. [答え2]\n3. [答え3]\n4. [答え4]\n5. [答え5]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test2_q2",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            ),
+            Question(
+                type: .multipleChoice,
+                passage: nil,
+                questionText: """
+                Choose the correct answer from A, B, C, or D.
+                
+                [問題文は後で更新されます]
+                
+                A. [選択肢A]
+                B. [選択肢B]
+                C. [選択肢C]
+                D. [選択肢D]
+                """,
+                options: ["[選択肢A]", "[選択肢B]", "[選択肢C]", "[選択肢D]"],
+                correctAnswer: "[正解の選択肢]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test2_q3",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            ),
+            Question(
+                type: .noteCompletion,
+                passage: """
+                Instructions: Complete the notes below. Write ONE WORD ONLY for each answer.
+                
+                [講義ノートのタイトル]
+                
+                Main Topics
+                • Topic 1: Information about (1) ______________
+                • Topic 2: The importance of (2) ______________
+                • Topic 3: Key benefits including (3) ______________
+                • Topic 4: Challenges with (4) ______________
+                • Topic 5: Future plans for (5) ______________
+                • Topic 6: Requirements for (6) ______________
+                • Topic 7: Investment in (7) ______________
+                """,
+                questionText: "",
+                options: nil,
+                correctAnswer: "1. [答え1]\n2. [答え2]\n3. [答え3]\n4. [答え4]\n5. [答え5]\n6. [答え6]\n7. [答え7]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test2_q4",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            )
+        ],
+        description: "Listening Test 2: 問題内容は後で更新されます"
+    )
+    
+    static let allTests: [Test] = [test1, test2]
 } 

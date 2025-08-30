@@ -9,7 +9,7 @@ import Foundation
 
 struct WritingTests {
     static let test1 = Test(
-        title: "Writing Task 1",
+        title: "Test 1",
         skillType: .writing,
         questions: [
             Question(
@@ -217,5 +217,59 @@ struct WritingTests {
         description: "Writing Task 1 & 2: Formal Letter and Essay - iOS Professional Context"
     )
     
-    static let allTests: [Test] = [test1]
+    static let test2 = Test(
+        title: "Test 2",
+        skillType: .writing,
+        questions: [
+            Question(
+                type: .essay,
+                passage: nil,
+                questionText: """
+                形式: 与えられた状況に基づき、指定された要点を含んだ150語以上の手紙を書きます。
+                
+                Question
+                
+                [問題文は後で更新されます]
+                
+                Write a letter to [相手]. In your letter:
+                • [要点1は後で更新されます]
+                • [要点2は後で更新されます]
+                • [要点3は後で更新されます]
+                
+                Write at least 150 words. You do not need to write any addresses.
+                Begin your letter as follows: Dear [Name],
+                """,
+                options: nil,
+                correctAnswer: "[模範解答1は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "writing_test2_q1",
+                conversationScript: nil
+            ),
+            Question(
+                type: .essay,
+                passage: nil,
+                questionText: """
+                形式: 与えられたトピックについて、250語以上のエッセイを書きます。
+                
+                Question
+                
+                [問題文は後で更新されます]
+                
+                Give reasons for your answer and include any relevant examples from your own knowledge or experience.
+                
+                Write at least 250 words.
+                """,
+                options: nil,
+                correctAnswer: "[模範解答2は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "writing_test2_q2",
+                conversationScript: nil
+            )
+        ],
+        description: "Writing Test 2: 問題内容は後で更新されます"
+    )
+    
+    static let allTests: [Test] = [test1, test2]
 } 
