@@ -1,6 +1,6 @@
 //
 //  OnboardingView.swift
-//  Swift English
+//  App English
 //
 //  Created by Assistant on 2024
 //

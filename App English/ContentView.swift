@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Swift English
+//  App English
 //
 //  Created by 湯川昇平 on 2025/08/02.
 //
@@ -77,9 +77,11 @@ struct MainMenuView: View {
             LazyVStack(spacing: 30) {
                 // Header with logo and title
                 VStack(spacing: 15) {
-                    Image(systemName: "swift")
-                        .font(.system(size: 60))
-                        .foregroundStyle(.blue)
+                    Image("SwallowLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 72, height: 72)
+                        .foregroundStyle(Color(hex: "1A5CF9"))
                     
                     VStack(spacing: 5) {
                         Text("English test for")
@@ -166,4 +168,31 @@ struct SkillButton: View {
 
 #Preview {
     ContentView()
+}
+
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue:  Double(b) / 255,
+            opacity: Double(a) / 255
+        )
+    }
 }
