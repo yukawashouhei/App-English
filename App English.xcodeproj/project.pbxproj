@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7D4AE8B62E3DA6F500D663E8 /* Build configuration list for PBXProject "Swift English" */;
+			buildConfigurationList = 7D4AE8B62E3DA6F500D663E8 /* Build configuration list for PBXProject "App English" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -307,7 +307,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7D4AE8B62E3DA6F500D663E8 /* Build configuration list for PBXProject "Swift English" */ = {
+		7D4AE8B62E3DA6F500D663E8 /* Build configuration list for PBXProject "App English" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D4AE8C72E3DA6F700D663E8 /* Debug */,
