@@ -891,7 +891,7 @@ struct ListeningTests {
                 """
             )
         ],
-        description: "Listening Test 2: Interactive Widget Development Meeting"
+        description: "Listening Test 2"
     )
     
     static let allTests: [Test] = [test1, test2]

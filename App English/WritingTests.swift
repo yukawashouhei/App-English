@@ -268,7 +268,7 @@ struct WritingTests {
                 conversationScript: nil
             )
         ],
-        description: "Writing Test 2: 問題内容は後で更新されます"
+        description: "Writing Test 2"
     )
     
     static let allTests: [Test] = [test1, test2]

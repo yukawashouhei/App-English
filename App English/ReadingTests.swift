@@ -304,7 +304,7 @@ struct ReadingTests {
                 - **解説**: 第2パラグラフの中盤、"...determined through a process known as layout negotiation." と明記されています。
                 - **学習ポイント**: 🤝 `negotiation` は「交渉」を意味します。SwiftUIのレイアウトシステムが、親ビューと子ビューの間でサイズの「交渉」を行うという比喩的な表現は、このプロセスの本質を理解するのに役立ちます。技術文書では、このような比喩表現が複雑な概念を分かりやすくするために使われることがあります。
                 """,
-                audioFileName: "reading_test2_q2",
+                audioFileName: "reading_test2_q1",
                 conversationScript: nil
             ),
             Question(
@@ -393,7 +393,7 @@ struct ReadingTests {
                 - **解説**: セクションDは、「効果的なアプリケーションアーキテクチャ (Effective application architecture)」や「推奨されるパターン (recommended pattern)」、「プロップドリルの回避」など、単一の機能ではなく、アプリケーション全体におけるデータフローの設計指針、つまり「ベストプラクティス (Best practices)」について論じています。
                 - **学習ポイント**: 🤝 `cumbersome` は「厄介な、面倒な」という意味です。「プロップドリル」が開発者にとってどれほど非効率な作業であるかを強調しています。
                 """,
-                audioFileName: "reading_test2_q3",
+                audioFileName: "reading_test2_q2",
                 conversationScript: nil
             ),
             Question(
@@ -491,11 +491,11 @@ struct ReadingTests {
                 - **間違いの選択肢**: (A, C) 筆者は排他的な使用や完全な置き換えではなく、共存を推奨しています。(D) 最初の段落で非同期プログラミングは「不可欠(essential)」と述べており、避けるべきだという考えとは正反対です。
                 - **学習ポイント**: 🔧 `pragmatic` (実用的な、実践的な) は、理論だけでなく現実的な解決策を重視する姿勢を示す形容詞です。エンジニアリングの文脈で頻繁に使われます。
                 """,
-                audioFileName: "reading_test2_q4",
+                audioFileName: "reading_test2_q3",
                 conversationScript: nil
             )
         ],
-        description: "Reading Test 2: SwiftUI Layout Fundamentals, Data Flow & Async Programming"
+        description: "Reading Test 2"
     )
     
     static let allTests: [Test] = [test1, test2]
