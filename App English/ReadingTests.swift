@@ -262,6 +262,16 @@ struct ReadingTests {
                 Building layouts in SwiftUI is fundamentally different from traditional imperative approaches like UIKit's Auto Layout. SwiftUI employs a declarative syntax, allowing developers to describe what the UI should look like based on the current state. The primary tools for arranging views are stacks: VStack arranges views vertically, HStack horizontally, while a ZStack overlays views, arranging them in a back-to-front manner.
 
                 Beyond stacks, developers use modifiers to customize a view's appearance and layout. Each modifier returns a new view that wraps the original, applying the specified change. For example, adding `.padding()` creates a larger view with space around the original content. The final size and position of any view are determined through a process known as layout negotiation. This is essentially a conversation between a parent view and a child view. The parent offers a size, and the child responds with the size it requires, resulting in a flexible and efficient layout system that adapts to different content and screen sizes.
+                
+                Questions
+                
+                Answer the questions below.
+                Choose NO MORE THAN THREE WORDS from the passage for each answer.
+                
+                1. What kind of syntax does SwiftUI use to define user interfaces?
+                2. Which stack type places views on top of each other?
+                3. What is the term for the methods used to alter a view's appearance?
+                4. What is the three-step dialogue between parent and child views called?
                 """,
                 questionText: """
                 Answer the questions below.
@@ -323,6 +333,25 @@ struct ReadingTests {
                 
                 Section D
                 Effective application architecture relies on a clear and predictable data flow. A recommended pattern is to define your observable models as the single source of truth and inject them into the view hierarchy where needed. For global or widely-shared state, such as user authentication status or app settings, leveraging the `@Environment` property wrapper is an ideal approach. This avoids "prop drilling," the cumbersome practice of passing data through many intermediate views. By centralizing state management and using dependency injection, you create a more maintainable, testable, and scalable codebase.
+                
+                Questions
+                
+                Instructions: The reading passage has four sections, A-D. Choose the correct heading for each section from the list of headings below.
+                
+                List of Headings
+                i. Migrating from the old ObservableObject protocol
+                ii. Automatic view updates through state observation
+                iii. Comparing SwiftUI's Observation with Combine
+                iv. The specific conditions that trigger a view refresh
+                v. Defining a source of truth with the Observable macro
+                vi. Best practices for data flow in an application
+                vii. Handling complex data transformations
+                
+                Match each section with the appropriate heading:
+                Section A: ___
+                Section B: ___
+                Section C: ___
+                Section D: ___
                 """,
                 questionText: """
                 Instructions: The reading passage has four sections, A-D. Choose the correct heading for each section from the list of headings below.
@@ -406,6 +435,34 @@ struct ReadingTests {
                 Combine, on the other hand, is a declarative framework designed for processing values over time. It is Apple's native implementation of functional reactive programming. The core concept of Combine is the "publisher," which emits a stream of values, and the "subscriber," which receives them. In between, a chain of "operators" can be used to transform, filter, or combine these values in powerful ways. This pipeline-based approach makes Combine exceptionally well-suited for handling continuous streams of events, such as user input from a text field, real-time data from a WebSocket, or any scenario where data changes dynamically and requires a reactive response.
 
                 Ultimately, the choice between async/await and Combine is not a matter of one being universally superior; they are complementary tools designed to solve different kinds of asynchronous problems. Async/await is concerned with *when* a value will be returned, making it perfect for replacing simple completion handlers. Combine is concerned with *how* a stream of values is processed over its lifetime. For modern iOS development, a hybrid approach is often the most effective. Developers should default to the simplicity and clarity of async/await for straightforward asynchronous calls, while reaching for the expressive power of Combine when faced with complex event streams and the need for a reactive data flow.
+                
+                Questions
+                
+                Instructions: Choose the correct letter, A, B, C, or D.
+                
+                1. What is the main purpose of this passage?
+                A. To argue that the Combine framework is now obsolete.
+                B. To provide a step-by-step tutorial for implementing async/await.
+                C. To compare two major approaches to asynchronous programming and guide developers on their usage.
+                D. To announce a new framework that will replace both Combine and async/await.
+                
+                2. According to the passage, what is a significant advantage of async/await?
+                A. It significantly improves the readability of asynchronous code.
+                B. It can handle complex event streams more effectively than Combine.
+                C. It is a core component of the legacy UIKit framework.
+                D. It requires the use of powerful operators for data transformation.
+                
+                3. Why does the author suggest that the Combine framework remains important?
+                A. It is the only available method for performing basic network requests.
+                B. It generally offers better performance for all types of asynchronous tasks.
+                C. It is considered easier for beginners to learn than async/await.
+                D. Because of its powerful capabilities for handling continuous streams of events.
+                
+                4. What does the author recommend as the best approach for modern iOS developers?
+                A. To exclusively use async/await in all new application development.
+                B. To choose the tool that best fits the specific problem, as both have their own strengths.
+                C. To work on completely replacing all existing Combine code with async/await.
+                D. To avoid asynchronous programming as much as possible to ensure code simplicity.
                 """,
                 questionText: """
                 Instructions: Choose the correct letter, A, B, C, or D.
