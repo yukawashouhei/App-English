@@ -879,7 +879,7 @@ struct QuestionContentView: View {
             // Form or Passage display
             if let passage = currentQuestion.passage {
                 VStack(alignment: .leading, spacing: 12) {
-                    if currentQuestion.type == .formCompletion {
+                    if currentQuestion.type == .formCompletion || currentQuestion.type == .matching {
                         Text("Questions")
                             .font(.headline)
                             .foregroundStyle(.primary)
@@ -966,6 +966,7 @@ struct QuestionContentView: View {
                 .padding(.horizontal)
             }
             
+            
             // Recording controls for speaking questions
             if test.skillType == .speaking {
                 RecordingControlsView(
@@ -1006,8 +1007,8 @@ struct FormCompletionView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(.primary)
                         .padding(.bottom, 8)
-                } else if line.contains("(") && line.contains(")") && line.contains("_") {
-                    // Form field with blank
+                } else if (line.contains("(") && line.contains(")") && line.contains("_")) || (line.contains(":") && line.contains("_")) {
+                    // Form field with blank or matching question with blank
                     HStack {
                         if let colonIndex = line.firstIndex(of: ":") {
                             let beforeColon = String(line[..<colonIndex])
