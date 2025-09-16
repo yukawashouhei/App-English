@@ -998,7 +998,7 @@ struct FormCompletionView: View {
                     Text(line)
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(.primary)
                         .padding(.bottom, 4)
                 } else if line.contains("Mobile Device Lab - Request Form") || line.contains("モバイルデバイスラボ - 貸出依頼書") {
                     // Form title
@@ -1020,12 +1020,12 @@ struct FormCompletionView: View {
                             
                             Text(afterColon)
                                 .font(.body)
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(.primary)
                                 .fontWeight(.medium)
                         } else {
                             Text(line)
                                 .font(.body)
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(.primary)
                                 .fontWeight(.medium)
                         }
                         
