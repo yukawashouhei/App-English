@@ -225,24 +225,85 @@ struct WritingTests {
                 type: .essay,
                 passage: nil,
                 questionText: """
-                形式: 与えられた状況に基づき、指定された要点を含んだ150語以上の手紙を書きます。
-                
+                形式: 与えられた状況に基づき、指定された3つの要点を含んだ150語以上の手紙を書きます。今回は、エンジニアリングマネージャーへの「フォーマル」な提案の手紙です。
+
                 Question
-                
-                [問題文は後で更新されます]
-                
-                Write a letter to [相手]. In your letter:
-                • [要点1は後で更新されます]
-                • [要点2は後で更新されます]
-                • [要点3は後で更新されます]
-                
+
+                You are an iOS developer on a team where the computers are old and slow. This is affecting your team's productivity.
+
+                Write a letter to your manager, Ms. Evans. In your letter:
+                • explain the problems the development team is currently facing
+                • suggest a solution to these problems
+                • outline the expected benefits for the team and the company
+
                 Write at least 150 words. You do not need to write any addresses.
-                Begin your letter as follows: Dear [Name],
+                Begin your letter as follows: Dear Ms. Evans,
                 """,
                 options: nil,
-                correctAnswer: "[模範解答1は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: """
+                Dear Ms. Evans,
+
+                I am writing to formally propose an essential upgrade to the hardware used by the iOS development team. Our current iMacs are several years old and are now struggling to keep up with the demands of modern iOS development.
+
+                Specifically, the team is experiencing significant slowdowns in Xcode build times, which leads to considerable wasted time each day. Furthermore, crucial tools like the SwiftUI Previews and the iOS Simulator frequently become unresponsive. These performance bottlenecks not only disrupt our workflow but also hinder our ability to iterate on new features efficiently.
+
+                To address these issues, I strongly recommend that we upgrade the entire team's machines to the new M-series MacBook Pros. These computers are specifically engineered for high-performance development tasks and would resolve our current performance problems.
+
+                The benefits of this investment would be substantial. Most importantly, it would lead to a dramatic increase in our team's productivity by minimizing waiting times. This, in turn, would accelerate our development cycles and allow for more rigorous testing, resulting in higher-quality features. I believe this upgrade is a crucial step for improving our team's efficiency and morale.
+
+                I would be grateful if we could discuss this proposal at your earliest convenience.
+
+                Yours sincerely,
+
+                [Your Name]
+
+                (193 words)
+                """,
+                japaneseTranslation: """
+                ## 問題
+
+                あなたはiOS開発チームの一員ですが、チームのコンピューターは古くて遅く、生産性に影響が出ています。
+
+                **あなたの上司であるエバンスさん(Ms. Evans)に手紙を書いてください。手紙には以下の要点を含めてください：**
+                • 開発チームが現在直面している問題を説明する
+                • これらの問題に対する解決策を提案する
+                • チームと会社にとって期待される利益を概説する
+
+                **少なくとも150語で記述してください。住所を書く必要はありません。**
+                **手紙の書き出しは以下のようにしてください: Dear Ms. Evans,**
+
+                ## 模範解答例（日本語訳）
+
+                エバンス様
+
+                iOS開発チームが使用しているハードウェアの不可欠なアップグレードを正式に提案するため、筆を執っております。私たちの現在のiMacは数年前のものであり、現代のiOS開発の要求に応えるのに苦労しています。
+
+                具体的には、チームはXcodeのビルド時間の大幅な遅延を経験しており、これが毎日かなりの時間の無駄につながっています。さらに、SwiftUIプレビューやiOSシミュレータのような重要なツールが頻繁に無反応になります。これらのパフォーマンスのボトルネックは、私たちのワークフローを妨げるだけでなく、新機能のイテレーションを効率的に行う能力をも阻害しています。
+
+                これらの問題に対処するため、チーム全員のマシンを新しいMシリーズのMacBook Proにアップグレードすることを強く推奨します。これらのコンピュータは、高性能な開発タスクのために特別に設計されており、私たちの現在のパフォーマンス問題を解決するでしょう。
+
+                この投資による利益は相当なものになるでしょう。最も重要なのは、待ち時間を最小限に抑えることで、チームの生産性が劇的に向上することです。これが、ひいては開発サイクルを加速させ、より厳密なテストを可能にし、結果としてより高品質な機能につながります。このアップグレードは、チームの効率と士気を向上させるための重要な一歩であると信じています。
+
+                ご都合の良い時に、この提案についてご相談させていただけますと幸いです。
+
+                敬具
+
+                [あなたの名前]
+                """,
+                explanation: """
+                このタスクでは、与えられた状況に対して、手紙形式で適切に情報を伝達する能力が試されます。評価されるのは以下の点です。
+                1.  **目的の達成**: 手紙の目的（今回は「ハードウェアのアップグレード提案」）を明確に伝えられているか。
+                2.  **要点の網羅**: 問題文で指示された3つの要点をすべて含んでいるか。
+                3.  **トーンと形式**: 状況に合った適切なトーン（今回は上司へのフォーマルな形式）で書かれているか。
+                4.  **構成と語彙**: 論理的な段落構成で、語彙や文法を正確に使えているか。
+
+                ## 模範解答の分析：なぜこの手紙は高評価なのか？
+
+                -   **明確な目的と構成**: 第1段落で「ハードウェアのアップグレードを提案するため (to formally propose an essential upgrade)」と手紙の目的を明確に述べています。その後の段落は、問題点、解決策、期待される効果という、指示された3つの要点に沿って明確に構成されています。
+                -   **具体的で説得力のある問題提起**: 問題点を単に「遅い」と述べるのではなく、「Xcode build times」「SwiftUI Previews」「iOS Simulator」といった具体的なツール名を挙げ、「performance bottlenecks (パフォーマンスのボトルネック)」という専門用語を使うことで、問題の深刻さと専門性を効果的に伝えています。
+                -   **フォーマルで丁寧な語彙と表現**: `I am writing to formally propose...` (〜を正式に提案するため筆を執っております)、`I strongly recommend that...` (〜を強く推奨します)、`The benefits would be substantial.` (利益は相当なものになるでしょう)、`I would be grateful if...` (〜していただけると幸いです) のような、ビジネスレターに適した丁寧でフォーマルな表現を一貫して使用しています。
+                -   **ビジネス価値への言及**: 提案の利点を単なる「快適さ」に留めず、「productivity (生産性)」「accelerate our development cycles (開発サイクルの加速)」「higher-quality features (高品質な機能)」「efficiency and morale (効率と士気)」といった、会社やチームの利益に繋がる言葉で表現しており、説得力のあるビジネス提案となっています。
+                """,
                 audioFileName: "writing_test2_q1",
                 conversationScript: nil
             ),
@@ -250,20 +311,80 @@ struct WritingTests {
                 type: .essay,
                 passage: nil,
                 questionText: """
-                形式: 与えられたトピックについて、250語以上のエッセイを書きます。
-                
+                形式: 与えられたトピックについて、自分の意見を理由や例と共に、250語以上のエッセイ形式で記述します。今回は、2つの対立する見解を論じ、自身の意見を述べる形式です。
+
                 Question
-                
-                [問題文は後で更新されます]
-                
-                Give reasons for your answer and include any relevant examples from your own knowledge or experience.
-                
-                Write at least 250 words.
+
+                Some developers believe that the top priority in software development is to release features as quickly as possible to stay ahead of the competition. Others argue that maintaining high code quality is more important, even if it slows down the development process.
+
+                Discuss both these views and give your own opinion.
+
+                Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
                 """,
                 options: nil,
-                correctAnswer: "[模範解答2は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: """
+                In the fast-paced world of mobile app development, a persistent debate exists between the need for rapid feature delivery and the imperative of maintaining high-quality code. While both perspectives have valid arguments, I firmly believe that prioritizing code quality is the more sustainable and ultimately more successful strategy in the long run.
+
+                On the one hand, the argument for prioritizing development speed is compelling, particularly from a business standpoint. In a competitive market, being the first to introduce an innovative feature can be a significant advantage, capturing users and establishing market share. This "speed-to-market" approach often means taking shortcuts, such as omitting tests or writing less-than-perfect code, to meet aggressive deadlines. For a startup trying to validate a product idea with a Minimum Viable Product (MVP), this can be a justifiable tactic. The immediate goal is survival and user feedback, not architectural perfection.
+
+                On the other hand, a disciplined focus on code quality offers profound long-term benefits. High-quality, well-documented code is fundamentally easier and cheaper to maintain. It reduces the likelihood of bugs, making the application more stable and reliable for users. Furthermore, it significantly improves developer productivity in the future. When new developers join a project, a clean codebase allows them to become productive much faster. Neglecting quality leads to an accumulation of "technical debt," where every new feature becomes progressively slower and more difficult to implement, eventually grinding development to a halt.
+
+                In my opinion, while short-term speed can provide a temporary advantage, it is often a shortsighted strategy. The initial gains from a rapid release are frequently nullified by the extensive costs of fixing bugs and refactoring a fragile codebase later on. A sustainable development process should treat code quality not as an obstacle to speed, but as an enabler of it. By investing in practices like automated testing and regular refactoring, teams can maintain a healthy codebase that allows them to build and release new features both quickly and reliably over the long term.
+
+                (298 words)
+                """,
+                japaneseTranslation: """
+                ## 問題
+
+                ソフトウェア開発における最優先事項は、競合他社に先んじるためにできるだけ速く機能をリリースすることだと信じる開発者もいます。一方で、たとえ開発プロセスが遅くなったとしても、高いコード品質を維持することの方が重要だと主張する人々もいます。
+
+                **これら両方の見解を論じ、あなた自身の意見を述べなさい。**
+
+                あなたの答えの理由を述べ、あなた自身の知識や経験から関連する例を挙げてください。少なくとも250語で記述してください。
+
+                ## 模範解答例（日本語訳）
+
+                ペースの速いモバイルアプリ開発の世界では、迅速な機能提供の必要性と、高品質なコードを維持するという責務との間で、絶え間ない議論が存在します。どちらの視点にも妥当な主張がありますが、私は、長期的にはコード品質を優先することが、より持続可能で、最終的により成功する戦略であると固く信じています。
+
+                一方では、開発速度を優先するという主張は、特にビジネスの観点からは説得力があります。競争の激しい市場では、革新的な機能を最初に導入することが大きなアドバンテージとなり、ユーザーを獲得し市場シェアを確立することができます。この「市場投入までの速さ」を重視するアプローチは、厳しい締め切りに間に合わせるために、テストを省略したり、完璧とは言えないコードを書いたりといった近道をすることをしばしば意味します。実用最小限の製品（MVP）で製品アイデアを検証しようとするスタートアップにとって、これは正当化できる戦術かもしれません。当面の目標は、アーキテクチャの完璧さではなく、生存とユーザーからのフィードバックです。
+
+                他方で、規律をもってコード品質に焦点を当てることは、深刻な長期的利益をもたらします。高品質で、よく文書化されたコードは、基本的に維持がより簡単で安価です。それはバグの可能性を減らし、アプリケーションをユーザーにとってより安定的で信頼性の高いものにします。さらに、将来の開発者の生産性を大幅に向上させます。新しい開発者がプロジェクトに参加したとき、クリーンなコードベースは彼らがずっと速く生産的になることを可能にします。品質を軽視することは「技術的負債」の蓄積につながり、新しい機能を追加するたびに開発が次第に遅く、困難になり、最終的には開発が停止してしまいます。
+
+                私の意見では、短期的な速さは一時的な利点を提供するかもしれませんが、それはしばしば近視眼的な戦略です。迅速なリリースから得られる初期の利益は、後になって壊れやすいコードベースを修正し、リファクタリングするための莫大なコストによって無効にされることが頻繁にあります。持続可能な開発プロセスは、コード品質を速度の障害としてではなく、それを可能にするものとして扱うべきです。自動テストや定期的なリファクタリングといったプラクティスに投資することで、チームは長期間にわたって迅速かつ確実に新機能を構築し、リリースできる健全なコードベースを維持することができるのです。
+                """,
+                explanation: """
+                このタスクでは、与えられたトピックに対して、論理的で説得力のあるエッセイを250語以上で書く能力が評価されます。特にこの「両方の意見を論じ、自身の意見を述べる」形式の問題では、以下の点が重要になります。
+                1.  **課題への的確な応答**: 対立する2つの見解（開発速度 vs コード品質）を公平に論じ、さらに自分自身の明確な意見を述べる、という全ての要求に応えられているか。
+                2.  **一貫性と結束性**: エッセイ全体が論理的な構成（序論・本論・結論）を持ち、段落や文がスムーズにつながっているか。
+                3.  **語彙力**: トピックに合った、幅広く的確な語彙を使えているか。
+                4.  **文法の多様性と正確性**: 様々な文の構造を、間違いなく使えるか。
+
+                ## 高得点を狙うためのエッセイ構成（4段落構成）
+
+                この種類の問題に最も効果的なのが、以下の4段落構成です。この模範解答も、この「型」に沿って書かれています。
+
+                •   **第1段落：序論 (Introduction)**
+                    1.  **背景の提示**: 問題文のテーマを自分の言葉で言い換え、トピックを紹介します。 (e.g., "In the fast-paced world of mobile app development, a persistent debate exists...")
+                    2.  **両論の提示**: これから本文で、対立する2つの意見を論じることを示唆します。
+                    3.  **自分の意見の表明**: 自身の立場を明確に述べます。 (e.g., "I firmly believe that prioritizing code quality is the more sustainable...")
+
+                •   **第2段落：ボディ1 (View 1 - 速度優先の議論)**
+                    `On the one hand` を使い、「速度」を優先する見解について、その理由（市場投入までの速さ）や具体例（MVPを開発するスタートアップ）を挙げて詳しく説明します。
+
+                •   **第3段落：ボディ2 (View 2 - 品質優先の議論)**
+                    `On the other hand` を使い、「品質」を優先する見解に焦点を当てます。その主張（保守性、安定性、生産性）と理由（技術的負債の危険性）を述べます。
+
+                •   **第4段落：結論 (Conclusion & Your Opinion)**
+                    1.  **要約**: ボディ1と2で述べた両論を簡潔にまとめます。
+                    2.  **自分の意見の明確化**: `In my opinion...` と始め、序論で述べた自分の立場を、より力強く、そして最終的な理由と共に展開します。「品質は速度の障害ではなく、それを可能にするもの」という洞察で締めくくっています。
+
+                ## 模範解答の分析：なぜこのエッセイは高評価なのか？
+
+                -   **バランスの取れた議論**: 第2段落と第3段落で、対立する両方の見解を公平に、かつ説得力を持って論じています。一方の意見を不当に貶めることなく、それぞれの利点を客観的に説明しています。
+                -   **明確な構成と接続詞**: `On the one hand`, `On the other hand`, `Furthermore`, `In my opinion` といった接続詞や句を効果的に使い、段落間や文間の論理的なつながりを明確に示しています。
+                -   **高度で的確な語彙**: `persistent debate` (絶え間ない議論), `imperative` (責務), `compelling` (説得力のある), `sustainable` (持続可能な), `shortsighted` (近視眼的な), `nullified` (無効にされる) のような、議論を豊かにする高度な語彙を使用しています。
+                -   **専門用語の適切な使用**: `speed-to-market` (市場投入までの速さ), `Minimum Viable Product (MVP)`, `technical debt` (技術的負債), `refactoring` (リファクタリング) といったiOS開発の文脈に合った専門用語を的確に使い、説得力を高めています。
+                """,
                 audioFileName: "writing_test2_q2",
                 conversationScript: nil
             )
