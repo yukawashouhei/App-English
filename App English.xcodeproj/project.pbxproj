@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		7D1D8DEF2E7ACF5E0006E313 /* スクリーンショット 2025-09-17 20.13.30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "スクリーンショット 2025-09-17 20.13.30.png"; path = "../../../../../../var/folders/mr/3ds_l9255zq5v6wgg35g_1480000gn/T/TemporaryItems/NSIRD_screencaptureui_Sh58Rh/スクリーンショット 2025-09-17 20.13.30.png"; sourceTree = "<group>"; };
+		7D1D8DF02E7ACF5E0006E313 /* スクリーンショット 2025-09-17 20.13.30（2）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "スクリーンショット 2025-09-17 20.13.30（2）.png"; path = "../../../../../../var/folders/mr/3ds_l9255zq5v6wgg35g_1480000gn/T/TemporaryItems/NSIRD_screencaptureui_Sh58Rh/スクリーンショット 2025-09-17 20.13.30（2）.png"; sourceTree = "<group>"; };
 		7D4AE8BB2E3DA6F500D663E8 /* App English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -29,10 +31,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D1D8DEE2E7ACF5E0006E313 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D1D8DEF2E7ACF5E0006E313 /* スクリーンショット 2025-09-17 20.13.30.png */,
+				7D1D8DF02E7ACF5E0006E313 /* スクリーンショット 2025-09-17 20.13.30（2）.png */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D4AE8B22E3DA6F500D663E8 = {
 			isa = PBXGroup;
 			children = (
 				7D4AE8BD2E3DA6F500D663E8 /* App English */,
+				7D1D8DEE2E7ACF5E0006E313 /* Frameworks */,
 				7D4AE8BC2E3DA6F500D663E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -250,24 +262,30 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"App English/Preview Content\"";
 				DEVELOPMENT_TEAM = QXK7568ZT4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs access to the microphone to record your speaking practice for English learning tests.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.perksh.Swift-English";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -280,24 +298,30 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"App English/Preview Content\"";
 				DEVELOPMENT_TEAM = QXK7568ZT4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs access to the microphone to record your speaking practice for English learning tests.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.perksh.Swift-English";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

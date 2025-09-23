@@ -102,12 +102,14 @@ struct OnboardingPageView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            // SwiftUIロゴ（1ページ目の場合のみ表示）
+            // Swallowロゴ（1ページ目の場合のみ表示）
             if page.title.contains("iOSアプリ開発に特化") {
-                Image(systemName: "swift")
-                    .font(.system(size: 80))
-                    .foregroundStyle(.blue)
-                    .padding(.bottom, 20)
+                Image("SwallowLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                    .foregroundStyle(Color(hex: "1A5CF9"))
+                    .padding(.bottom, 5)
             }
             
             // 画像（存在する場合のみ表示）

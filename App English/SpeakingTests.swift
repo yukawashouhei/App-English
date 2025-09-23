@@ -301,15 +301,81 @@ struct SpeakingTests {
                 type: .shortAnswer,
                 passage: nil,
                 questionText: """
-                形式: 面接官と1対1の会話形式で、個人的な質問に答えます。
+                形式: 身近なトピックに関する短い質疑応答。1つの質問に対し、2～3文で簡潔に答えるのが目安です。
                 
-                Question 1
-                [質問1は後で更新されます]
+                Questions
+                
+                Let's talk about how you learn and improve your skills.
+                
+                1. What programming language or framework are you focusing on learning right now?
+                
+                2. Why did you choose to focus on that particular technology?
+                
+                3. Do you prefer learning from video tutorials or written documentation?
+                
+                4. How do you stay up-to-date with the latest trends in iOS development?
+                
+                5. In your opinion, what is the most challenging aspect of learning new technologies as a developer?
                 """,
                 options: nil,
-                correctAnswer: "[模範解答1は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: """
+                Examiner: What programming language or framework are you focusing on learning right now?
+                Candidate: Currently, I'm diving deep into SwiftData. I have experience with Core Data, so my main focus is on understanding the new, simpler paradigms it introduces for data persistence.
+                
+                Examiner: Why did you choose to focus on that particular technology?
+                Candidate: Mainly because it represents the future of data management on Apple's platforms. Mastering it seems essential for building modern, efficient apps and for staying relevant as an iOS developer.
+                
+                Examiner: Do you prefer learning from video tutorials or written documentation?
+                Candidate: That's a good question. I generally prefer written documentation for in-depth, technical details. However, I find video tutorials are excellent for getting a quick, high-level overview of a new concept before I start reading the specifics.
+                
+                Examiner: How do you stay up-to-date with the latest trends in iOS development?
+                Candidate: I have a weekly routine to keep myself informed. I subscribe to a few key newsletters like iOS Dev Weekly, and I often listen to podcasts like Swift by Sundell during my commute to hear different perspectives.
+                
+                Examiner: In your opinion, what is the most challenging aspect of learning new technologies as a developer?
+                Candidate: For me, the most challenging part is finding the dedicated time to go beyond a superficial understanding. It's relatively easy to learn the basics of a new API, but it takes consistent practice to truly master its best practices and limitations.
+                """,
+                japaneseTranslation: """
+                試験官: あなたの学習やスキルアップの方法について話しましょう。
+                
+                試験官: 今、どのプログラミング言語やフレームワークに重点を置いて学習していますか？
+                解答例: 現在は、SwiftDataを深く学んでいます。Core Dataの経験はあるので、データ永続化に関してSwiftDataが導入する新しい、よりシンプルなパラダイムを理解することに重点を置いています。
+                
+                試験官: なぜその特定の技術に注目しようと決めたのですか？
+                解答例: 主に、それがAppleプラットフォームにおけるデータ管理の未来を象徴しているからです。それを習得することは、モダンで効率的なアプリを構築し、iOS開発者として市場価値を維持するために不可欠だと感じています。
+                
+                試験官: ビデオチュートリアルと書かれたドキュメントでは、どちらで学ぶことを好みますか？
+                解答例: 良い質問ですね。深い技術的詳細については、一般的に書かれたドキュメントを好みます。しかし、新しい概念の概要を素早く掴むには、詳細を読む前にビデオチュートリアルを見るのが非常に優れていると感じます。
+                
+                試験官: iOS開発の最新トレンドについて、どのように情報を得ていますか？
+                解答例: 情報を得るために毎週の習慣があります。iOS Dev Weeklyのような主要なニュースレターをいくつか購読していますし、通勤中にはSwift by Sundellのようなポッドキャストをよく聞いて、様々な視点に触れるようにしています。
+                
+                試験官: あなたの意見では、開発者として新しい技術を学ぶ上で最も挑戦的な側面は何ですか？
+                解答例: 私にとって最も挑戦的なのは、表面的な理解を超えて深く学ぶための専門的な時間を見つけることです。新しいAPIの基本を学ぶのは比較的簡単ですが、そのベストプラクティスや限界を真に習得するには、一貫した実践が必要です。
+                """,
+                explanation: """
+                ## スピーキング パート1の目標
+
+                IELTSスピーキングのパート1は、自己紹介や日常生活など、身近なトピックについての短い質疑応答です。目的は、受験者をリラックスさせ、基本的なコミュニケーション能力を評価することにあります。評価のポイントは、複雑な意見を述べることよりも、**質問を正確に理解し、よどみなく、かつ明確に答える能力**です。
+
+                ## 効果的な学習法：Answer + Extend (答えて、広げる)
+
+                パート1で高評価を得るための最も効果的な戦略は、「**Answer + Extend**」です。質問に直接答えた後、一文か二文、理由や具体例、追加情報を加えることで、単なる「はい/いいえ」の回答を避け、自然な会話の流れを作り出します。
+
+                - **Answer (答える)**: 質問に対して、まず直接的で明確な答えを述べます。
+                - **Extend (広げる)**: なぜそう思うのか (理由)、例えばどんなことか (具体例)、あるいは関連する情報 (追加情報) を付け加えます。
+
+                ## 模範解答の分析：なぜこの答え方が良いのか？
+
+                1.  **質問1 (学習中の技術)**: 「SwiftDataです」と直接答えた後、「Core Dataの経験があるから」という**背景(追加情報)**を加えています。これにより、単なる学習者ではなく、経験に基づいたスキルアップを目指していることが伝わります。
+
+                2.  **質問2 (選んだ理由)**: 「未来だから」と答えた後、「モダンなアプリ構築に不可欠」「市場価値を維持するため」という具体的な**理由**を2つ挙げています。これにより、技術選択に対する明確な動機とキャリアへの意識の高さを示すことができます。
+
+                3.  **質問3 (学習方法の好み)**: 「ドキュメントが好きです」と単純に答えるのではなく、「詳細にはドキュMント」「概要把握にはビデオ」と両方の利点を認め、状況に応じて使い分けるというバランスの取れた**経験**を語っています。これにより、一方的でない柔軟な思考を示すことができます。
+
+                4.  **質問4 (情報収集の習慣)**: 「ニュースレターとポッドキャストです」と答えるだけでなく、「iOS Dev Weekly」「Swift by Sundell」という**具体的な名前**を挙げています。これにより、回答に信憑性と具体性が増し、日頃から情報収集を怠らない積極的な姿勢をアピールできます。
+
+                5.  **質問5 (最も挑戦的なこと)**: 「時間を見つけること」という直接的な答えに、「表面的な理解を超えて」という**深掘りした説明**を加えています。これにより、単に忙しいということだけでなく、技術習得の深さについて考察していることを示し、思慮深い技術者であるという印象を与えます。
+                """,
                 audioFileName: "speaking_test2_q1",
                 conversationScript: nil
             ),
@@ -318,20 +384,99 @@ struct SpeakingTests {
                 passage: nil,
                 questionText: """
                 形式: トピックが書かれたカードを渡され、1分間の準備時間でスピーチを考え、その後1～2分間話します。
-                
+
                 Cue Card (トピックカード)
-                
-                [トピックは後で更新されます]
+
+                Describe a time when you helped a colleague or junior developer learn something new.
                 You should say:
-                • [項目1は後で更新されます]
-                • [項目2は後で更新されます]
-                • [項目3は後で更新されます]
-                • [項目4は後で更新されます]
+                • what skill or technology you taught them
+                • what challenges they were facing
+                • how you approached the teaching process
+                • and explain what you learned from this experience.
                 """,
                 options: nil,
-                correctAnswer: "[模範解答2は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: """
+                Well, I'd like to talk about a time when I helped a junior developer on my team learn about state management in SwiftUI. This was about six months ago.
+
+                The skill I taught them was how to properly use ObservableObject and @Published properties in SwiftUI. Sarah, who had just joined our team, was struggling with understanding how data flows through a SwiftUI application. She was coming from a UIKit background, so the declarative nature of SwiftUI's state management was quite different from what she was used to.
+
+                The main challenge she was facing was that her views weren't updating when the underlying data changed. She was treating SwiftUI views like UIKit view controllers, trying to manually update the UI instead of letting the framework handle it reactively. This was causing a lot of frustration because her code looked correct, but the app wasn't behaving as expected.
+
+                My approach was to start with the fundamentals. I sat down with her for about an hour and we built a simple to-do list app together from scratch. I showed her step by step how to create an ObservableObject class, how to use @Published properties, and how to connect them to SwiftUI views with @StateObject and @ObservedObject. We also covered when to use @State versus @StateObject, which is often confusing for beginners.
+
+                What I learned from this experience was that explaining concepts to someone else really deepens your own understanding. Teaching her forced me to think about why SwiftUI works the way it does, not just how to use it. I also realized how important it is to relate new concepts to things people already know. By comparing SwiftUI's state management to concepts she was familiar with from UIKit, I was able to make the learning process much smoother for her.
+                """,
+                japaneseTranslation: """
+                トピックカード
+
+                同僚や後輩の開発者が何か新しいことを学ぶのを手伝った時のことについて説明してください。
+                以下の点について話してください：
+                • どのようなスキルや技術を教えたか
+                • 彼らがどのような課題に直面していたか
+                • どのように教育プロセスにアプローチしたか
+                • そして、この経験から何を学んだかを説明してください。
+
+                模範解答例
+
+                では、私のチーム の後輩開発者にSwiftUIの状態管理について教えた時のことをお話ししたいと思います。これは約6ヶ月前のことでした。
+
+                私が教えたスキルは、SwiftUIでObservableObjectと@Publishedプロパティを適切に使用する方法でした。チームに参加したばかりのサラは、SwiftUIアプリケーションでデータがどのように流れるかを理解するのに苦労していました。彼女はUIKitのバックグラウンドから来ていたので、SwiftUIの状態管理の宣言的な性質は、彼女が慣れ親しんでいたものとはかなり異なっていました。
+
+                彼女が直面していた主な課題は、基になるデータが変更されても、ビューが更新されないということでした。彼女はSwiftUIビューをUIKitビューコントローラーのように扱い、フレームワークにリアクティブに処理させる代わりに、UIを手動で更新しようとしていました。これは、コードが正しく見えるのにアプリが期待通りに動作しないため、多くのフラストレーションを引き起こしていました。
+
+                私のアプローチは、基礎から始めることでした。彼女と約1時間座って、ゼロから簡単なTo-Doリストアプリを一緒に構築しました。ObservableObjectクラスの作成方法、@Publishedプロパティの使用方法、そして@StateObjectと@ObservedObjectを使ってSwiftUIビューに接続する方法を段階的に示しました。また、@Stateと@StateObjectをいつ使うかについても説明しました。これは初心者にとってよく混乱する部分です。
+
+                この経験から学んだことは、誰かに概念を説明することで、自分自身の理解が本当に深まるということでした。彼女に教えることで、SwiftUIがどのように機能するかだけでなく、なぜそのように機能するのかを考えざるを得なくなりました。また、新しい概念を人々がすでに知っていることに関連付けることがいかに重要かも気付きました。SwiftUIの状態管理を、彼女がUIKitで馴染みのある概念と比較することで、学習プロセスを彼女にとってはるかにスムーズにすることができました。
+                """,
+                explanation: """
+                ## スピーキング パート2の目標
+
+                パート2は「ロングターン」と呼ばれ、与えられたトピックについて1～2分間、一人で話し続ける能力が試されます。評価されるのは以下の点です：
+                1. **構成力**: 話の導入、本論、結論が分かりやすく整理されているか
+                2. **流暢さと一貫性**: 途切れ途切れにならず、一貫したテーマで話し続けられるか
+                3. **語彙と文法**: トピックに合った語彙を幅広く、かつ正確に使えるか
+
+                ## 最重要ポイント：1分間の準備時間の使い方
+
+                このパートで高得点を取る鍵は、1分間の準備時間をいかに有効に使うかです。
+
+                **やってはいけないこと:**
+                - 文章を丸ごと書こうとする（時間が足りず、読むだけの不自然なスピーチになります）
+
+                **やるべきこと:**
+                - **キーワードのメモ**: トピックカードの4つの質問をスピーチの骨格として利用し、各項目について2～3個のキーワードだけをメモします
+
+                **今回のトピックでのメモの例:**
+                - **What skill**: SwiftUI state management / ObservableObject / @Published
+                - **Challenges**: UIKit background / views not updating / manual UI updates
+                - **How taught**: fundamentals first / to-do app / step by step / @State vs @StateObject
+                - **What learned**: deepened understanding / relating to known concepts / teaching = learning
+
+                ## 模範解答の分析：なぜこのスピーチは高評価なのか？
+
+                ### 1. 明確な導入
+                "Well, I'd like to talk about a time when I helped a junior developer..."
+                → これから何を話すのかを明確に伝え、スムーズに話を始めています。
+
+                ### 2. トピックカードへの忠実な応答
+                - **第1段落**: 「SwiftUIの状態管理を教えた」と、何のスキルかを具体的に説明
+                - **第2段落**: 「UIKitからSwiftUIへの移行で混乱していた」と、課題を明確に説明
+                - **第3段落**: 「基礎から始めて実践的なアプリを作った」と、教え方を具体的に描写
+                - **第4段落**: 「教えることで自分の理解も深まった」と、学びを述べています
+
+                ### 3. 説得力のある技術的内容
+                この解答は技術的な専門用語（ObservableObject, @Published, @StateObject等）を自然に使いながら、実際の開発現場で起こりうる課題と解決策を具体的に示しています。
+
+                ### 4. 人間的な要素
+                単なる技術指導ではなく、「フラストレーション」「理解の深まり」「学習プロセスをスムーズにする」といった感情や学習効果についても言及し、メンタリングの人間的側面を表現しています。
+
+                ### 5. 効果的な語彙
+                - **教育関連**: fundamentals, step by step, relate concepts, learning process
+                - **技術関連**: declarative, reactively, state management
+                - **感情表現**: frustration, struggling, smoother, deepen understanding
+
+                この模範解答を参考に、あなた自身のメンタリング経験をこの構造に当てはめて練習してみてください。
+                """,
                 audioFileName: "speaking_test2_q2",
                 conversationScript: nil
             ),
@@ -339,20 +484,77 @@ struct SpeakingTests {
                 type: .shortAnswer,
                 passage: nil,
                 questionText: """
-                形式: Part 2のトピックに関連する、より抽象的で複雑な質問について議論します。
-                
-                Discussion Questions
-                
-                Question 1: [質問1は後で更新されます]
-                
-                Question 2: [質問2は後で更新されます]
-                
-                Question 3: [質問3は後で更新されます]
+                形式: Part 2のトピックに関連した、より抽象的で深い議論。自分の意見を理由や例と共に、より長く展開することが求められます。
+
+                Questions
+
+                Let's discuss the broader aspects of software quality.
+
+                1. In general, what are the main consequences of ignoring technical debt in a software project?
+
+                2. How do you think the rise of agile development and rapid release cycles has changed the way teams manage technical debt?
+
+                3. When, if ever, is it justifiable for a team to consciously take on technical debt? Please compare the potential benefits with the long-term risks.
                 """,
                 options: nil,
-                correctAnswer: "[模範解答3は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: """
+                Examiner: In general, what are the main consequences of ignoring technical debt in a software project?
+                Candidate: From my perspective, the primary consequence of ignoring technical debt is a severe decrease in development velocity over time. This happens because the codebase becomes progressively more complex and fragile. As a result, implementing new features or even fixing minor bugs takes significantly longer than it should, as developers must navigate a tangled and unpredictable system. For instance, I've seen projects where a simple UI change required weeks of work due to tightly-coupled, poorly-written legacy code. Ultimately, this not only impacts delivery schedules but also seriously harms team morale.
+
+                Examiner: How do you think the rise of agile development and rapid release cycles has changed the way teams manage technical debt?
+                Candidate: That's an interesting point. I believe agile development has a dual effect on technical debt. On one hand, the pressure to deliver features in short sprints can tempt teams to cut corners and accumulate debt more quickly. However, on the other hand, agile frameworks provide excellent mechanisms to manage it proactively. For example, the practice of holding regular retrospectives allows teams to openly discuss and identify areas of the code that are slowing them down. Many successful agile teams now formally allocate a certain percentage of their capacity, perhaps 15-20%, in each sprint specifically for refactoring and paying down this debt. So, while agile might increase the creation of debt, it also provides the discipline to manage it continuously.
+
+                Examiner: When, if ever, is it justifiable for a team to consciously take on technical debt? Please compare the potential benefits with the long-term risks.
+                Candidate: In my opinion, consciously incurring technical debt is a strategic business decision that is only justifiable in very specific, high-stakes situations. The main potential benefit is speed to market. For example, a startup might need to launch a minimum viable product (MVP) to secure funding or to beat a competitor to the market. In such a case, taking architectural shortcuts might be a calculated risk. The long-term risk, of course, is substantial. If the product is successful, the team is immediately faced with a high "interest payment" in the form of slower development and the eventual need for a costly, large-scale refactoring project. Therefore, it's a trade-off that should only be made with a clear understanding of the future costs and a concrete plan to address the debt as soon as the strategic goal is achieved.
+                """,
+                japaneseTranslation: """
+                試験官: ソフトウェアの品質という、より広い側面について議論しましょう。
+
+                試験官: 一般的に、ソフトウェアプロジェクトで技術的負債を無視することの主な結末は何だと思いますか？
+                解答例: 私の観点からは、技術的負債を無視することの主な結末は、時間とともに開発速度が著しく低下することです。これは、コードベースが次第に複雑で壊れやすくなるために起こります。結果として、開発者は絡み合った予測不能なシステムを解読しなければならず、新機能の実装や些細なバグ修正でさえ、本来あるべきよりもかなり長い時間がかかります。例えば、密結合で質の悪いレガシーコードのせいで、単純なUIの変更に数週間を要したプロジェクトを見たことがあります。最終的に、これは納品スケジュールに影響を与えるだけでなく、チームの士気にも深刻な害を及ぼします。
+
+                試験官: アジャイル開発と迅速なリリースサイクルの台頭は、チームが技術的負債を管理する方法をどのように変えたと思いますか？
+                解答例: それは興味深い点ですね。アジャイル開発は技術的負債に対して二重の効果をもたらすと信じています。一方では、短いスプリントで機能を提供するというプレッシャーが、チームに近道をさせ、より速く負債を蓄積させる誘惑となり得ます。しかし、もう一方では、アジャイルのフレームワークはそれを積極的に管理するための優れたメカニズムを提供します。例えば、定期的にレトロスペクティブ（振り返り）を行う習慣は、チームが開発速度を低下させているコード領域をオープンに議論し、特定することを可能にします。成功しているアジャイルチームの多くは、今や各スプリントのキャパシティの一定割合、おそらく15〜20%を、リファクタリングとこの負債の返済に明確に割り当てています。ですから、アジャイルは負債の発生を増やすかもしれませんが、それを継続的に管理するための規律ももたらすのです。
+
+                試験官: もしあるとすれば、チームが意識的に技術的負債を抱えることは、どのような場合に正当化されますか？市場投入までの速さといった潜在的な利益と、長期的なリスクを比較してください。
+                解答例: 私の意見では、意識的に技術的負債を負うことは、非常に特殊で、リスクの高い状況でのみ正当化される戦略的なビジネス判断です。主な潜在的利益は、市場投入までの速さです。例えば、スタートアップが資金調達のため、あるいは競合他社に先んじるために、実用最小限の製品（MVP）をローンチする必要があるかもしれません。そのような場合、アーキテクチャ上の近道を選ぶことは、計算されたリスクかもしれません。もちろん、長期的なリスクは相当なものです。もし製品が成功すれば、チームは開発速度の低下や、最終的にはコストのかかる大規模なリファクタリングプロジェクトの必要性という形で、高い「利子の支払い」に直面します。したがって、それは将来のコストを明確に理解し、戦略的目標が達成され次第、その負債に対処する具体的な計画があって初めて行われるべきトレードオフです。
+                """,
+                explanation: """
+                ## スピーキング パート3の目標
+
+                パート3は、パート2のトピックから派生した、より抽象的で一般的なテーマについて深く議論する能力を評価します。一貫性のある意見を述べ、それを理由や具体例で説得力をもって裏付ける、高度な論理的思考力と表現力が求められます。
+
+                ## 効果的な解答戦略：PREP法
+
+                抽象的な質問に対して、論理的で分かりやすい回答を構成するための強力なフレームワークが「PREP法」です。
+                - **P (Point)**: まず、自分の**主張・要点**を明確に述べます。
+                - **R (Reason)**: 次に、その主張に至った**理由**を説明します。
+                - **E (Example)**: 主張を裏付けるための具体的な**事例**を挙げます。
+                - **P (Point)**: 最後に、**主張・要点**を再度述べて、話を締めくくります。
+
+                ## 模範解答の分析：なぜこの答え方が良いのか？
+
+                1.  **質問1 (技術的負債の結末)**:
+                    -   **P**: 開発速度が低下し、チームの士気が下がる。
+                    -   **R**: コードが複雑で壊やすくなるから。
+                    -   **E**: 単純なUI変更に数週間かかったプロジェクトの例。
+                    -   **P**: 結論として、速度とモチベーションが低下する。
+                    -   **分析**: PREP法に沿って、主張と理由、具体例が明確に述べられています。`velocity` (開発速度) や `fragile` (壊れやすい)、`morale` (士気) といった高度な語彙を使い、説得力のある回答を構築しています。
+
+                2.  **質問2 (アジャイル開発の影響)**:
+                    -   **P**: 二重の効果がある（負債を生みやすくも、管理しやすくもする）。
+                    -   **R**: 短いスプリントが近道を誘う一方、レトロスペクティブのような習慣が管理を促すから。
+                    -   **E**: スプリントのキャパシティの15-20%を負債返済に割り当てるチームの例。
+                    -   **P**: 結論として、アジャイルは負債を増やすが、管理する規律も与える。
+                    -   **分析**: "On one hand..., however, on the other hand..." という対比表現を使い、物事の多面的な側面を論じています。`proactively` (積極的に) や `retrospective` (振り返り) のようなアジャイル開発の専門用語も的確に使用しています。
+
+                3.  **質問3 (技術的負債の正当化)**:
+                    -   **P**: 戦略的なビジネス判断として、特定の状況下でのみ正当化される。
+                    -   **R**: 主な理由は市場投入までの速さ（time to market）を確保するため。
+                    -   **E**: MVPをローンチしてビジネスアイデアを検証するスタートアップの例。
+                    -   **P**: 結論として、将来のコストを理解した上での計算されたリスク（トレードオフ）である。
+                    -   **分析**: `justifiable` (正当化できる)、`high-stakes` (リスクの高い)、`trade-off` (トレードオフ) のような、高度な議論で使われる語彙を駆使しています。利益とリスクを比較する複雑な質問に対し、明確な論理構造で回答しています。
+                """,
                 audioFileName: "speaking_test2_q3",
                 conversationScript: nil
             )
