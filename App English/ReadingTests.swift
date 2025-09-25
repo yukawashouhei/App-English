@@ -555,5 +555,124 @@ struct ReadingTests {
         description: "Reading Test 2"
     )
     
-    static let allTests: [Test] = [test1, test2]
+    static let test3 = Test(
+        title: "Test 3",
+        skillType: .reading,
+        questions: [
+            Question(
+                type: .multipleChoice,
+                passage: """
+                [本文は後で更新されます]
+                """,
+                questionText: """
+                Questions
+                
+                1. [質問1は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                2. [質問2は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                3. [質問3は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                4. [質問4は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "reading_test3_q1",
+                conversationScript: nil
+            ),
+            Question(
+                type: .multipleChoice,
+                passage: """
+                [本文は後で更新されます]
+                """,
+                questionText: """
+                Questions
+                
+                1. [質問1は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                2. [質問2は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                3. [質問3は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "reading_test3_q2",
+                conversationScript: nil
+            ),
+            Question(
+                type: .multipleChoice,
+                passage: """
+                [本文は後で更新されます]
+                """,
+                questionText: """
+                Questions
+                
+                1. [質問1は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                2. [質問2は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                3. [質問3は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                
+                4. [質問4は後で更新されます]
+                A. [選択肢Aは後で更新されます]
+                B. [選択肢Bは後で更新されます]
+                C. [選択肢Cは後で更新されます]
+                D. [選択肢Dは後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "reading_test3_q3",
+                conversationScript: nil
+            )
+        ],
+        description: "Reading Test 3"
+    )
+    
+    static let allTests: [Test] = [test1, test2, test3]
 } 
