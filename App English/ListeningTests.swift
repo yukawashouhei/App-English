@@ -894,5 +894,91 @@ struct ListeningTests {
         description: "Listening Test 2"
     )
     
-    static let allTests: [Test] = [test1, test2]
+    static let test3 = Test(
+        title: "Test 3",
+        skillType: .listening,
+        questions: [
+            Question(
+                type: .multipleChoice,
+                passage: nil,
+                questionText: """
+                形式: 短い会話を聞いて、5つの多肢選択問題に答えます。
+                
+                [問題内容は後で更新されます]
+                
+                Questions
+                1. [質問1は後で更新されます]
+                2. [質問2は後で更新されます]
+                3. [質問3は後で更新されます]
+                4. [質問4は後で更新されます]
+                5. [質問5は後で更新されます]
+                """,
+                options: [
+                    "[選択肢1は後で更新されます]",
+                    "[選択肢2は後で更新されます]",
+                    "[選択肢3は後で更新されます]"
+                ],
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test3_q1",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            ),
+            Question(
+                type: .matching,
+                passage: """
+                [本文は後で更新されます]
+                
+                Questions
+                1. 項目1: ______________
+                2. 項目2: ______________
+                3. 項目3: ______________
+                """,
+                questionText: "",
+                options: nil,
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test3_q2",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            ),
+            Question(
+                type: .multipleChoice,
+                passage: """
+                [本文は後で更新されます]
+                """,
+                questionText: """
+                [質問文は後で更新されます]
+                """,
+                options: [
+                    "[選択肢Aは後で更新されます]",
+                    "[選択肢Bは後で更新されます]",
+                    "[選択肢Cは後で更新されます]"
+                ],
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test3_q3",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            ),
+            Question(
+                type: .formCompletion,
+                passage: """
+                [本文は後で更新されます]
+                """,
+                questionText: """
+                [質問文は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: "[正解は後で更新されます]",
+                japaneseTranslation: "[日本語訳は後で更新されます]",
+                explanation: "[解説は後で更新されます]",
+                audioFileName: "listening_test3_q4",
+                conversationScript: "[会話スクリプトは後で更新されます]"
+            )
+        ],
+        description: "Listening Test 3"
+    )
+    
+    static let allTests: [Test] = [test1, test2, test3]
 } 

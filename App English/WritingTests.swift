@@ -392,5 +392,81 @@ struct WritingTests {
         description: "Writing Test 2"
     )
     
-    static let allTests: [Test] = [test1, test2]
+    static let test3 = Test(
+        title: "Test 3",
+        skillType: .writing,
+        questions: [
+            Question(
+                type: .essay,
+                passage: nil,
+                questionText: """
+                形式: 与えられた状況に基づき、指定された3つの要点を含んだ150語以上の手紙を書きます。
+
+                Question
+
+                [問題文は後で更新されます]
+
+                Write a letter to [相手]. In your letter:
+                • [要点1は後で更新されます]
+                • [要点2は後で更新されます]
+                • [要点3は後で更新されます]
+
+                Write at least 150 words. You do not need to write any addresses.
+                Begin your letter as follows: Dear [Name],
+                """,
+                options: nil,
+                correctAnswer: """
+                [模範解答は後で更新されます]
+                """,
+                japaneseTranslation: """
+                ## 問題
+
+                [問題の日本語は後で更新されます]
+
+                ## 模範解答例（日本語訳）
+
+                [模範解答の日本語訳は後で更新されます]
+                """,
+                explanation: """
+                [解説は後で更新されます]
+                """,
+                audioFileName: "writing_test3_q1",
+                conversationScript: nil
+            ),
+            Question(
+                type: .essay,
+                passage: nil,
+                questionText: """
+                形式: 与えられたトピックについて、自分の意見を理由や例と共に、250語以上のエッセイ形式で記述します。
+
+                Question
+
+                [問題文は後で更新されます]
+
+                Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
+                """,
+                options: nil,
+                correctAnswer: """
+                [模範解答は後で更新されます]
+                """,
+                japaneseTranslation: """
+                ## 問題
+
+                [問題の日本語は後で更新されます]
+
+                ## 模範解答例（日本語訳）
+
+                [模範解答の日本語訳は後で更新されます]
+                """,
+                explanation: """
+                [解説は後で更新されます]
+                """,
+                audioFileName: "writing_test3_q2",
+                conversationScript: nil
+            )
+        ],
+        description: "Writing Test 3"
+    )
+    
+    static let allTests: [Test] = [test1, test2, test3]
 } 

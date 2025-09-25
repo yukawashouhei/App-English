@@ -562,5 +562,158 @@ struct SpeakingTests {
         description: "Speaking Test 2"
     )
     
-    static let allTests: [Test] = [test1, test2]
+    static let test3 = Test(
+        title: "Test 3",
+        skillType: .speaking,
+        questions: [
+            Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: """
+                形式: 身近なトピックに関する短い質疑応答。1つの質問に対し、2～3文で簡潔に答えるのが目安です。
+                
+                Questions
+                
+                [トピックは後で更新されます]
+                
+                1. [質問1は後で更新されます]
+                
+                2. [質問2は後で更新されます]
+                
+                3. [質問3は後で更新されます]
+                
+                4. [質問4は後で更新されます]
+                
+                5. [質問5は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: """
+                Examiner: [質問1は後で更新されます]
+                Candidate: [模範解答1は後で更新されます]
+                
+                Examiner: [質問2は後で更新されます]
+                Candidate: [模範解答2は後で更新されます]
+                
+                Examiner: [質問3は後で更新されます]
+                Candidate: [模範解答3は後で更新されます]
+                
+                Examiner: [質問4は後で更新されます]
+                Candidate: [模範解答4は後で更新されます]
+                
+                Examiner: [質問5は後で更新されます]
+                Candidate: [模範解答5は後で更新されます]
+                """,
+                japaneseTranslation: """
+                試験官: [トピックは後で更新されます]
+                
+                試験官: [質問1は後で更新されます]
+                解答例: [模範解答1の日本語は後で更新されます]
+                
+                試験官: [質問2は後で更新されます]
+                解答例: [模範解答2の日本語は後で更新されます]
+                
+                試験官: [質問3は後で更新されます]
+                解答例: [模範解答3の日本語は後で更新されます]
+                
+                試験官: [質問4は後で更新されます]
+                解答例: [模範解答4の日本語は後で更新されます]
+                
+                試験官: [質問5は後で更新されます]
+                解答例: [模範解答5の日本語は後で更新されます]
+                """,
+                explanation: """
+                [解説は後で更新されます]
+                """,
+                audioFileName: "speaking_test3_q1",
+                conversationScript: nil
+            ),
+            Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: """
+                形式: トピックが書かれたカードを渡され、1分間の準備時間でスピーチを考え、その後1～2分間話します。
+
+                Cue Card (トピックカード)
+
+                [トピックは後で更新されます]
+                You should say:
+                • [項目1は後で更新されます]
+                • [項目2は後で更新されます]
+                • [項目3は後で更新されます]
+                • [項目4は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: """
+                [模範解答は後で更新されます]
+                """,
+                japaneseTranslation: """
+                トピックカード
+
+                [トピックの日本語は後で更新されます]
+                以下の点について話してください：
+                • [項目1の日本語は後で更新されます]
+                • [項目2の日本語は後で更新されます]
+                • [項目3の日本語は後で更新されます]
+                • [項目4の日本語は後で更新されます]
+
+                模範解答例
+
+                [模範解答の日本語訳は後で更新されます]
+                """,
+                explanation: """
+                [解説は後で更新されます]
+                """,
+                audioFileName: "speaking_test3_q2",
+                conversationScript: nil
+            ),
+            Question(
+                type: .shortAnswer,
+                passage: nil,
+                questionText: """
+                形式: Part 2のトピックに関連した、より抽象的で深い議論。自分の意見を理由や例と共に、より長く展開することが求められます。
+
+                Questions
+
+                [ディスカッショントピックは後で更新されます]
+
+                1. [質問1は後で更新されます]
+
+                2. [質問2は後で更新されます]
+
+                3. [質問3は後で更新されます]
+                """,
+                options: nil,
+                correctAnswer: """
+                Examiner: [質問1は後で更新されます]
+                Candidate: [模範解答1は後で更新されます]
+
+                Examiner: [質問2は後で更新されます]
+                Candidate: [模範解答2は後で更新されます]
+
+                Examiner: [質問3は後で更新されます]
+                Candidate: [模範解答3は後で更新されます]
+                """,
+                japaneseTranslation: """
+                試験官: [ディスカッショントピックは後で更新されます]
+
+                試験官: [質問1は後で更新されます]
+                解答例: [模範解答1の日本語は後で更新されます]
+
+                試験官: [質問2は後で更新されます]
+                解答例: [模範解答2の日本語は後で更新されます]
+
+                試験官: [質問3は後で更新されます]
+                解答例: [模範解答3の日本語は後で更新されます]
+                """,
+                explanation: """
+                [解説は後で更新されます]
+                """,
+                audioFileName: "speaking_test3_q3",
+                conversationScript: nil
+            )
+        ],
+        description: "Speaking Test 3"
+    )
+    
+    static let allTests: [Test] = [test1, test2, test3]
 } 
