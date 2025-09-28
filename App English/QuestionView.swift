@@ -7,9 +7,12 @@
 
 import SwiftUI
 import AVFoundation
+import StoreKit
 
 struct QuestionView: View {
     let test: Test
+    @Environment(\.requestReview) var requestReview
+    @AppStorage("hasRequestedReview") var hasRequestedReview = false
     @State private var currentQuestionIndex = 0
     @State private var showAnswer = false
     @State private var showTranslation = false
@@ -285,6 +288,10 @@ struct QuestionView: View {
                         
                         Button(action: {
                             if currentQuestionIndex < test.questions.count - 1 {
+                                if currentQuestionIndex == 0 && !hasRequestedReview {
+                                            requestReview()
+                                            hasRequestedReview = true // 依頼済みフラグを立てる
+                                        }
                                 currentQuestionIndex += 1
                                 resetAnswerStates()
                                 proxy.scrollTo("top", anchor: .top) // 次の問題にスクロール
