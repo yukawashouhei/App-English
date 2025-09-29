@@ -571,58 +571,72 @@ struct SpeakingTests {
                 passage: nil,
                 questionText: """
                 形式: 身近なトピックに関する短い質疑応答。1つの質問に対し、2～3文で簡潔に答えるのが目安です。
-                
+
                 Questions
-                
-                [トピックは後で更新されます]
-                
-                1. [質問1は後で更新されます]
-                
-                2. [質問2は後で更新されます]
-                
-                3. [質問3は後で更新されます]
-                
-                4. [質問4は後で更新されます]
-                
-                5. [質問5は後で更新されます]
+
+                1. What new technology or framework are you currently learning for iOS development?
+
+                2. What motivated you to start learning that particular technology?
+
+                3. Which learning resource, such as official documentation or video tutorials, do you find most effective?
+
+                4. How do you incorporate learning into your daily or weekly routine as a developer?
+
+                5. In your opinion, how has the rise of AI-powered tools changed the way developers learn new skills?
                 """,
                 options: nil,
                 correctAnswer: """
-                Examiner: [質問1は後で更新されます]
-                Candidate: [模範解答1は後で更新されます]
-                
-                Examiner: [質問2は後で更新されます]
-                Candidate: [模範解答2は後で更新されます]
-                
-                Examiner: [質問3は後で更新されます]
-                Candidate: [模範解答3は後で更新されます]
-                
-                Examiner: [質問4は後で更新されます]
-                Candidate: [模範解答4は後で更新されます]
-                
-                Examiner: [質問5は後で更新されます]
-                Candidate: [模範解答5は後で更新されます]
+                Examiner: What new technology or framework are you currently learning for iOS development?
+                Candidate: Currently, I'm focusing on mastering the new Observation framework in Swift. I believe it's a fundamental shift from Combine for state management, and understanding it deeply is crucial for building modern, efficient SwiftUI apps.
+
+                Examiner: What motivated you to start learning that particular technology?
+                Candidate: The main motivation was to simplify my app's architecture and improve its performance. I noticed some performance bottlenecks in my current project, and recent WWDC sessions highlighted how Observation could directly address these issues.
+
+                Examiner: Which learning resource, such as official documentation or video tutorials, do you find most effective?
+                Candidate: I find a combination to be most effective, but I usually start with Apple's official documentation. It provides the foundational knowledge, and then I watch video tutorials to see practical implementations, which helps solidify my understanding.
+
+                Examiner: How do you incorporate learning into your daily or weekly routine as a developer?
+                Candidate: I set aside the first 30 minutes of my workday specifically for learning. This habit ensures I consistently make progress, and I also dedicate a few hours on weekends to apply what I've learned in small personal projects.
+
+                Examiner: In your opinion, how has the rise of AI-powered tools changed the way developers learn new skills?
+                Candidate: I think they've significantly accelerated the learning process, especially for boilerplate code and debugging. However, I believe it's still essential to understand the underlying concepts rather than just relying on the generated code.
                 """,
                 japaneseTranslation: """
-                試験官: [トピックは後で更新されます]
-                
-                試験官: [質問1は後で更新されます]
-                解答例: [模範解答1の日本語は後で更新されます]
-                
-                試験官: [質問2は後で更新されます]
-                解答例: [模範解答2の日本語は後で更新されます]
-                
-                試験官: [質問3は後で更新されます]
-                解答例: [模範解答3の日本語は後で更新されます]
-                
-                試験官: [質問4は後で更新されます]
-                解答例: [模範解答4の日本語は後で更新されます]
-                
-                試験官: [質問5は後で更新されます]
-                解答例: [模範解答5の日本語は後で更新されます]
+                試験官: 現在、iOS開発のために新しい技術やフレームワークを学んでいますか？
+                解答例: 現在は、Swiftの新しいObservationフレームワークを習得することに集中しています。これは状態管理においてCombineからの根本的な転換だと考えており、モダンで効率的なSwiftUIアプリを構築するためには、深く理解することが不可欠です。
+
+                試験官: その特定の技術を学び始めた動機は何ですか？
+                解答例: 主な動機は、アプリのアーキテクチャを簡素化し、パフォーマンスを向上させることでした。現在のプロジェクトでいくつかのパフォーマンスのボトルネックに気づき、最近のWWDCのセッションでObservationがこれらの問題を直接解決できると強調されていたからです。
+
+                試験官: 公式ドキュメントやビデオチュートリアルなど、どの学習リソースが最も効果的だと感じますか？
+                解答例: 組み合わせが最も効果的だと感じていますが、通常はAppleの公式ドキュメントから始めます。それが基礎知識を提供してくれ、その後ビデオチュートリアルで実践的な実装を見ることで、理解を確かなものにするのに役立ちます。
+
+                試験官: 開発者として、日々のルーティンにどのように学習を取り入れていますか？
+                解答例: 毎日の仕事始めの30分を学習専用に確保しています。この習慣によって一貫して進歩できますし、週末には数時間を使って、その週に学んだことを小さな個人プロジェクトで応用しています。
+
+                試験官: AI搭載ツールの台頭は、開発者が新しいスキルを学ぶ方法をどのように変えたとお考えですか？
+                解答例: 特に定型的なコードやデバッグに関して、学習プロセスを大幅に加速させたと思います。しかし、生成されたコードにただ依存するのではなく、その根底にあるコンセプトを理解することが依然として不可欠だと信じています。
                 """,
                 explanation: """
-                [解説は後で更新されます]
+                **スピーキング パート1の目標**
+
+                IELTSスピーキングのパート1は、自己紹介や身近なトピックについての質疑応答です [1]。評価のポイントは、流暢さと一貫性、語彙力、文法の正確さ、そして発音です [2]。単に質問に答えるだけでなく、自然な会話の流れを意識し、自分の意見や経験を簡潔に表現する能力が試されます。
+
+                **効果的な学習法**
+
+                「Answer + Extend（回答＋補足）」のテクニックを使いましょう。まず質問に直接答え、次に理由や具体例、追加情報を一文付け加えることで、より豊かで自然な回答になります。これにより、語彙力や文法構成力を示す機会が増えます。
+
+                **模範解答の分析：なぜこの答え方が良いのか？**
+
+                1. **質問1**: 直接的な回答（"focusing on mastering the new Observation framework"）に加え、「なぜそれが重要か」（"crucial for building modern, efficient SwiftUI apps"）という理由を述べています。`mastering`（習得する）、`fundamental shift`（根本的な転換）といった専門的かつ的確な語彙を使用しています。
+
+                2. **質問2**: 動機（"simplify my app's architecture and improve its performance"）を明確に述べ、その背景として具体的な課題（"performance bottlenecks"）と情報源（"WWDC sessions"）を挙げています。これにより、回答に具体性と説得力が生まれます。
+
+                3. **質問3**: 「両方の組み合わせが効果的」と前置きしつつ、それぞれの役割（"foundational knowledge", "practical implementations"）を説明しています。`solidify my understanding`（理解を確かなものにする）という表現は、学習プロセスを効果的に描写しています。
+
+                4. **質問4**: 具体的な習慣（"set aside the first 30 minutes"）と、その習慣がもたらす結果（"consistently make progress"）を述べています。さらに週末の活動にも言及することで、学習への積極的な姿勢を示しています。`incorporate`（取り入れる）は、習慣について話す際に便利な動詞です。
+
+                5. **質問5**: 意見（"significantly accelerated the learning process"）を述べた後、注意点（"essential to understand the underlying concepts"）を付け加えることで、バランスの取れた視点を示しています。`boilerplate code`（定型的なコード）、`underlying concepts`（根底にあるコンセプト）など、開発者ならではの語彙が効果的に使われています。
                 """,
                 audioFileName: "speaking_test3_q1",
                 conversationScript: nil
