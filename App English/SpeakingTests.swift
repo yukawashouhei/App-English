@@ -649,33 +649,70 @@ struct SpeakingTests {
 
                 Cue Card (トピックカード)
 
-                [トピックは後で更新されます]
+                Describe a project or feature you worked on that significantly improved the user experience.
                 You should say:
-                • [項目1は後で更新されます]
-                • [項目2は後で更新されます]
-                • [項目3は後で更新されます]
-                • [項目4は後で更新されます]
+                • what the feature was and which app it was for
+                • what specific user problem it solved and how you approached the solution
+                • who you collaborated with on this task
+                • and explain why you are proud of the result.
                 """,
                 options: nil,
                 correctAnswer: """
-                [模範解答は後で更新されます]
+                Certainly, I'd like to talk about a feature I'm particularly proud of, which was redesigning the onboarding flow for a fitness application I was working on. It was a fantastic experience in user-centric development.
+
+                The feature was a complete overhaul of the initial setup process for our fitness app. The original problem was a high user drop-off rate during onboarding; our analytics showed that nearly 40% of new users abandoned the app before completing their profile. The feedback indicated that the process was too text-heavy, confusing, and felt like a chore. My approach was to make it more interactive and visually engaging.
+
+                To achieve this, I collaborated very closely with our UX designer. We started by analyzing user feedback and mapping out a simplified user journey. The designer created prototypes in Figma, and my task was to bring them to life. I implemented a new, swipeable, card-based interface using SwiftUI's `TabView` with a `PageTabViewStyle`. This allowed users to progress through the setup intuitively. I also integrated `SwiftData` to save their preferences seamlessly in the background after each step, which made the process feel much faster.
+
+                I am incredibly proud of the outcome because the results were tangible and directly impacted users in a positive way. After launching the new onboarding flow, we saw the completion rate increase by over 50%, and we received numerous positive App Store reviews specifically mentioning how easy the app was to set up. It was a powerful reminder that a great user experience is just as crucial as the underlying technology, and it truly reinforced the value of effective collaboration between engineering and design.
                 """,
                 japaneseTranslation: """
                 トピックカード
 
-                [トピックの日本語は後で更新されます]
+                あなたが携わったプロジェクトや機能で、ユーザー体験を大幅に改善したものについて説明してください。
                 以下の点について話してください：
-                • [項目1の日本語は後で更新されます]
-                • [項目2の日本語は後で更新されます]
-                • [項目3の日本語は後で更新されます]
-                • [項目4の日本語は後で更新されます]
+                • それがどのような機能で、どのアプリのためのものだったか
+                • それがどのような特定のユーザー問題を解決し、どのようにその解決策に取り組んだか
+                • このタスクで誰と協力したか
+                • そして、なぜその結果を誇りに思うかを説明してください。
 
                 模範解答例
 
-                [模範解答の日本語訳は後で更新されます]
+                はい、私が特に誇りに思っている機能についてお話ししたいと思います。それは、私が携わっていたフィットネスアプリケーションのオンボーディングフローの再設計です。ユーザー中心開発における素晴らしい経験でした。
+
+                その機能は、私たちのフィットネスアプリの初期設定プロセスの完全な見直しでした。元々の問題は、オンボーディング中の高いユーザー離脱率でした。分析データによると、新規ユーザーの約40%がプロフィールを完成させる前にアプリを放棄していました。フィードバックによれば、プロセスが文字ばかりで分かりにくく、面倒な作業のように感じられていたとのことでした。私の取り組みは、それをよりインタラクティブで視覚的に魅力的なものにすることでした。
+
+                これを達成するために、私はUXデザイナーと非常に緊密に協力しました。まずユーザーフィードバックを分析し、簡素化されたユーザージャーニーを設計することから始めました。デザイナーがFigmaでプロトタイプを作成し、私の仕事はそれを実現することでした。私はSwiftUIの`TabView`と`PageTabViewStyle`を使い、スワイプ可能な新しいカードベースのインターフェースを実装しました。これにより、ユーザーは直感的に設定を進めることができました。また、各ステップの後にユーザーの好みをバックグラウンドでシームレスに保存するために`SwiftData`を統合し、プロセスがはるかに速く感じられるようにしました。
+
+                私がこの結果を非常に誇りに思う理由は、その成果が具体的で、ユーザーに直接的なプラスの影響を与えたからです。新しいオンボーディングフローをリリースした後、完了率は50%以上増加し、アプリの設定がいかに簡単であったかを具体的に言及する好意的なApp Storeレビューを数多く受け取りました。これは、優れたユーザー体験が基盤となる技術と同じくらい重要であるということを強く再認識させ、エンジニアリングとデザインの効果的な協力の価値を真に強固なものにしてくれました。
                 """,
                 explanation: """
-                [解説は後で更新されます]
+                **スピーキング パート2の目標**
+
+                IELTSスピーキングのパート2は「ロングターン」と呼ばれ、与えられたトピックについて1～2分間、一人で話し続ける能力を評価します [1, 2]。評価基準はパート1と同じく、流暢さと一貫性、語彙力、文法の正確さ、発音です [3]。ここでは、論理的に話を構成し、適切な語彙や時制を使いながら、途切れることなく一貫したスピーチを展開する力が特に重要になります。
+
+                **最重要ポイント：1分間の準備時間の使い方**
+
+                この1分間をどう使うかが、スピーチの質を大きく左右します。全文を書く時間はないので、キーワードや短いフレーズをメモする戦略が効果的です。Cue Cardの各bullet pointに対応させて、話したい内容の骨子を書き出しましょう。
+
+                *   **What:** `Redesign onboarding`, `fitness app`
+                *   **Problem/Action:** `High drop-off (40%)`, `confusing`, `interactive UI`, `SwiftUI TabView`
+                *   **Collaboration:** `UX designer`, `Figma prototypes`
+                *   **Result/Proud:** `Completion +50%`, `positive reviews`, `tangible impact`
+
+                このようにメモすることで、話す順序と内容を忘れずに、スピーチの流れをスムーズに保つことができます。
+
+                **模範解答の分析：なぜこのスピーチは高評価なのか？**
+
+                1.  **明確な構成力**: スピーチは「導入 → 問題提起と解決策 → 協力体制 → 結果と学び」という、聞き手が理解しやすい論理的な流れで構成されています。Cue Cardの4つの要点に沿って、自然に話が展開されています。
+
+                2.  **豊富な語彙力 (Lexical Resource)**:
+                    *   **技術用語**: `onboarding flow`, `user drop-off rate`, `analytics`, `SwiftUI`, `TabView`, `SwiftData` など、iOS開発者としての専門性を的確に示す語彙が効果的に使われています。
+                    *   **一般語彙**: `user-centric`, `overhaul`, `tangible`, `crucial`, `reinforced the value of` など、感情や状況を豊かに表現する単語がスピーチの質を高めています。
+
+                3.  **文法と時制の正確さ**: 過去の経験を語るため、過去形 (`was`, `showed`, `collaborated`) を正確に使用しています。また、学んだことや現在の考えを述べる部分では現在形 (`I am`, `is`) を使うなど、時制のコントロールができています。
+
+                4.  **ストーリーテリング**: 単なる事実の羅列ではなく、「問題発見（データ分析）→ チームでの解決策模索（デザインとの協力）→ 実装（技術選択）→ 成果確認（データとレビュー）」というストーリーとして語られています。これにより、聞き手は興味を失うことなく、話に引き込まれます。
                 """,
                 audioFileName: "speaking_test3_q2",
                 conversationScript: nil
@@ -688,39 +725,53 @@ struct SpeakingTests {
 
                 Questions
 
-                [ディスカッショントピックは後で更新されます]
+                1. In general, why is it important for development teams to address technical problems proactively, rather than just fixing bugs as they appear?
 
-                1. [質問1は後で更新されます]
+                2. How do you think the pressure to release new features quickly has affected the overall quality of mobile applications in recent years?
 
-                2. [質問2は後で更新されます]
-
-                3. [質問3は後で更新されます]
+                3. When developing a new app, which do you believe is more critical for long-term success: launching with a wide range of features quickly, or launching with fewer, but highly polished and performant, features?
                 """,
                 options: nil,
                 correctAnswer: """
-                Examiner: [質問1は後で更新されます]
-                Candidate: [模範解答1は後で更新されます]
+                Examiner: In general, why is it important for development teams to address technical problems proactively, rather than just fixing bugs as they appear?
+                Candidate: I believe proactive problem-solving is fundamental for the long-term health and sustainability of any software project. When teams only react to bugs, they are often just treating symptoms, not the underlying disease. Proactively addressing technical issues, such as refactoring complex code or optimizing a database schema, prevents what we call "technical debt" from accumulating. For example, a poorly designed architecture might work for a while, but as the app scales, it can become a massive bottleneck, making it incredibly difficult and expensive to add new features or fix future bugs. So, being proactive is essentially an investment in the future efficiency and stability of the product.
 
-                Examiner: [質問2は後で更新されます]
-                Candidate: [模範解答2は後で更新されます]
+                Examiner: How do you think the pressure to release new features quickly has affected the overall quality of mobile applications in recent years?
+                Candidate: That's a great question. In my opinion, the intense market pressure for rapid feature delivery has, in many cases, led to a decline in the average quality of mobile apps. The "move fast and break things" philosophy often prioritizes speed over stability and robustness. This can result in apps that are bloated with features but suffer from poor performance, frequent crashes, and security vulnerabilities. For instance, you often see apps where new functionalities are added, but the core user experience feels neglected or inconsistent. Therefore, while the pace of innovation is exciting, I think it has created a trade-off where long-term quality is sometimes sacrificed for short-term competitive advantage.
 
-                Examiner: [質問3は後で更新されます]
-                Candidate: [模範解答3は後で更新されます]
+                Examiner: When developing a new app, which do you believe is more critical for long-term success: launching with a wide range of features quickly, or launching with fewer, but highly polished and performant, features?
+                Candidate: I would strongly argue that launching with a smaller set of highly polished and performant features is far more critical for long-term success. A user's first impression is paramount, and you rarely get a second chance. If an app is slow, buggy, or confusing—even if it has many features—users are likely to uninstall it and leave negative reviews, which can be detrimental to a new product. For example, many successful apps initially launched by doing just one thing exceptionally well. This focus on quality builds trust and a loyal user base, which provides a solid foundation to build upon. You can always iterate and add more features later based on user feedback, but establishing that initial reputation for quality is irreplaceable.
                 """,
                 japaneseTranslation: """
-                試験官: [ディスカッショントピックは後で更新されます]
+                試験官: 一般的に、開発チームにとって、バグが発生したときだけ修正するのではなく、技術的な問題に積極的に対処することがなぜ重要なのでしょうか？
+                解答例: 積極的な問題解決は、あらゆるソフトウェアプロジェクトの長期的な健全性と持続可能性にとって基本であると信じています。チームがバグに反応するだけの場合、それはしばしば根本的な原因ではなく、症状を治療しているに過ぎません。複雑なコードのリファクタリングやデータベーススキーマの最適化といった技術的な問題に積極的に取り組むことで、私たちが「技術的負債」と呼ぶものが蓄積するのを防ぎます。例えば、設計の悪いアーキテクチャはしばらくは機能するかもしれませんが、アプリがスケールするにつれて巨大なボトルネックとなり、新機能の追加や将来のバグ修正を信じられないほど困難かつ高コストにする可能性があります。ですから、積極的であることは、本質的に製品の将来の効率性と安定性への投資なのです。
 
-                試験官: [質問1は後で更新されます]
-                解答例: [模範解答1の日本語は後で更新されます]
+                試験官: 近年、新機能を迅速にリリースしなければならないというプレッシャーは、モバイルアプリケーション全体の品質にどのような影響を与えていると思いますか？
+                解答例: それは良い質問ですね。私の意見では、迅速な機能提供に対する市場の強いプレッシャーは、多くの場合、モバイルアプリの平均的な品質の低下につながっていると思います。「速く動き、破壊せよ」という哲学は、しばしば安定性や堅牢性よりもスピードを優先します。これにより、機能は豊富でもパフォーマンスが悪く、頻繁にクラッシュし、セキュリティの脆弱性を抱えるアプリが生まれる可能性があります。例えば、新しい機能は追加されるものの、中核となるユーザー体験がおろそかにされたり、一貫性がなかったりするアプリをよく見かけます。したがって、イノベーションのペースは刺激的ですが、短期的な競争優位性のために長期的な品質が犠牲にされるというトレードオフを生み出していると思います。
 
-                試験官: [質問2は後で更新されます]
-                解答例: [模範解答2の日本語は後で更新されます]
-
-                試験官: [質問3は後で更新されます]
-                解答例: [模範解答3の日本語は後で更新されます]
+                試験官: 新しいアプリを開発する際、長期的な成功にとってより重要なのは、幅広い機能を迅速にローンチすることと、機能は少ないが高度に洗練されパフォーマンスの高い状態でローンチすることのどちらだと思いますか？
+                解答例: 私は、より少ない数の、高度に洗練されパフォーマンスの高い機能でローンチする方が、長期的な成功にはるかに重要だと強く主張します。ユーザーの第一印象は最も重要であり、二度目のチャンスはめったにありません。もしアプリが遅く、バグが多く、分かりにくければ、たとえ多くの機能があったとしても、ユーザーはアンインストールして否定的なレビューを残す可能性が高く、それは新製品にとって致命的になり得ます。例えば、成功した多くのアプリは、当初はたった一つのことを非常によく行うことでローンチしました。この品質への集中が信頼と忠実なユーザーベースを築き、それがその後の発展の強固な基盤となります。ユーザーのフィードバックに基づいて後から機能を追加することはいつでもできますが、品質に対する初期の評判を確立することは、何物にも代えがたいものです。
                 """,
                 explanation: """
-                [解説は後で更新されます]
+                **スピーキング パート3の目標**
+
+                IELTSスピーキングのパート3は、パート2のトピックに関連した、より抽象的で一般的なテーマについて議論するセクションです [1]。ここでは、自分の意見を述べ、それを理由や具体例で裏付け、一貫性のある主張を展開する能力が評価されます [2]。単なる個人的な経験を語るのではなく、社会的な視点や一般的な原則について論理的に話す力が求められます。
+
+                **効果的な解答戦略：PREP法**
+
+                パート3のような議論では、PREP法を使って回答を構成すると、論理的で分かりやすいスピーチになります。
+                *   **P (Point):** まず、自分の意見・主張（結論）を明確に述べます。
+                *   **R (Reason):** 次に、なぜそう思うのか、その理由を説明します。
+                *   **E (Example):** 主張を裏付けるための具体的な例を挙げます。
+                *   **P (Point):** 最後に、もう一度主張を繰り返して、話をまとめます。
+
+                **模範解答の分析：なぜこの答え方が良いのか？**
+
+                1.  **質問1**: PREP法が見事に活用されています。(P)「積極的な問題解決は長期的健全性のために基本だ」と主張し、(R)「技術的負債の蓄積を防ぐため」と理由を述べ、(E)「設計の悪いアーキテクチャがスケール時にボトルネックになる」という具体例を挙げ、(P)「将来への投資である」とまとめています。`sustainability`、`technical debt`、`bottleneck`といった専門用語が効果的です。
+
+                2.  **質問2**: (P)「品質の低下につながっている」と明確に意見を述べ、(R)「スピードが安定性より優先されるため」と理由を説明しています。(E)「機能は多いがコア体験が neglected（おろそかにされている）アプリ」という共感を呼びやすい例を挙げています。`trade-off`（トレードオフ）、`sacrificed for`（〜のために犠牲にされる）といった、比較・対比の議論で役立つ表現が使われています。
+
+                3.  **質問3**: (P)「洗練された少ない機能でのローンチがより重要だ」と強く主張し、(R)「ユーザーの第一印象は paramount（最も重要）だから」と理由を述べています。(E)「成功したアプリは一つのことを exceptionally well（卓越してうまく）やることから始めた」という説得力のある例を提示しています。`detrimental`（有害な）、`iterate`（反復する）、`irreplaceable`（かけがえのない）など、高度な語彙が意見の強さを支えています。
                 """,
                 audioFileName: "speaking_test3_q3",
                 conversationScript: nil
