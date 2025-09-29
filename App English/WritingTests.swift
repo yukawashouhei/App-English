@@ -400,35 +400,81 @@ struct WritingTests {
                 type: .essay,
                 passage: nil,
                 questionText: """
-                形式: 与えられた状況に基づき、指定された3つの要点を含んだ150語以上の手紙を書きます。
+                形式: 与えられた状況に基づき、指定された3つの要点を含んだ150語以上の手紙を書きます。今回は、提案型の「フォーマル」な手紙です。
 
                 Question
 
-                [問題文は後で更新されます]
+                You are an iOS developer working on a large, established application. You have noticed that the current architecture is causing development delays and performance issues. You believe migrating to a more modern architecture would solve these problems.
 
-                Write a letter to [相手]. In your letter:
-                • [要点1は後で更新されます]
-                • [要点2は後で更新されます]
-                • [要点3は後で更新されます]
+                Write a letter to your manager, Mr. Evans. In your letter:
+                • describe the current problems with the app's architecture
+                • propose the new architecture and explain why it is better
+                • suggest a plan for how the team could implement this change
 
                 Write at least 150 words. You do not need to write any addresses.
-                Begin your letter as follows: Dear [Name],
+                Begin your letter as follows: Dear Mr. Evans,
                 """,
                 options: nil,
                 correctAnswer: """
-                [模範解答は後で更新されます]
+                Dear Mr. Evans,
+
+                I am writing to propose a significant architectural update for our main application. Recently, I have observed that our current architecture, which relies heavily on an older framework, is leading to slower development cycles and increasing difficulty in maintaining the codebase. New features are becoming complex to integrate, and we are facing performance bottlenecks, particularly in the main content feed.
+
+                To address these challenges, I propose that we begin a phased migration to a modern, pure SwiftUI architecture, utilizing the latest Observation framework for state management. This approach is strongly recommended by Apple and offers numerous advantages, including more concise, readable code, significantly improved performance, and a simplified data flow. This would not only boost our team's productivity but also make it easier to onboard new developers.
+
+                I suggest we implement this change gradually. We could start by building the next new feature as an independent module using the new architecture. This would allow us to evaluate its benefits in a controlled manner without disrupting the existing application. I am confident this investment will lead to a more stable, performant, and maintainable product in the long term.
+
+                I would be grateful for the opportunity to discuss this proposal with you further.
+
+                Yours sincerely,
+
+                (188 words)
                 """,
                 japaneseTranslation: """
-                ## 問題
+                問題
 
-                [問題の日本語は後で更新されます]
+                あなたは、大規模で既存のアプリケーションに携わっているiOS開発者です。現在のアーキテクチャが開発の遅延やパフォーマンス問題を引き起こしていることに気づきました。あなたは、よりモダンなアーキテクチャに移行することがこれらの問題を解決すると信じています。
 
-                ## 模範解答例（日本語訳）
+                あなたの上司であるエバンス氏に手紙を書きなさい。手紙には以下の内容を含めること：
+                • アプリのアーキテクチャに関する現在の問題を説明する
+                • 新しいアーキテクチャを提案し、なぜそれがより良いのかを説明する
+                • チームがこの変更をどのように実装できるかの計画を提案する
 
-                [模範解答の日本語訳は後で更新されます]
+                150語以上で書きなさい。住所を書く必要はありません。
+                手紙の書き出しは以下のようにしてください： Dear Mr. Evans,
+
+                模範解答例（日本語訳）
+
+                拝啓 エバンス様
+
+                当社のメインアプリケーションに関する、重要なアーキテクチャの更新を提案したく、筆を執りました。最近、古いフレームワークに大きく依存している現在のアーキテクチャが、開発サイクルの遅延やコードベースの維持の困難さを増大させていることに気づきました。新機能の統合は複雑になりつつあり、特にメインのコンテンツフィードにおいてパフォーマンスのボトルネックに直面しています。
+
+                これらの課題に対処するため、状態管理に最新のObservationフレームワークを活用した、モダンで純粋なSwiftUIアーキテクチャへの段階的な移行を開始することを提案します。このアプローチはAppleによって強く推奨されており、より簡潔で可読性の高いコード、大幅に改善されたパフォーマンス、そして簡素化されたデータフローなど、数多くの利点があります。これはチームの生産性を向上させるだけでなく、新しい開発者のオンボーディングも容易にします。
+
+                この変更を段階的に実装することを提案します。次の新機能を新しいアーキテクチャを使用した独立したモジュールとして構築することから始めることができます。これにより、既存のアプリケーションを混乱させることなく、管理された方法でその利点を評価することが可能になります。この投資が、長期的にはより安定し、パフォーマンスが高く、保守しやすい製品につながると確信しています。
+
+                この提案について、さらに詳しくお話し合いする機会をいただけますと幸いです。
+
+                敬具
+                [あなたの名前]
                 """,
                 explanation: """
-                [解説は後で更新されます]
+                このタスクでは、与えられた状況に対して、手紙形式で適切に情報を伝達する能力が試されます。評価されるのは以下の点です。
+                1. 目的の達成: 手紙の目的（今回は「アーキテクチャ変更の提案」）を明確に伝えられているか。
+                2. 要点の網羅: 問題文で指示された3つの要点をすべて含んでいるか。
+                3. トーンと形式: 状況に合った適切なトーン（今回は上司へのフォーマルな形式）で書かれているか。
+                4. 構成と語彙: 論理的な段落構成で、語彙や文法を正確に使えているか。
+
+                模範解答の分析：なぜこの手紙は高評価なのか？
+
+                *   **構成**: 手紙は明確な3つの段落で構成されており、それぞれが問題文の要点に沿っています。
+                    *   第1段落: 「I am writing to propose...」で目的を明確にし、現在の問題点（`slower development cycles`, `performance bottlenecks`）を具体的に説明しています。（要点1）
+                    *   第2段落: 「I propose that we...」で具体的な解決策（`pure SwiftUI architecture`, `Observation framework`）を提示し、その利点（`more concise code`, `improved performance`）を論理的に説明しています。（要点2）
+                    *   第3段落: 「I suggest we implement this change gradually.」で具体的な実行計画（`phased migration`）と期待される長期的効果（`more stable, performant, and maintainable product`）を述べています。（要点3）
+
+                *   **トーンと語彙**: 上司への手紙として、終始フォーマルで丁寧なトーンが保たれています。`propose`, `observed`, `address these challenges`, `numerous advantages`, `I would be grateful for the opportunity to...` といった表現は、ビジネスシーンに非常に適しています。
+
+                *   **技術的妥当性**: `architecture`, `codebase`, `performance bottlenecks`, `SwiftUI`, `Observation framework`, `state management` といったiOS開発者にとって馴染み深い専門用語を適切に使用し、提案に説得力を持たせています。
                 """,
                 audioFileName: "writing_test3_q1",
                 conversationScript: nil
@@ -437,29 +483,59 @@ struct WritingTests {
                 type: .essay,
                 passage: nil,
                 questionText: """
-                形式: 与えられたトピックについて、自分の意見を理由や例と共に、250語以上のエッセイ形式で記述します。
+                形式: 与えられたトピックについて、自分の意見を理由や例と共に、250語以上のエッセイ形式で記述します。今回は、2つの対立する見解を論じ、自身の意見を述べる形式です。
 
                 Question
 
-                [問題文は後で更新されます]
+                Some developers argue that adding as many features as possible makes an iOS app more attractive to users, while others believe that keeping an app simple and easy to use is more effective.
+
+                Discuss both these views and give your own opinion.
 
                 Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
                 """,
                 options: nil,
                 correctAnswer: """
-                [模範解答は後で更新されます]
+                In the competitive world of mobile applications, there is often debate over whether an app should prioritize feature richness or simplicity. Some argue that providing a wide range of features is the key to success, while others believe that a minimalist and user-friendly design is more effective. Both perspectives hold merit and deserve careful consideration.
+
+                On one hand, advocates of feature-rich applications argue that users are drawn to apps that provide comprehensive functionality. For instance, productivity tools like Notion or Microsoft Teams succeed partly because they integrate multiple features into one platform. By offering diverse functions, an app can meet a variety of user needs, which may increase engagement and reduce the need for multiple apps. Furthermore, additional features can differentiate an app from competitors and provide greater value for money.
+
+                On the other hand, proponents of simplicity emphasize that too many features can overwhelm users and complicate the user interface. Apple itself has demonstrated that simplicity is a core design principle, making apps like Notes and Reminders successful despite their limited functionality. A simple design reduces the learning curve, increases accessibility, and ensures that essential features work reliably. From an iOS development perspective, simplicity also leads to better maintainability and fewer bugs, which ultimately benefits both users and developers.
+
+                In conclusion, while feature-rich applications can appeal to power users, simplicity often ensures long-term usability and customer satisfaction. In my opinion, the best approach is to start with a simple, focused design and then gradually add features that truly enhance the user experience, rather than complicating it.
+
+                (283 words)
                 """,
                 japaneseTranslation: """
-                ## 問題
+                問題
 
-                [問題の日本語は後で更新されます]
+                一部の開発者は、できるだけ多くの機能を追加することがiOSアプリを魅力的にすると主張する一方で、他の人はアプリをシンプルで使いやすく保つ方が効果的だと考えています。
 
-                ## 模範解答例（日本語訳）
+                両方の意見を論じ、自分の意見を述べなさい。
 
-                [模範解答の日本語訳は後で更新されます]
+                答えには、自分の知識や経験からの関連例を含め、理由を挙げて説明してください。250語以上で書きなさい。
+
+                模範解答例（日本語訳）
+
+                モバイルアプリの競争の激しい世界では、アプリが機能の豊富さを優先すべきか、それともシンプルさを優先すべきかについてよく議論されます。多機能を提供することが成功の鍵だと主張する人もいれば、ミニマルでユーザーフレンドリーなデザインの方が効果的だと考える人もいます。どちらの立場も一理あり、慎重に検討する価値があります。
+
+                一方で、多機能アプリの支持者は、幅広い機能を提供することでユーザーが惹きつけられると主張します。例えば、NotionやMicrosoft Teamsのような生産性ツールは、多くの機能を1つのプラットフォームに統合しているからこそ成功しています。多様な機能を提供することで、ユーザーの様々なニーズを満たし、複数のアプリを使う必要を減らすことができます。さらに、追加機能は競合他社との差別化につながり、費用対効果を高めることもできます。
+
+                一方で、シンプルさを重視する人々は、あまりにも多くの機能がユーザーを圧倒し、UIを複雑にすると強調します。Apple自体もシンプルさを核心的なデザイン原則として示しており、NotesやRemindersのようなアプリは限られた機能にもかかわらず成功しています。シンプルなデザインは学習コストを下げ、アクセシビリティを高め、基本機能が確実に動作することを保証します。iOS開発の観点からも、シンプルさは保守性を高め、バグを減らし、最終的にユーザーと開発者の双方に利益をもたらします。
+
+                結論として、多機能アプリはパワーユーザーに訴求することができますが、シンプルさは長期的な使いやすさと顧客満足を保証することが多いです。私の意見では、最も良いアプローチは、シンプルで焦点を絞ったデザインから始め、ユーザー体験を本当に向上させる機能だけを段階的に追加していくことです。
+
+                （283語）
                 """,
                 explanation: """
-                [解説は後で更新されます]
+                このタスクでは、与えられたトピックに対して、論理的で説得力のあるエッセイを250語以上で書く能力が評価されます。特にこの「両方の意見を論じ、自身の意見を述べる」形式では、次の点が重要です。
+
+                1. 課題への的確な応答: 機能性とシンプルさという対立する2つの見解を公平に論じ、最後に自分の意見を明確に述べています。
+                2. 一貫性と結束性: 4段落構成（序論・本論1・本論2・結論）で論理的に展開され、段落ごとの役割が明確です。
+                3. 語彙力: attract, overwhelm, accessibility, maintainability など、アカデミックかつ技術的に適切な語彙を使用しています。
+                4. 文法の多様性と正確性: On the one hand, On the other hand, In conclusion などの論理的接続を用い、複雑な文構造も正確に使えています。
+
+                模範解答の分析：  
+                序論でトピックを提示し、両論を公平に紹介しています。本論1では「多機能派」の主張を具体例（Notion、Teams）で裏付け、本論2では「シンプル派」の主張をAppleの事例で補強しています。結論では両論を簡潔にまとめ、自身の意見を明確に述べています。IELTS Writing Task 2の高得点モデルに合致するバランスの取れた構成です。
                 """,
                 audioFileName: "writing_test3_q2",
                 conversationScript: nil
