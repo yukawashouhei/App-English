@@ -899,82 +899,393 @@ struct ListeningTests {
         skillType: .listening,
         questions: [
             Question(
-                type: .multipleChoice,
-                passage: nil,
-                questionText: """
-                形式: 短い会話を聞いて、5つの多肢選択問題に答えます。
-                
-                [問題内容は後で更新されます]
+                type: .formCompletion,
+                passage: """
+                Instructions: Complete the form below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.
                 
                 Questions
-                1. [質問1は後で更新されます]
-                2. [質問2は後で更新されます]
-                3. [質問3は後で更新されます]
-                4. [質問4は後で更新されます]
-                5. [質問5は後で更新されます]
+                **extension DC 2025: Speaker Information Form**
+                
+                •   **Speaker Name:** Shohei
+                •   **Event Date:** October 1st, 19:10
+                •   **Talk Title:** Trying iOS 26 in my (1) ______________
+                •   **Main Subject:** The new (2) ______________ style
+                •   **Speaker Number:** (3) ______________
+                •   **Impression of Toolbar:** Very rich and (4) ______________
+                •   **Key Technical Detail:** Buttons have a (5) ______________
                 """,
-                options: [
-                    "[選択肢1は後で更新されます]",
-                    "[選択肢2は後で更新されます]",
-                    "[選択肢3は後で更新されます]"
-                ],
-                correctAnswer: "[正解は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                questionText: "",
+                options: nil,
+                correctAnswer: "1. learning app\n2. Floating\n3. 3rd\n4. not slow\n5. glass effect",
+                japaneseTranslation: """
+                **会話スクリプト（日本語訳）:**
+                
+                デビッド: もしもし、ショウヘイ？extension DCの発表の件、最終確認の電話だよ。
+                ショウヘイ: やあ、デビッド！ありがとう。ちょうど準備してたところだよ。
+                デビッド: よかった。イベント運営に提出するフォームを埋めたいんだ。まず、君のLTの最終的なタイトルを教えてくれる？
+                ショウヘイ: うん、「個人開発の英語学習アプリにiOS26を入れてみた」だよ。フォームにはシンプルに「僕の学習アプリでiOS26を試す」って感じで書けるかな。
+                デビッド: 「学習アプリ (learning app)」ね、了解。5分間で主に何について話すんだっけ？
+                ショウヘイ: 新しいツールバーだよ。特にiOS26からの、あの"Floating"スタイルに焦点を当てるつもりさ。
+                デビッド: "Floating"スタイルか、いいね！発表順は何番目だったかな？
+                ショウヘイ: 僕は3番目の発表者だよ。
+                デビッド: 3番目だね、わかった。で、発表の結論はどんな感じ？あのツールバー、君は気に入ったんだよね？
+                ショウヘイ: その通り。最初は賛否両論あったけど、実際に入れてみたらすごくリッチだし、動きも遅くない。とても気に入ってるよ。
+                デビッド: 「すごくリッチ」で「遅くない」と。なるほど。最後に、ツイート用に何か技術的な詳細を教えてくれる？一番クールな変更点は？
+                ショウヘイ: ボタン自体が最高なんだ。まるで濡れたグラスみたいに、素晴らしいグラス効果がかかっているんだよ。特にボタンの淵が美しいんだ。
+                デビッド: ボタンに「グラス効果 (glass effect)」…最高だね！よし、これで全部だ。10月1日、DeNAのオフィスで会えるのを楽しみにしてるよ！
+                ショウヘイ: ありがとう！
+                
+                **指示：** 以下のフォームを完成させなさい。各解答は2単語および/または1つの数字以内で記入すること。
+                
+                **Questions**
+                **extension DC 2025：登壇者情報フォーム**
+                
+                •   **登壇者名:** Shohei
+                •   **イベント日時:** 10月1日 19:10
+                •   **LTタイトル:** 私の (1) ______________ でiOS26を試す
+                •   **主なテーマ:** 新しい (2) ______________ スタイル
+                •   **発表順:** (3) ______________
+                •   **ツールバーの印象:** 非常にリッチで (4) ______________
+                •   **重要な技術詳細:** ボタンには (5) ______________ がある
+                """,
+                explanation: """
+                ### 1. learning app
+                - **聞き取りのポイント**: デビッドにLTのタイトルを尋ねられたショウヘイが、`"My talk is 'Trying iOS 26 in my personal English learning app'."` と答えています。フォームの空欄は `my` の後なので、続く `learning app` が正解となります。`personal English` を含めると3語以上になるため、2単語の `learning app` を選ぶ必要があります。
+
+                ### 2. Floating
+                - **聞き取りのポイント**: 発表の主なテーマについて、ショウヘイは `"I'm focusing on the new toolbar, specifically the 'Floating' style from iOS 26."` と述べています。新しいツールバーのスタイル名である `Floating` を正確に聞き取る問題です。
+
+                ### 3. 3rd
+                - **聞き取りのポイント**: デビッドが `"And what's your speaker number?"` と発表順を尋ね、ショウヘイが `"I'm the 3rd speaker."` と直接答える部分を聞き取ります。シンプルですが、序数 (`3rd`, `4th`など) の聞き取りはリスニングの基本であり、正確さが求められます。
+
+                ### 4. not slow
+                - **聞き取りのポイント**: ツールバーの印象について、ショウヘイは `"I found it's very rich and not slow at all."` と説明しています。フォームには `Very rich and` まで書かれているため、続く `not slow` が解答となります。否定形を含む表現の聞き取りが試されます。
+
+                ### 5. glass effect
+                - **聞き取りのポイント**: 技術的な詳細として、ショウヘイは `"They have this amazing glass effect, like they're made of wet glass."` と説明します。フォームの空欄は `Buttons have a` の後なので、`glass effect` の2語が正解となります。
+                - **学習ポイント**: `lightning talk (LT)`（短い発表）、`speaker number`（発表順）、`mixed reviews`（賛否両論）、`key takeaway`（主な学び、要点）といったフレーズは、技術イベントやカンファレンス関連の会話で頻繁に使われます。
+                """,
                 audioFileName: "listening_test3_q1",
-                conversationScript: "[会話スクリプトは後で更新されます]"
+                conversationScript: """
+                [SCENE: A phone call between two developers, Shohei and David]
+
+                David: Hey Shohei, just calling for a final check on the details for your extension DC talk.
+                Shohei: Hi David! Thanks. I was just getting my slides ready.
+                David: Perfect. I need to fill out this speaker form for the organizers. First, what's the final title for your lightning talk?
+                Shohei: Right. My talk is 'Trying iOS 26 in my personal English learning app'. For the form, you can just write 'Trying iOS 26 in my learning app'.
+                David: 'learning app'... got it. And what's the main subject you'll cover in five minutes?
+                Shohei: I'm focusing on the new toolbar, specifically the 'Floating' style from iOS 26.
+                David: The 'Floating' style, nice! And what's your speaker number?
+                Shohei: I'm the 3rd speaker.
+                David: The 3rd speaker, okay. So what's your main conclusion? You like the new toolbar, I take it?
+                Shohei: Exactly. There were mixed reviews at first, but after implementing it, I found it's very rich and not slow at all. I really like it.
+                David: 'Very rich' and 'not slow'. Got it. Lastly, give me a cool technical detail I can tweet about. What's the biggest change?
+                Shohei: The coolest part is the buttons themselves. They have this amazing glass effect, like they're made of wet glass. It's especially beautiful on the button edges.
+                David: A 'glass effect' on the buttons... awesome! Okay, that's everything. I'm looking forward to seeing you at the DeNA office on October 1st!
+                Shohei: Thanks!
+                """
             ),
             Question(
                 type: .matching,
                 passage: """
-                [本文は後で更新されます]
+                Instructions: What is the main focus of each quarterly goal? Choose FOUR answers from the box and write the correct letter, A-G, next to questions 1-4.
                 
-                Questions
-                1. 項目1: ______________
-                2. 項目2: ______________
-                3. 項目3: ______________
+                Main Focus
+                A. Improving the user onboarding process
+                B. Reducing the application's final binary size
+                C. Enhancing the security of user data
+                D. Rewriting a core feature with a new framework
+                E. Making the app accessible to more users
+                F. Increasing the speed and responsiveness of the UI
+                G. Automating the release process
                 """,
-                questionText: "",
+                questionText: """
+                Quarterly Development Goals
+                1. Goal 1: ________
+                2. Goal 2: ________
+                3. Goal 3: ________
+                4. Goal 4: ________
+                """,
                 options: nil,
-                correctAnswer: "[正解は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: "1. F\n2. D\n3. A\n4. G",
+                japaneseTranslation: """
+                **指示:** 各四半期目標の主眼は何ですか？下のボックスから4つの答えを選び、質問1-4の横に正しい文字(A-G)を記入しなさい。
+                
+                **主眼**
+                A. ユーザーの初期利用プロセスを改善する
+                B. アプリの最終的なバイナリサイズを削減する
+                C. ユーザーデータのセキュリティを強化する
+                D. 新しいフレームワークでコア機能を書き直す
+                E. より多くのユーザーがアプリを利用できるようにする
+                F. UIの速度と応答性を向上させる
+                G. リリースプロセスを自動化する
+                
+                **四半期の開発目標**
+                1. 目標1: ________
+                2. 目標2: ________
+                3. 目標3: ________
+                4. 目標4: ________
+                
+                ---
+                
+                **会話スクリプト（日本語訳）:**
+                
+                皆さん、おはようございます。ミーティングに参加いただきありがとうございます。本日は、次の四半期における私たちの主要な開発目標について、皆さんと共有したいと思います。今期は4つの大きな柱があります。
+                
+                さて、最初の主要目標はパフォーマンスに関するものです。ユーザーからのフィードバックや分析によると、特に長いリストをスクロールする際に、我々のアプリが少しもっさりしていると感じられているようです。この四半期では、この問題に正面から取り組み、UIが一貫して滑らかに動作するようにしたいと考えています。目標は、UIを常にキビキビと、そしてスムーズに感じさせることです。
+                
+                次に、技術スタックの近代化についてです。データ永続化レイヤーの話ですが、Core Dataは長年うまく機能してきましたが、SwiftDataの登場により、コードベースを大幅に簡素化できると考えています。そこで、2番目の目標は、ユーザープロファイルセクション全体をCore DataからSwiftDataへ移行することです。これは大きなリファクタリングになりますが、長期的には開発効率を向上させるでしょう。
+                
+                3番目の重要な目標は、新規ユーザーに焦点を当てたものです。分析データを見ると、初回起動後の離脱率がかなり高いことがわかっています。新規ユーザーは最初の画面で混乱しているようです。そこで、この四半期では、初めてアプリを使うユーザー体験を再設計し、ガイド付きのチュートリアルを追加し、初期設定を簡素化することを目指します。
+                
+                最後に、私たちの内部プロセスについて触れたいと思います。現在のリリースプロセスは手作業が多く、人的ミスが起こりがちです。正直なところ、時間がかかりすぎています。ですので、最後の目標として、ビルド、テスト、そしてTestFlightへの提出までを自動的に処理できる、適切なCI/CDパイプラインの構築に専念したいと考えています。
+                
+                以上が今期の4つの大きな目標です。各目標の詳細は追って共有しますが、皆で力を合わせれば、この四半期で大きな進歩を遂げられると確信しています。
+                """,
+                explanation: """
+                ### 1. Goal 1: F (Increasing the speed and responsiveness of the UI)
+                - **解説**: スピーカーは、アプリが `"a bit sluggish when scrolling"`（スクロール時にもっさりする）と述べ、目標としてUIを `"snappy and fluid"`（キビキビとスムーズ）にしたいと説明しています。この「もっさり(sluggish)」を解消し、「キビキビ(snappy)」させるという内容が、選択肢Fの「UIの速度(speed)と応答性(responsiveness)を向上させる」という表現に最もよく一致します。
+                - **学習ポイント**: `sluggish` (動きが鈍い、もっさりした), `snappy` (キビキビした), `fluid` (流れるような、スムーズな) は、UIパフォーマンスを議論する際の必須語彙です。
+
+                ### 2. Goal 2: D (Rewriting a core feature with a new framework)
+                - **解説**: スピーカーは、`"migrate the entire user profile section from Core Data to SwiftData"`（ユーザープロファイルセクション全体をCore DataからSwiftDataへ移行する）と述べています。「移行(migrate)」は「書き直し(Rewriting)」に、「ユーザープロファイルセクション」は「コア機能(a core feature)」に、「SwiftData」は「新しいフレームワーク(a new framework)」に、それぞれ言い換えられています。
+                - **学習ポイント**: `persistence layer` (永続化層), `modernize our tech stack` (技術スタックを近代化する), `code base` (コードベース) は、アーキテクチャやリファクタリングに関する会話で頻繁に登場します。
+
+                ### 3. Goal 3: A (Improving the user onboarding process)
+                - **解説**: スピーカーは `"high drop-off rate after the first launch"`（初回起動後の高い離脱率）という問題に触れ、解決策として `"redesign the first-time user experience, adding a guided tutorial"`（初回ユーザー体験を再設計し、ガイド付きチュートリアルを追加する）ことを目標に挙げています。これら初回利用者を対象とした一連の改善は、専門用語で「ユーザーオンボーディング(user onboarding)」と呼ばれます。
+                - **学習ポイント**: `drop-off rate` (離脱率), `first-time user experience (FTUE)`, `guided tutorial` (ガイド付きチュートリアル) は、ユーザーグロースやUI/UXデザインの文脈で重要な用語です。
+
+                ### 4. Goal 4: G (Automating the release process)
+                - **解説**: スピーカーは、現在のリリースプロセスが `"too manual and prone to human error"`（手作業が多すぎ、人的ミスが起こりがち）であると指摘し、目標として `"building a proper CI/CD pipeline"`（適切なCI/CDパイプラインを構築する）ことを挙げています。CI/CDパイプラインを構築する目的は、リリース作業を自動化することです。したがって、選択肢Gの「リリースプロセスを自動化する」がこの目標の主眼となります。
+                - **学習ポイント**: `prone to human error` (人的ミスが起こりがち), `CI/CD pipeline` (継続的インテグレーション/継続的デリバリーのパイプライン) は、開発プロセスの効率化や品質保証に関する議論で中心となる概念です。
+                """,
                 audioFileName: "listening_test3_q2",
-                conversationScript: "[会話スクリプトは後で更新されます]"
+                conversationScript: """
+                Good morning, everyone. Thanks for joining. Today, I want to walk you through our main development goals for the next quarter. We'll be focusing on four big pillars this time.
+
+                Okay, so our **first major goal** is all about performance. Based on user feedback and our analytics, our app feels a bit sluggish, especially when scrolling through long lists. This quarter, we need to tackle this head-on and get the UI running consistently smooth. The aim is to make the UI feel snappy and fluid at all times.
+
+                **Next up**, let's talk about modernizing our tech stack. I'm talking about our persistence layer. Core Data has served us well, but with SwiftData now available, I believe we can significantly simplify our code base. So, our second goal is to migrate the entire user profile section from Core Data to SwiftData. This will be a major refactor, but it will improve our development velocity in the long run.
+
+                The **third key objective** focuses on our new users. Looking at our analytics, we have a pretty high drop-off rate after the first launch. New users seem to be getting confused on the initial screens. So, this quarter, we aim to redesign the first-time user experience, adding a guided tutorial and simplifying the initial setup.
+
+                **Finally**, I want to touch on our internal processes. Our current release process is too manual and prone to human error. Frankly, it takes far too long. Therefore, for our final goal, I want us to dedicate time to building a proper CI/CD pipeline that can automatically handle everything from building and testing to submitting to TestFlight.
+
+                So those are the four big goals for this quarter. I'll be sharing more detailed documents on each of these, but I'm confident that if we work together, we can make huge progress.
+                """
             ),
             Question(
                 type: .multipleChoice,
                 passage: """
-                [本文は後で更新されます]
+                Instructions: Choose the correct letter, A, B, or C.
+                
+                1. What is the main purpose of this conversation?
+                    A. To plan a new feature release.
+                    B. To solve a recent performance problem.
+                    C. To review user feedback from the App Store.
+                
+                2. By how much has the app's launch time increased for some users?
+                    A. Around 14%
+                    B. Around 32%
+                    C. Around 40%
+                
+                3. What specific issue did Maria notice in the analytics?
+                    A. The app is taking longer to open.
+                    B. The app is crashing on older devices.
+                    C. The user interface often freezes.
+                
+                4. According to Leo, what is the technical cause of the problem?
+                    A. The server is responding too slowly.
+                    B. A large amount of data is being loaded on the main thread.
+                    C. There is a memory leak in the new feature.
+                
+                5. What is the agreed-upon solution to fix the issue?
+                    A. To remove the new feature that caused the problem.
+                    B. To load a smaller amount of data at the beginning.
+                    C. To fetch the data in the background after the UI appears.
                 """,
-                questionText: """
-                [質問文は後で更新されます]
+                questionText: "",
+                options: nil,
+                correctAnswer: "1. B\n2. C\n3. A\n4. B\n5. C",
+                japaneseTranslation: """
+                **会話スクリプト（日本語訳）:**
+                
+                マリア: レオ、こんにちは。少し時間ありますか？
+                レオ: もちろんですよ、マリア。どうしましたか？
+                マリア: アプリのパフォーマンスについて話したくて。バージョン3.2のリリース以来、分析データを見ると、一部のユーザーで起動時間が大幅に伸びているんです。ほぼ40%も増加しています。
+                レオ: やはり、僕もそれに気づいていました。Instrumentsを使って起動プロセスをプロファイルしてみたんです。主なボトルネックは、最初のデータ同期処理にあるようです。メインUIが表示される前に、メインスレッドで大量のデータを取得しすぎています。
+                マリア: なるほど。それは新しい「クイックアクセス」機能が原因でしょうか？
+                レオ: その通りです。この新機能のために、アプリは起動時に画像を含むユーザーのプロジェクトデータをすべて事前に読み込むようになりました。それがUIスレッドをブロックしてしまっているんです。
+                マリア: 解決策はありますか？
+                レオ: はい、いくつかアイデアがあります。最善のアプローチは、最初の同期を非同期にすることです。メイン画面にローディング中の表示を出しておいて、データはバックグラウンドで取得します。もっと簡単な短期的な修正としては、最初に読み込むデータを減らすことです。例えばプロジェクトのタイトルだけを読み込んで、画像はユーザーが選択したときに遅延読み込みさせるとか。
+                マリア: どちらが良いと思いますか？
+                レオ: 長期的に見れば、非同期アプローチが最高のユーザー体験を提供します。手間はかかりますが。
+                マリア: わかりました。では、その非同期の解決策で進めましょう。それが適切な長期的な修正に聞こえます。チケットを作成して、工数の見積もりをお願いできますか？
+                レオ: 承知しました。すぐに取り掛かります。
+                
+                **質問**
+                指示：正しい文字、A、B、またはCを選びなさい。
+                
+                1. この会話の主な目的は何ですか？
+                    A. 新機能のリリースを計画するため。
+                    B. 最近のパフォーマンス問題を解決するため。
+                    C. App Storeのユーザーフィードバックを確認するため。
+                
+                2. 一部のユーザーで、アプリの起動時間はどれくらい増加しましたか？
+                    A. 約14%
+                    B. 約32%
+                    C. 約40%
+                
+                3. マリアは分析データでどんな具体的な問題に気づきましたか？
+                    A. アプリの起動に以前より時間がかかっている。
+                    B. 古いデバイスでアプリがクラッシュしている。
+                    C. ユーザーインターフェースが頻繁にフリーズする。
+                
+                4. レオによると、問題の技術的な原因は何ですか？
+                    A. サーバーの応答が遅すぎる。
+                    B. 大量のデータがメインスレッドで読み込まれている。
+                    C. 新機能にメモリリークがある。
+                
+                5. この問題を解決するために合意された解決策は何ですか？
+                    A. 問題を引き起こした新機能を削除する。
+                    B. 最初に読み込むデータ量を減らす。
+                    C. UIが表示された後にバックグラウンドでデータを取得する。
                 """,
-                options: [
-                    "[選択肢Aは後で更新されます]",
-                    "[選択肢Bは後で更新されます]",
-                    "[選択肢Cは後で更新されます]"
-                ],
-                correctAnswer: "[正解は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                explanation: """
+                ### 1. What is the main purpose of this conversation?
+                - **正解: B**. 会話全体を通して、アプリの起動時間が長くなったというパフォーマンス問題の原因を特定し、その解決策を議論・決定しています。
+                - **Aの解説**: 新機能（クイックアクセス）が原因として挙がっていますが、新しい別の機能を計画しているわけではありません。
+                - **Cの解説**: ユーザーからのフィードバック（分析データ）が問題発見のきっかけですが、会話の主目的はフィードバックの確認ではなく、問題解決です。
+
+                ### 2. By how much has the app's launch time increased for some users?
+                - **正解: C**. マリアが会話の冒頭で `"It's up by nearly 40% for some users."` と明確に述べています。`nearly` (ほぼ) という言葉に惑わされず、数字 `40%` を正確に聞き取ることが重要です。
+
+                ### 3. What specific issue did Maria notice in the analytics?
+                - **正解: A**. マリアが報告した問題は `"our analytics show the launch time has jumped."`（分析によると起動時間が跳ね上がっている）という点です。これは「アプリの起動に時間がかかっている」と言い換えられます。
+                - **B, Cの解説**: クラッシュやフリーズについては会話の中で言及されていません。
+
+                ### 4. According to Leo, what is the technical cause of the problem?
+                - **正解: B**. レオは原因を `"We're fetching too much data on the main thread before the main UI appears."` と分析しています。これは選択肢Bの内容と完全に一致します。
+                - **A, Cの解説**: サーバーの応答速度やメモリリークはパフォーマンス問題の一般的な原因ですが、この会話では原因として挙げられていません。
+
+                ### 5. What is the agreed-upon solution to fix the issue?
+                - **正解: C**. レオは2つの案を提示しますが、最終的にマリアが同意したのは `"let's go with the asynchronous solution."` です。この解決策は、レオの説明によると `"show a loading state... and fetch the data in the background."` というものであり、選択肢Cの内容と一致します。
+                - **Bの解説**: 「読み込むデータを減らす」案は短期的な修正案としてレオが述べましたが、最終的に合意された解決策ではありません。これは典型的な引っかけ問題です。
+                - **学習ポイント**: `launch time` (起動時間), `bottleneck` (ボトルネック), `main thread` (メインスレッド), `asynchronous` (非同期), `lazy load` (遅延読み込み) は、パフォーマンス改善の議論における最重要語彙です。
+                """,
                 audioFileName: "listening_test3_q3",
-                conversationScript: "[会話スクリプトは後で更新されます]"
+                conversationScript: """
+                Maria: Hi Leo, do you have a moment?
+                Leo: Sure, Maria. What's up?
+                Maria: I wanted to talk about the app's performance. Since the 3.2 release, our analytics show the launch time has jumped significantly. It's up by nearly 40% for some users.
+                Leo: Yes, I noticed that too. I ran Instruments and profiled the startup process. The main bottleneck seems to be in our initial data synchronization. We're fetching too much data on the main thread before the main UI appears.
+                Maria: I see. Is that caused by the new 'Quick Access' feature?
+                Leo: Exactly. For that feature, the app now preloads all the user's project data, including images, right at launch. It's blocking the UI thread.
+                Maria: Are there any solutions?
+                Leo: Yes, I have a couple of ideas. The best approach would be to make the initial sync asynchronous. We can show a loading state on the main screen and fetch the data in the background. A simpler, short-term fix would be to just load less data initially—maybe only the project titles, and then lazy load the images when the user selects a project.
+                Maria: Which one do you think is better?
+                Leo: In the long run, the asynchronous approach will provide the best user experience, even though it's more work.
+                Maria: Okay, let's go with the asynchronous solution. It sounds like the right long-term fix. Can you create a ticket for it and estimate the effort?
+                Leo: You got it. I'll get right on it.
+                """
             ),
             Question(
-                type: .formCompletion,
+                type: .noteCompletion,
                 passage: """
-                [本文は後で更新されます]
+                Instructions: Complete the notes below. Write ONE WORD ONLY for each answer.
+                
+                Lecture Notes: Optimizing SwiftUI Applications
+                
+                Introduction
+                •   The declarative nature of SwiftUI can sometimes hide performance (1) ______________.
+                •   Before attempting any optimization, it is essential to begin with (2) ______________.
+                
+                Key Principles
+                •   The main source of performance issues is unnecessary view (3) ______________.
+                •   For long lists, use 'Lazy' containers (e.g., List, LazyVGrid) to avoid rendering off-screen (4) ______________.
+                
+                Core Techniques
+                •   Conforming a view to the `Equatable` protocol can prevent re-renders if its data is (5) ______________.
+                •   For complex but static graphics, use `DrawingGroup` to flatten the view hierarchy into a single rendered (6) ______________.
+                
+                Common Pitfalls
+                •   Avoid breaking view identity, for example by putting conditional logic inside a view that affects its (7) ______________.
                 """,
-                questionText: """
-                [質問文は後で更新されます]
-                """,
+                questionText: "",
                 options: nil,
-                correctAnswer: "[正解は後で更新されます]",
-                japaneseTranslation: "[日本語訳は後で更新されます]",
-                explanation: "[解説は後で更新されます]",
+                correctAnswer: "1. costs\n2. profiling\n3. updates\n4. content\n5. identical\n6. image\n7. type",
+                japaneseTranslation: """
+                **会話スクリプト（日本語訳）:**
+                
+                皆さん、こんにちは。本日の講義「SwiftUIアプリケーションの最適化」へようこそ。
+                
+                まず始めに、なぜこれが重要なのかについてお話しします。SwiftUIの宣言的な性質はコーディングを非常に直感的にしますが、その裏でパフォーマンスのコストが隠れてしまうことがあります。コードがシンプルに見えても、非効率な更新処理を引き起こしている可能性があるのです。そして、最適化における第一のルールを覚えておいてください。推測で最適化してはいけません。何らかの変更を加える前に、必ずプロファイリングから始めることが不可欠です。Instrumentsを使って、どこがボトルネックになっているかを正確に特定してください。
+                
+                さて、主要な原則に移りましょう。SwiftUIにおけるパフォーマンス問題の最大の原因は、不要なビューの更新です。状態の一部が変更されるたびに、SwiftUIはビューの階層を再評価します。私たちの仕事は、実際には変更されていないビューの更新を避けることで、このプロセスをできるだけ効率的にすることです。長いリストやグリッドを扱う際には、`List`や`LazyVGrid`のような「Lazy（遅延）」コンテナを使用することが極めて重要です。これらは、画面外のコンテンツをレンダリングすることを避けるため、メモリ使用量とCPU時間を大幅に節約します。
+                
+                では、具体的なテクニックをいくつか見ていきましょう。非常に効果的な方法の一つは、ビューを`Equatable`プロトコルに準拠させることです。これにより、ビューに渡されるデータが前回と同一である場合、SwiftUIはそのビューの再レンダリングをスキップしてくれます。次に、`DrawingGroup`です。多数のビューから成る複雑で静的なグラフィックがある場合、`DrawingGroup`はビュー階層を単一のレンダリングされた画像に平坦化します。これにより、描画パフォーマンスが劇的に向上することがあります。
+                
+                最後に、よくある落とし穴をいくつか紹介します。最も注意すべきことの一つは、「ビューアイデンティティを壊すこと」です。例えば、`if-else`文の中で、条件によってビューの型が変わるようなロジックを書いてしまうと、SwiftUIは古いビューを破棄して新しいビューを生成しなければならず、コストがかかります。可能な限り、ビューの構造は安定させておくべきです。
+                
+                本日の要点は以上です。ありがとうございました。
+                
+                **質問**
+                指示：以下のノートを完成させなさい。各解答は1単語のみで記入すること。
+                
+                **レクチャーノート：SwiftUIアプリケーションの最適化**
+                
+                **導入**
+                •   SwiftUIの宣言的な性質は、時としてパフォーマンスの (1) ______________ を隠してしまうことがある。
+                •   何らかの最適化を試みる前に、(2) ______________ から始めることが不可欠である。
+                
+                **主要な原則**
+                •   パフォーマンス問題の主な原因は、不要なビューの (3) ______________ である。
+                •   長いリストには、「Lazy」コンテナを使い、画面外の (4) ______________ のレンダリングを避けること。
+                
+                **主要なテクニック**
+                •   ビューを `Equatable` プロトコルに準拠させると、データが (5) ______________ であれば再レンダリングを防ぐことができる。
+                •   複雑で静的なグラフィックには `DrawingGroup` を使い、ビュー階層を単一のレンダリングされた (6) ______________ に平坦化する。
+                
+                **よくある落とし穴**
+                •   ビューのアイデンティティを壊すことを避けること。例えば、ビュー内の条件分岐ロジックがその (7) ______________ に影響を与える場合など。
+                """,
+                explanation: """
+                ### 1. costs
+                - **解説**: 講師は導入部で `"its declarative nature can sometimes hide performance costs."` と述べています。「コスト」という言葉が、パフォーマンスへの負荷や代償を意味するキーワードとして使われています。
+
+                ### 2. profiling
+                - **解説**: 最適化の前にすべきこととして、講師は `"it is essential to begin with profiling."` と強調しています。`profiling` は、パフォーマンス分析における最も基本的なステップです。
+
+                ### 3. updates
+                - **解説**: パフォーマンス問題の主な原因として、`"The main source of performance issues is unnecessary view updates."` と説明されています。`updates` はSwiftUIの動作を理解する上で中心的な概念です。
+
+                ### 4. content
+                - **解説**: Lazyコンテナの利点について、`"they avoid rendering off-screen content."` と述べています。「画面外のコンテンツ」をレンダリングしないことが、その主な目的です。
+
+                ### 5. identical
+                - **解説**: Equatableの役割について、`"if its data is identical, SwiftUI will skip re-rendering that view."` と説明しています。`identical` (同一の) という単語が、データが変更されていない状態を表すキーワードです。
+
+                ### 6. image
+                - **解説**: DrawingGroupの機能について、`"DrawingGroup flattens the view hierarchy into a single rendered image."` と述べています。複数のビューを単一の「画像」として扱うことで、描画を高速化します。
+
+                ### 7. type
+                - **解説**: ビューアイデンティティを壊す例として、`"logic inside a view that affects its type"`、つまりif文などでビューの「型」が変わってしまうケースを挙げています。
+                - **学習ポイント**: `declarative` (宣言的), `bottleneck` (ボトルネック), `view hierarchy` (ビュー階層), `protocol` (プロトコル), `conditional logic` (条件分岐ロジック) は、SwiftUIや一般的なプログラミングの議論で頻出する重要語彙です。
+                """,
                 audioFileName: "listening_test3_q4",
-                conversationScript: "[会話スクリプトは後で更新されます]"
+                conversationScript: """
+                Hello everyone, and welcome to today's lecture on Optimizing SwiftUI Applications.
+                
+                Let's start by talking about why this is important. The declarative nature of SwiftUI makes coding very intuitive, but it can sometimes hide performance costs. Your code might look simple, but it could be causing inefficient update cycles. And remember the number one rule of optimization: don't guess. Before you attempt any changes, it is essential to begin with profiling. Use Instruments to pinpoint exactly where the bottlenecks are.
+                
+                Okay, let's move on to the key principles. The main source of performance issues in SwiftUI is unnecessary view updates. Every time a piece of state changes, SwiftUI re-evaluates the view hierarchy. Our job is to make this process as efficient as possible by avoiding updates for views that haven't actually changed. When dealing with long lists or grids, it is crucial to use 'Lazy' containers, like List or LazyVGrid. They avoid rendering off-screen content, which saves a huge amount of memory and CPU time.
+                
+                So, let's look at some core techniques. One very effective method is to make your view conform to the `Equatable` protocol. This tells SwiftUI that if its data is identical to the last time it was rendered, SwiftUI will skip re-rendering that view. Next, `DrawingGroup`. If you have a complex, static graphic made of many views, `DrawingGroup` flattens the view hierarchy into a single rendered image. This can dramatically improve drawing performance.
+                
+                Finally, I want to highlight a couple of common pitfalls. One of the most important things to avoid is 'breaking view identity'. For example, if you write conditional logic, like an if-else statement, inside a view that affects its type, SwiftUI has to destroy the old view and create a new one, which is expensive. You should keep your view structures as stable as possible.
+                
+                That's all I wanted to cover today. Thank you.
+                """
             )
         ],
         description: "Listening Test 3"
